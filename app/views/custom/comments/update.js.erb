@@ -1,0 +1,3 @@
+<% dom_id = parent_or_commentable_dom_id(@comment.parent_id, @commentable) %>
+var field_success = "#js-poll-question-comment-form-<%= dom_id %> #poll-question-comment-body-<%= dom_id %>";
+App.Comments.display_success(field_success, "<%= j render("custom/comments/success") %>");

@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   include Graphqlable
   include Notifiable
 
-  COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Topic
+  COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Poll::Question Topic
                         Legislation::Question Legislation::Annotation
                         Legislation::Proposal].freeze
 
