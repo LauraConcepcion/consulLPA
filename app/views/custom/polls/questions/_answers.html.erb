@@ -1,4 +1,3 @@
-ruby
 <div class="poll-question-answers">
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question.question_answers.each do |answer| %>
