@@ -202,6 +202,8 @@ es:
         summary: "Resumen"
         description: "Descripción"
         external_url: "Enlace a documentación adicional"
+        alert:
+          success: Guardado correctamente
       poll/question/translation:
         title: "Pregunta"
       signature_sheet:
