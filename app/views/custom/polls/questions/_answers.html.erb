@@ -17,7 +17,8 @@
           class: "button secondary hollow js-question-answer" %>
     <% end %>
   <% end %>
-  <%= render "custom/comments/poll/questions/form", { commentable: question, parent_id: nil, comment: question.comments.any? ? question.comments.first : Comment.new, action: question.comments.any? ? :PUT : :POST } %>
+  <% comment = question.comment_of_user(current_user.id) %>
+  <%= render "custom/comments/poll/questions/form", { commentable: question, parent_id: nil, comment: comment.any? ? comment.first : Comment.new, action: comment.any? ? :PUT : :POST } %>
 <% elsif !user_signed_in? %>
   <% question.question_answers.order(id: :desc).each do |answer| %>
     <%= link_to answer.title, new_user_session_path, class: "button secondary hollow" %>
