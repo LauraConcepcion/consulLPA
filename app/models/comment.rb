@@ -59,6 +59,9 @@ class Comment < ApplicationRecord
 
   scope :not_valuations, -> { where(valuation: false) }
 
+  scope :for_user, ->(id) { where(user_id: id) }
+
+
   after_create :call_after_commented
 
   def self.build(commentable, user, body, p_id = nil, valuation = false)

@@ -73,8 +73,4 @@ class Poll::Question < ApplicationRecord
   def possible_answers
     question_answers.joins(:translations).pluck("poll_question_answer_translations.title")
   end
-
-  def comment_of_user(id)
-    comments.where(user_id: id)
-  end
 end
