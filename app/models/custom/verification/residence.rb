@@ -61,4 +61,8 @@ class Verification::Residence
     def allowed_age?
       Age.in_years(date_of_birth) >= User.minimum_required_age
     end
+
+    def document_number_uniqueness
+      errors.add(:document_number, I18n.t("errors.messages.taken")) if User.active.where(document_number: document_number).where.not(id: user.id).any?
+    end
 end
