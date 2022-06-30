@@ -3,17 +3,17 @@ require_dependency Rails.root.join("app", "models", "verification", "residence")
 class Verification::Residence
 
   validate :allowed_age
-  validate :postal_code_in_las_palmas_gc
-  validate :residence_in_las_palmas_gc
+  validate :local_postal_code
+  validate :local_residence
   validates :date_of_birth, presence: true
 
   VALID_POSTAL_CODES = (35001..35019).to_a + [35220, 35229]
 
-  def postal_code_in_las_palmas_gc
+  def local_postal_code
     errors.add(:postal_code, I18n.t('verification.residence.new.error_not_allowed_postal_code')) unless valid_postal_code?
   end
 
-  def residence_in_las_palmas_gc
+  def local_residence
     return if errors.any?
 
     unless residency_valid?

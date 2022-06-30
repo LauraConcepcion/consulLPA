@@ -7,7 +7,7 @@ class Officing::Residence
   skip_callback :validate, :residence_in_madrid
 
   validate :allowed_age
-  validate :residence_in_las_palmas_gc
+  validate :local_residence
   validates :date_of_birth, presence: true
 
   def initialize(attrs = {})
@@ -19,7 +19,7 @@ class Officing::Residence
   end
 
 
-  def residence_in_las_palmas_gc
+  def local_residence
     return if errors.any?
 
     unless residency_valid?
