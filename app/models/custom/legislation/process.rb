@@ -1,6 +1,5 @@
-require_dependency Rails.root.join('app', 'models', 'legislation', 'process').to_s
+require_dependency Rails.root.join("app", "models", "legislation", "process").to_s
 class Legislation::Process
-
   def self.max_documents_allowed
     3
   end
@@ -12,5 +11,4 @@ class Legislation::Process
   def self.accepted_content_types
     ["application/pdf"]
   end
-
 end
