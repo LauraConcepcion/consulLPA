@@ -5,8 +5,9 @@ class Admin::BudgetInvestmentsController
     def budget_investment_params
       attributes = [:external_url, :heading_id, :administrator_id, :tag_list,
                     :valuation_tag_list, :incompatible, :visible_to_valuators, :selected,
-                    :milestone_tag_list, valuator_ids: [], valuator_group_ids: [],
-                    :organization_name, :location, :not_selected]
+                    :milestone_tag_list,
+                    :organization_name, :location, :not_selected,
+                    valuator_ids: [], valuator_group_ids: []]
       params.require(:budget_investment).permit(attributes, translation_params(Budget::Investment))
     end
 end
