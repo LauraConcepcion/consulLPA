@@ -26,7 +26,7 @@
     <table cellpadding="0" cellspacing="0" border="0" style="background: #fff; margin: 0 auto; max-width: 700px; width:100%;">
       <tbody>
         <tr>
-          <% if File.exists?("app/views/custom/mailer/#{@system_email}.html.erb" ) %>
+          <% if File.exists?("app/views/custom/mailer/#{@system_email}.html.erb") %>
             <%= render file: "app/views/custom/mailer/#{@system_email}.html.erb" %>
           <% else %>
             <%= render file: "app/views/mailer/#{@system_email}.html.erb" %>
