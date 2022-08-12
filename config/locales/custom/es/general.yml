@@ -247,7 +247,7 @@ es:
       open: abierto
       open_city_slogan_html: Ahora podemos opinar, <strong>debatir</strong>, <strong>proponer</strong> ideas para mejorar nuestra ciudad y <strong>decidir</strong> qué hacemos
       open_city_title_html: <strong>Ahora decides tú</strong>
-      open_gov: Gobierno %{open}
+      open_gov: Gobierno abierto
       proposals: Iniciativas ciudadanas
       poll_questions: Consultas
       budgets: Presupuestos participativos

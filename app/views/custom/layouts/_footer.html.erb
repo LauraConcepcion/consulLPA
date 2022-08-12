@@ -2,14 +2,13 @@
   <div class="row">
     <div class="small-12 large-4 column">
       <h1 class="logo">
-        <%= link_to t("layouts.header.open_gov", open: "#{t('layouts.header.open')}").html_safe %>
+        <%= link_to t("layouts.header.open_gov"), root_path %>
       </h1>
 
       <p class="info">
-        <%= t("layouts.footer.description",
+        <%= sanitize(t("layouts.footer.description",
           open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
-          consul:  link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow")).html_safe
-        %>
+          consul:  link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow"))) %>
         <%= t("layouts.footer.contact_us") %>
         <%= link_to t("layouts.footer.faq"), faq_path %>
       </p>
