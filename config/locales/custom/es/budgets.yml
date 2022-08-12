@@ -105,7 +105,7 @@ es:
           button: Buscar
           placeholder: Buscar propuestas de inversión...
           title: Buscar
-        search_results_html:
+        search_results:
           one: " que contiene <strong>'%{search_term}'</strong>"
           other: " que contienen <strong>'%{search_term}'</strong>"
         sidebar:
@@ -115,7 +115,7 @@ es:
             other: "<strong>Has votado %{count} propuestas por un valor de %{amount_spent}</strong>"
           voted_info: Puedes %{link} en cualquier momento hasta el cierre de esta fase. No hace falta que gastes todo el dinero disponible.
           voted_info_link: cambiar tus votos
-          different_heading_assigned_html: "Ya apoyaste propuestas de otra sección del presupuesto: %{heading_link}"
+          different_heading_assigned: "Ya apoyaste propuestas de otra sección del presupuesto: %{heading_link}"
           change_ballot: "Si cambias de opinión puedes borrar tus votos en %{check_ballot} y volver a empezar."
           check_ballot_link: "revisar mis votos"
           zero: "Todavía no has votado ninguna propuesta de inversión en este ámbito del presupuesto."
@@ -163,7 +163,7 @@ es:
       header:
         check_ballot: Revisar mis votos
         finish_ballot: Finalizar mi votación
-        different_heading_assigned_html: "Ya apoyaste propuestas de otra sección del presupuesto: %{heading_link}"
+        different_heading_assigned: "Ya apoyaste propuestas de otra sección del presupuesto: %{heading_link}"
         change_ballot: "Si cambias de opinión puedes borrar tus votos en %{check_ballot} y volver a empezar."
         check_ballot_link: "revisar mis votos"
         finish_ballot_confirm: "Se cerrará la sesión, ¿estás seguro?. Recuerda que puedes cambiar tus votos en cualquier momento hasta que finalice la fase de votación"
