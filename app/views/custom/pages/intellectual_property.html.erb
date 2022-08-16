@@ -1,4 +1,4 @@
-<% provide :title do %><%= t('pages.titles.intellectual_property') %><% end %>
+<% provide :title do %><%= t("pages.titles.intellectual_property") %><% end %>
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: page_url("conditions") %>
 <% end %>
@@ -23,6 +23,6 @@
     </ul>
   </div>
   <div class="small-12 medium-3 column">
-    <%= render '/shared/print' %>
+    <%= render "/shared/print" %>
   </div>
 </div>

@@ -21,12 +21,12 @@
       </div>
 
       <div class="small-12 medium-4 column">
-        <%= link_to t("layouts.footer.transparency_title"), setting['transparency_url'].presence || t("layouts.footer.transparency_url"), class: "title", rel: "nofollow" %>
+        <%= link_to t("layouts.footer.transparency_title"), setting["transparency_url"].presence || t("layouts.footer.transparency_url"), class: "title", rel: "nofollow" %>
         <p><%= t("layouts.footer.transparency_text") %></p>
       </div>
 
       <div class="small-12 medium-4 column">
-        <%= link_to t("layouts.footer.open_data_title"), setting['opendata_url'].presence || t("layouts.header.external_link_opendata_url"), class: "title", rel: "nofollow" %>
+        <%= link_to t("layouts.footer.open_data_title"), setting["opendata_url"].presence || t("layouts.header.external_link_opendata_url"), class: "title", rel: "nofollow" %>
         <p><%= t("layouts.footer.open_data_text") %></p>
 
       </div>
@@ -37,15 +37,15 @@
     <div class="small-12 medium-8 column">
       <%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;|
       <ul class="no-bullet inline-block">
-        <li class="inline-block"><%= link_to t("layouts.footer.privacy"), page_path('privacy') %>&nbsp;|</li>
-        <li class="inline-block"><%= link_to t("layouts.footer.conditions"), page_path('conditions') %>&nbsp;|</li>
-        <li class="inline-block"><%= link_to t("layouts.footer.intellectual_property"), page_path('intellectual_property') %>&nbsp;|</li>
-        <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), page_path('accessibility') %></li>
+        <li class="inline-block"><%= link_to t("layouts.footer.privacy"), page_path("privacy") %>&nbsp;|</li>
+        <li class="inline-block"><%= link_to t("layouts.footer.conditions"), page_path("conditions") %>&nbsp;|</li>
+        <li class="inline-block"><%= link_to t("layouts.footer.intellectual_property"), page_path("intellectual_property") %>&nbsp;|</li>
+        <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), page_path("accessibility") %></li>
       </ul>
     </div>
     <div class="small-12 medium-4 column text-right">
-      <%= link_to t("layouts.header.external_link_oficina_participacion"), target: '_blank', class: "hide-for-small-only" do %>
-        <%= image_tag(image_path_for('logo_participacion_lpgc.png'), alt: t("layouts.header.logo_oficina_participacion")) %>
+      <%= link_to t("layouts.header.external_link_oficina_participacion"), target: "_blank", class: "hide-for-small-only" do %>
+        <%= image_tag(image_path_for("logo_participacion_lpgc.png"), alt: t("layouts.header.logo_oficina_participacion")) %>
       <% end %>
     </div>
   </div>
