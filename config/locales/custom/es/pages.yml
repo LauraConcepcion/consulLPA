@@ -1,8 +1,11 @@
 es:
   pages:
+    conditions:
+      title: Condiciones de uso
+      subtitle: AVISO LEGAL SOBRE LAS CONDICIONES DE USO, PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES DEL PORTAL DE GOBIERNO ABIERTO
+      description: Página de información sobre las condiciones de uso, privacidad y protección de datos personales.
     census_terms: Para verificar la cuenta hay que tener %{minimum_age} años o más y estar empadronado aportando los datos indicados anteriormente, los cuales serán contrastados. Aceptando el proceso de verificación autoriza a que el AYUNTAMIENTO DE LAS PALMAS verifique que se encuentra empadronado en la ciudad, así como medios de contacto que figuren en dichos ficheros. Los datos aportados serán incorporados y tratados en un fichero indicado anteriormente en las condiciones de uso del portal.
     conditions: Condiciones de uso
-    general_terms: Términos y Condiciones
     intellectual_property: Propiedad intelectual
     help:
       title: "Descubre %{org}"
@@ -89,7 +92,6 @@ es:
 <li>Se podr&aacute;n adjuntar fotos, planos, etc.</li>
 </ul>
 <p>No es necesario que en la propuesta se incluya el cap&iacute;tulo del Presupuesto Municipal.</p>"
-
         phase_2_html: "
 <p><strong>SELECCI&Oacute;N</strong></p>
 <p>Se crear&aacute;n seis Grupos de Trabajo sobre los Presupuestos Participativos de 2021, uno por cada distrito y otro para la ciudad, formada por representantes de asociaciones y colectivos, personas especialmente interesadas y cualificadas y t&eacute;cnicos municipales, cuya finalidad ser&aacute; analizar cada una de las propuestas presentadas en cada distrito y a nivel ciudad, y elevar propuesta al Ayuntamiento con un m&aacute;ximo de cien propuestas por cada distrito y de cincuenta a nivel ciudad, en base a los siguientes criterios:</p>
@@ -112,8 +114,6 @@ es:
 <p>Con el fin de facilitar el trabajo de los grupos de trabajo, el Servicio de Participaci&oacute;n Ciudadana llevar&aacute; a cabo previamente un trabajo de recopilaci&oacute;n de las propuestas que incumplen los requisitos exigidos, as&iacute; como de las que sean susceptibles de cambios y agrupamientos. Asimismo, pondr&aacute; a su disposici&oacute;n los medios necesarios para lograr que la selecci&oacute;n de propuestas se desarrolle con la mayor eficacia.</p>
 <p>La selecci&oacute;n se llevar&aacute; a cabo, en cualquier caso, incluso aunque el n&uacute;mero de propuestas a analizar no supere las cien.</p>
 <p>La resoluci&oacute;n que apruebe la creaci&oacute;n de estos grupos de trabajo regular&aacute; su funcionamiento interno.</p>"
-
-
         phase_3_html: "
 <p><strong>AN&Aacute;LISIS DE VIABILIDAD</strong></p>
 <p>El Servicio de Participaci&oacute;n Ciudadana remitir&aacute; a los servicios t&eacute;cnicos del Ayuntamiento que procedan, las propuestas seleccionadas por los distintos grupos de trabajo para que realicen los an&aacute;lisis de viabilidad t&eacute;cnica de las mismas. Asimismo, valorar&aacute;n el coste de las propuestas. Los informes podr&aacute;n emitirse en cuatro sentidos: viables, asumidas, inviables y prevista su inclusi&oacute;n en los presupuestos de 2021. El an&aacute;lisis de viabilidad t&eacute;cnica incluye la valoraci&oacute;n jur&iacute;dica y presupuestaria.</p>
@@ -137,7 +137,7 @@ es:
 <p>El Ayuntamiento establecer&aacute; un procedimiento que permita realizar un seguimiento eficaz de la ejecuci&oacute;n de las propuestas aprobadas de los Presupuestos participativos de 2021, as&iacute; como su comunicaci&oacute;n a las partes interesadas y a la ciudadan&iacute;a en general. A tal fin, y formando parte de ese procedimiento, se crear&aacute; una Comisi&oacute;n de Seguimiento de la Ejecuci&oacute;n del Presupuesto Participativo de 2021que podr&aacute; estar formada por miembros de los grupos de trabajo creados para la selecci&oacute;n de las propuestas; as&iacute; como por representantes de asociaciones y de la sociedad civil en general, ciudadanos interesados y/o especialmente cualificados, t&eacute;cnicos del Servicio de Participaci&oacute;n Ciudadana y el concejal delegado de Participaci&oacute;n Ciudadana. La resoluci&oacute;n de creaci&oacute;n de la Comisi&oacute;n de Seguimiento regular&aacute; su funcionamiento interno.</p>
 <p>Del estado de ejecuci&oacute;n de los Presupuestos Participativos 2021 se informar&aacute; a las Juntas Municipales de Distrito, a los Consejos de Participaci&oacute;n Ciudadana y al Consejo Social de la Ciudad, en las sesiones que se celebren en ese a&ntilde;o y en los posteriores, si fuera necesario. Asimismo, se mantendr&aacute; informada a la ciudadan&iacute;a en general a trav&eacute;s de la p&aacute;gina web municipal y de la plataforma <a href=\"https://decide.laspalmasgc.es\">decide.laspalmasgc.es</a>.</p>"
         image_alt: "Diferentes fases de un presupuesto participativo"
-        figcaption_html: 'Fase de "Votación" de los presupuestos participativos.'
+        figcaption: 'Fase de "Apoyos" y fase de "Votación" de los presupuestos participativos.'
       polls:
         title: "Consultas"
         description: "En las consultas se incluyen cuestiones que el Ayuntamiento somete a decisión directa de la ciudadanía."
@@ -217,19 +217,19 @@ es:
           browser_header: Navegador
           key_header: Combinación de teclas
           rows:
-            -
+            - 
               browser_column: Explorer
               key_column: ALT + atajo y luego ENTER
-            -
+            - 
               browser_column: Firefox
               key_column: ALT + MAYÚSCULAS + atajo
-            -
+            - 
               browser_column: Chrome
               key_column: ALT + atajo (si es un MAC, CTRL + ALT + atajo)
-            -
+            - 
               browser_column: Safari
               key_column: ALT + atajo (si es un MAC, CMD + atajo)
-            -
+            - 
               browser_column: Opera
               key_column: MAYÚSCULAS + ESC + atajo
       textsize:
@@ -239,28 +239,28 @@ es:
           browser_header: Navegador
           action_header: Acción a realizar
           rows:
-            -
+            - 
               browser_column: Explorer
               action_column: Ver > Tamaño del texto
-            -
+            - 
               browser_column: Firefox
               action_column: Ver > Tamaño
-            -
+            - 
               browser_column: Chrome
               action_column: Ajustes (icono) > Opciones > Avanzada > Contenido web > Tamaño fuente
-            -
+            - 
               browser_column: Safari
               action_column: Visualización > ampliar/reducir
-            -
+            - 
               browser_column: Opera
               action_column: Ver > escala
         browser_shortcuts_table:
           description: "Otra forma de modificar el tamaño de texto es utilizar los atajos de teclado definidos en los navegadores, en particular la combinación de teclas:"
           rows:
-            -
+            - 
               shortcut_column: CTRL y + (CMD y + en MAC)
               description_column: para aumentar el tamaño del texto
-            -
+            - 
               shortcut_column: CTRL y - (CMD y - en MAC)
               description_column: para reducir el tamaño del texto
       compatibility:
@@ -272,7 +272,7 @@ es:
       conditions: Condiciones de uso
       privacy: Política de Privacidad
       intellectual_property: Propiedad intelectual
- verify:
+    verify:
       info: "Para verificar tu cuenta introduce los datos con los que te registraste:"
       info_code: "Ahora introduce el código que has recibido en tu carta:"
       submit: Verificar mi cuenta
