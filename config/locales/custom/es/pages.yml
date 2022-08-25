@@ -1,7 +1,6 @@
----
 es:
   pages:
-    census_terms: Para verificar la cuenta hay que tener %{minimum_age} años o más y estar empadronado aportando los datos indicados anteriormente, los cuales serán contrastados. Aceptando el proceso de verificación autoriza a que el AYUNTAMIENTO DE LAS PALMAS verifique que se encuentra empadronado en la ciudad, así como medios de contacto que figuren en dichos ficheros. Los datos aportados serán incorporados y tratados en un fichero indicado anteriormente en las condiciones de uso del portal.
+    census_terms: Para verificar la cuenta hay que tener %{minimum_age} años o más y estar empadronado aportando los datos indicados anteriormente, los cuales serán contrastados. Aceptando el proceso de verificación autoriza a que el AYUNTAMIENTO DE LAS PALMAS verifique que se encuentra empadronado en la ciudad, así como medios de contacto que figuren en dichos ficheros. Los datos aportados serán incorporados y tratados en un fichero indicado anteriormente en las condiciones de uso del portal.
     conditions: Condiciones de uso
     general_terms: Términos y Condiciones
     intellectual_property: Propiedad intelectual
@@ -15,12 +14,13 @@ es:
         budgets: "Presupuestos participativos"
         polls: "Consultas"
         other: "Otra información de interés"
+        processes: "Legislación colaborativa"
       debates:
         title: "Debates"
-        description: "Crea un hilo en el que debatir sobre cualquier tema que quieras compartir con el resto de personas de tu ciudad."
-        feature_1: "Para crear un debate tienes que %{link}"
-        feature_1_link: "registrarte en %{org}"
-        feature_2_html: "Los debates pueden ser valorados utilizando los botones de <strong>Estoy de acuerdo</strong> o <strong>No estoy de acuerdo</strong> que encontrarás en cada uno de ellos."
+        description: "En la sección de %{link} puedes exponer y compartir tu opinión con otras personas sobre temas que te preocupan relacionados con la ciudad. También es un espacio donde generar ideas que a través de las otras secciones de %{org} lleven a actuaciones concretas por parte del Ayuntamiento."
+        link: "debates ciudadanos"
+        feature: "Puedes abrir debates, comentarlos y valorarlos con los botones de <strong>Estoy de acuerdo</strong> o <strong>No estoy de acuerdo</strong>. Para ello tienes que %{link}."
+        feature_link: "registrarte en %{org}"
         image_alt: "Botones para valorar los debates"
         figcaption: 'Botones "Estoy de acuerdo" y "No estoy de acuerdo" para valorar los debates.'
       proposals:
@@ -145,18 +145,23 @@ es:
         feature_1_link: "registrarte en %{org_name}"
         feature_2: "Pueden participar todas las personas empadronadas en la ciudad mayores de %{minimum_age} años."
         feature_3: "Los resultados serán vinculantes para el consistorio."
+      processes:
+        title: "Legislación colaborativa"
+        description: "En la sección de %{link} la ciudadanía participa en la elaboración y modificación de normativa que afecta a la ciudad y puede dar su opinión sobre las políticas municipales en debates previos."
+        link: "legislación colaborativa"
+        feature: "Para participar en la legislación colaborativa tienes que %{link} y verificar tu cuenta."
+        feature_link: "registrarte en %{org_name}"
       faq:
         title: "¿Problemas técnicos?"
         description: "Lee las preguntas frecuentes y resuelve tus dudas."
         button: "Ver preguntas frecuentes"
         page:
           title: "Preguntas Frecuentes"
-          description: "Utiliza esta página para resolver las Preguntas frencuentes a los usuarios del sitio."
-          faq_1_title: "Pregunta 1"
-          faq_1_description: "Este es un ejemplo para la descripción de la pregunta uno."
+          description: "Utiliza esta página para resolver las Preguntas frecuentes a los usuarios del sitio."
       other:
         title: "Otra información de interés"
         how_to_use: "Utiliza %{org_name} en tu municipio"
+        sdg: "Ayuda Objetivos de Desarrollo Sostenible"
       how_to_use:
         text: |-
           Utilízalo en tu municipio libremente o ayúdanos a mejorarlo, es software libre.
@@ -166,18 +171,109 @@ es:
           Si eres programador, puedes ver el código y ayudarnos a mejorarlo en [aplicación CONSUL](https://github.com/consul/consul 'github consul').
       titles:
         how_to_use: Utilízalo en tu municipio
-    privacy: Política de Privacidad
+    privacy:
+      title: Política de privacidad
+      subtitle: "Página de información de protección de datos"
+    accessibility:
+      title: Accesibilidad
+      description: |-
+        La accesibilidad web se refiere a la posibilidad de acceso a la web y a sus contenidos por todas las personas, independientemente de las discapacidades (físicas, intelectuales o técnicas) que puedan presentar o de las que se deriven del contexto de uso (tecnológicas o ambientales).
+
+        Cuando los sitios web están diseñados pensando en la accesibilidad, todos los usuarios pueden acceder en condiciones de igualdad a los contenidos, por ejemplo:
+      examples:
+        - Proporcionando un texto alternativo a las imágenes, los usuarios invidentes o con problemas de visión pueden utilizar lectores especiales para acceder a la información.
+        - Cuando los vídeos disponen de subtítulos, los usuarios con dificultades auditivas pueden entenderlos plenamente.
+        - Si los contenidos están escritos en un lenguaje sencillo e ilustrados, los usuarios con problemas de aprendizaje están en mejores condiciones de entenderlos.
+        - Si el usuario tiene problemas de movilidad y le cuesta usar el ratón, las alternativas con el teclado le ayudan en la navegación.
+      keyboard_shortcuts:
+        title: '"Atajos" de teclado'
+        navigation_table:
+          description: Para poder navegar por este sitio web de forma accesible, se han programado un grupo de teclas de acceso rápido que recogen las principales secciones de interés general en los que está organizado el sitio.
+          caption: Atajos de teclado para el menú de navegación
+          key_header: Tecla
+          page_header: Página
+          rows:
+            -
+              key_column: 0
+              page_column: Inicio
+            -
+              key_column: 1
+              page_column: Debates
+            -
+              key_column: 2
+              page_column: Propuestas
+            -
+              key_column: 3
+              page_column: Votaciones
+            -
+              key_column: 4
+              page_column: Presupuestos participativos
+            -
+              key_column: 5
+              page_column: Legislación colaborativa
+        browser_table:
+          description: "Dependiendo del sistema operativo y del navegador que se utilice, la combinación de teclas será la siguiente:"
+          caption: Combinación de teclas dependiendo del sistema operativo y navegador
+          browser_header: Navegador
+          key_header: Combinación de teclas
+          rows:
+            -
+              browser_column: Explorer
+              key_column: ALT + atajo y luego ENTER
+            -
+              browser_column: Firefox
+              key_column: ALT + MAYÚSCULAS + atajo
+            -
+              browser_column: Chrome
+              key_column: ALT + atajo (si es un MAC, CTRL + ALT + atajo)
+            -
+              browser_column: Safari
+              key_column: ALT + atajo (si es un MAC, CMD + atajo)
+            -
+              browser_column: Opera
+              key_column: MAYÚSCULAS + ESC + atajo
+      textsize:
+        title: Tamaño del texto
+        browser_settings_table:
+          description: El diseño accesible de este sitio web permite que el usuario pueda elegir el tamaño del texto que le convenga. Esta acción puede llevarse a cabo de diferentes maneras según el navegador que se utilice.
+          browser_header: Navegador
+          action_header: Acción a realizar
+          rows:
+            -
+              browser_column: Explorer
+              action_column: Ver > Tamaño del texto
+            -
+              browser_column: Firefox
+              action_column: Ver > Tamaño
+            -
+              browser_column: Chrome
+              action_column: Ajustes (icono) > Opciones > Avanzada > Contenido web > Tamaño fuente
+            -
+              browser_column: Safari
+              action_column: Visualización > ampliar/reducir
+            -
+              browser_column: Opera
+              action_column: Ver > escala
+        browser_shortcuts_table:
+          description: "Otra forma de modificar el tamaño de texto es utilizar los atajos de teclado definidos en los navegadores, en particular la combinación de teclas:"
+          rows:
+            -
+              shortcut_column: CTRL y + (CMD y + en MAC)
+              description_column: para aumentar el tamaño del texto
+            -
+              shortcut_column: CTRL y - (CMD y - en MAC)
+              description_column: para reducir el tamaño del texto
+      compatibility:
+        title: Compatibilidad con estándares y diseño visual
+        description: 'Todas las páginas de este sitio web cumplen con las <strong>Pautas de Accesibilidad</strong> o Principios Generales de Diseño Accesible establecidas por el Grupo de Trabajo <abbr title="Web Accessibility Initiative" lang="en">WAI</abbr> perteneciente al W3C.'
     titles:
+      help: "¿Qué es %{org}? - Participación ciudadana"
       accessibility: Accesibilidad
       conditions: Condiciones de uso
-      more_info: "Más información sobre %{org}"
       privacy: Política de Privacidad
       intellectual_property: Propiedad intelectual
-    verify:
-      code: Código que has recibido en tu carta
-      email: Email
-      info: 'Para verificar tu cuenta introduce los datos con los que te registraste:'
-      info_code: 'Ahora introduce el código que has recibido en tu carta:'
-      password: Contraseña
+ verify:
+      info: "Para verificar tu cuenta introduce los datos con los que te registraste:"
+      info_code: "Ahora introduce el código que has recibido en tu carta:"
       submit: Verificar mi cuenta
       title: Verifica tu cuenta
