@@ -4,7 +4,7 @@
       <p class="lead">
         <strong><%= t("budgets.index.section_footer.title") %></strong>
       </p>
-      <%= raw SiteCustomization::Page.find_by(slug: 'help-budgets')&.content %>
+      <%= sanitize SiteCustomization::Page.find_by(slug: "help-budgets")&.content %>
     </div>
   </div>
 </div>

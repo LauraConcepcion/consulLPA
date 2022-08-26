@@ -8,9 +8,9 @@
   </p>
   <ul class="features">
     <li>
-      <%= t("pages.help.proposals.feature_1",
+      <%= sanitize(t("pages.help.proposals.feature_1",
             link: link_to(t("pages.help.proposals.feature_1_link", org: setting["org_name"]),
-                            new_user_registration_path)).html_safe %>
+                            new_user_registration_path))) %>
     </li>
     <li>
       <%= t("pages.help.proposals.feature_2_html", min_supports: setting["votes_for_proposal_success"], minimum_age: Setting["min_age_to_participate"]) %>

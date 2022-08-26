@@ -21,7 +21,7 @@
     display_error: function(field_with_errors, error_html) {
       $(error_html).insertAfter($("" + field_with_errors));
     },
-    display_success: function (field_with_errors, success_html) {
+    display_success: function(field_with_errors, success_html) {
       $(success_html).insertAfter($("" + field_with_errors));
     },
     reset_form: function(parent_selector) {

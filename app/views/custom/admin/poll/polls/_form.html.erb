@@ -9,18 +9,18 @@
         <%= f.date_field :starts_at %>
       </div>
       <div class="small-12 medium-6 column">
-        <%= f.text_field :starts_at_hour, placeholder: 'HH:MM',
-          label: t('polls.starts_at_hour'),
-          value: @poll.starts_at_hour || @poll.starts_at.try(:strftime, '%H:%M') %>
+        <%= f.text_field :starts_at_hour, placeholder: "HH:MM",
+          label: t("polls.starts_at_hour"),
+          value: @poll.starts_at_hour || @poll.starts_at&.strftime("%H:%M") %>
       </div>
 
       <div class="small-12 medium-6 column">
         <%= f.date_field :ends_at %>
       </div>
       <div class="small-12 medium-6 column">
-        <%= f.text_field :ends_at_hour, placeholder: 'HH:MM',
-          label: t('polls.ends_at_hour'),
-          value: @poll.ends_at_hour || @poll.ends_at.try(:strftime, '%H:%M') %>
+        <%= f.text_field :ends_at_hour, placeholder: "HH:MM",
+          label: t("polls.ends_at_hour"),
+          value: @poll.ends_at_hour || @poll.ends_at&.strftime("%H:%M") %>
       </div>
     </div>
   </div>

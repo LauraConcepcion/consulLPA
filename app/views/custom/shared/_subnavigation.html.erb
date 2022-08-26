@@ -59,6 +59,6 @@
       </li>
     <% end %>
 
-    <%= raw content_block("subnavigation_right", I18n.locale) %>
+    <%= sanitize content_block("subnavigation_right", I18n.locale) %>
   </ul>
 </div>
