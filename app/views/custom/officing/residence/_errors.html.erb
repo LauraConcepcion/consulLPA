@@ -5,7 +5,7 @@
     </button>
       <%= t("verification.residence.new.#{error}") %>
       <%= sanitize(t("officing.residence.new.census_error_help",
-        offices: link_to( t("officing.residence.new.error_verifying_census_offices"),
+        offices: link_to(t("officing.residence.new.error_verifying_census_offices"),
         setting["verification_offices_url"], title: t("shared.target_blank_html"), target: "_blank"))) %>
   </div>
 

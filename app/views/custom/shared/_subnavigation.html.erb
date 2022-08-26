@@ -1,6 +1,6 @@
 <div class="small-12 medium-12 large-12 column">
   <ul class="float-right">
-    <%= raw content_block("subnavigation_left", I18n.locale) %>
+    <%= sanitize content_block("subnavigation_left", I18n.locale) %>
 
     <% if feature?(:budgets) %>
       <li>
