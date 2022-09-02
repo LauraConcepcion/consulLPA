@@ -5,11 +5,12 @@ class Verification::Management::Document
     response.valid?
   end
 
-  def valid_age?
-    return if errors[:date_of_birth].any?
-
-    unless allowed_age?
+  def valid_age?(response)
+    if under_age?(response)
       errors.add(:date_of_birth, I18n.t("verification.residence.new.error_not_allowed_age"))
+      false
+    else
+      true
     end
   end
 end

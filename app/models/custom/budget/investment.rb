@@ -27,13 +27,13 @@ class Budget::Investment
     results = results.winners            if params[:advanced_filters].include?("winners")
 
     ids = []
-    ids += results.valuation_finished_feasible.pluck(:id) if params[:advanced_filters].include?("feasible")
-    ids += results.where(selected: true).pluck(:id)       if params[:advanced_filters].include?("selected")
-    ids += results.undecided.pluck(:id)                   if params[:advanced_filters].include?("undecided")
-    ids += results.unfeasible.pluck(:id)                  if params[:advanced_filters].include?("unfeasible")
-    ids += results.takecharged.pluck(:id)                 if params[:advanced_filters].include?("takecharged")
-    ids += results.included_next_year_budget.pluck(:id)   if params[:advanced_filters].include?("included_next_year_budget")
-    ids += results.not_selected.pluck(:id)                if params[:advanced_filters].include?("not_selected")
+    ids += results.valuation_finished_feasible.ids if params[:advanced_filters].include?("feasible")
+    ids += results.where(selected: true).ids       if params[:advanced_filters].include?("selected")
+    ids += results.undecided.ids                   if params[:advanced_filters].include?("undecided")
+    ids += results.unfeasible.ids                  if params[:advanced_filters].include?("unfeasible")
+    ids += results.takecharged.ids                 if params[:advanced_filters].include?("takecharged")
+    ids += results.included_next_year_budget.ids   if params[:advanced_filters].include?("included_next_year_budget")
+    ids += results.not_selected.ids                if params[:advanced_filters].include?("not_selected")
 
     results = results.where(id: ids) if ids.any?
     results
