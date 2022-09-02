@@ -430,9 +430,7 @@ describe Budget::Investment do
     describe "with without_admin filter" do
       let(:params) { { advanced_filters: ["without_admin"], budget_id: budget.id } }
       it "returns only investment without admin" do
-        create(:budget_investment,
-               :with_administrator,
-               budget: budget)
+        create(:budget_investment, :with_administrator, budget: budget)
         investment2 = create(:budget_investment, budget: budget)
 
         expect(Budget::Investment.scoped_filter(params, "all")).to eq([investment2])
@@ -442,14 +440,9 @@ describe Budget::Investment do
     describe "with without_valuator filter" do
       let(:params) { { advanced_filters: ["without_valuator"], budget_id: budget.id } }
       it "returns only investment without valuator" do
-        create(:budget_investment,
-               :with_valuator,
-               budget: budget)
-        investment2 = create(:budget_investment,
-                             :with_administrator,
-                             budget: budget)
-        investment3 = create(:budget_investment,
-                             budget: budget)
+        create(:budget_investment, :with_valuator, budget: budget)
+        investment2 = create(:budget_investment, :with_administrator, budget: budget)
+        investment3 = create(:budget_investment, budget: budget)
 
         expect(Budget::Investment.scoped_filter(params, "all"))
           .to contain_exactly(investment2, investment3)
@@ -471,14 +464,9 @@ describe Budget::Investment do
     describe "with valuation_finished filter" do
       let(:params) { { advanced_filters: ["valuation_finished"], budget_id: budget.id } }
       it "returns only investment with valuation finished" do
-        investment1 = create(:budget_investment,
-                             :selected,
-                             budget: budget)
-        create(:budget_investment,
-               :with_administrator,
-               budget: budget)
-        create(:budget_investment,
-               budget: budget)
+        investment1 = create(:budget_investment, :selected, budget: budget)
+        create(:budget_investment, :with_administrator, budget: budget)
+        create(:budget_investment, budget: budget)
 
         expect(Budget::Investment.scoped_filter(params, "all")).to eq([investment1])
       end
@@ -1122,12 +1110,6 @@ describe Budget::Investment do
         it "accepts valid ballots when voting is allowed" do
           budget.phase = "balloting"
           expect(investment.reason_for_not_being_ballotable_by(user, ballot)).to be_nil
-        end
-
-        it "rejects votes when voting is not allowed (wrong age)" do
-          budget.phase = "balloting"
-          user.date_of_birth = Time.now - 17.years
-          expect(investment.reason_for_not_being_ballotable_by(user, ballot)).to eq(:not_minimum_voting_age)
         end
 
         it "accepts valid selections" do
