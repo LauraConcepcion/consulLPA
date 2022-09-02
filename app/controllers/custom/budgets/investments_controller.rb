@@ -8,8 +8,8 @@ class Budgets::InvestmentsController
 
     def investment_params
       attributes = [:heading_id, :tag_list,
-                    :organization_name, :location, :terms_of_service, :skip_map,
-                    :related_sdg_list,
+                    :organization_name, :location,
+                    :terms_of_service, :related_sdg_list,
                     :author_phone,
                     image_attributes: image_attributes,
                     documents_attributes: document_attributes,
