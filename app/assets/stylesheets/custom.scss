@@ -265,16 +265,16 @@ body:not(.admin) header {
 
   footer {
     background-color: $brand-green;
-    color: $footer-color;
+    color: white;
     padding-top: 3rem;
     padding-bottom: 1rem;
 
     a {
-      color: $footer-color;
+      color: white;
     }
 
     .subfooter {
-      border-top: 1px solid $footer-color;
+      border-top: 1px solid white;
     }
   }
 }
