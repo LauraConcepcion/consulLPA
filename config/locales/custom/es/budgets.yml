@@ -239,7 +239,6 @@ es:
       not_selected_investment_proyects: Ver lista de proyectos de gasto no seleccionados para la votación final
       takecharged_investment_proyects: Ver lista de proyectos de gasto asumidos
       included_next_year_budget_investment_proyects: Ver lista de proyectos de gasto previstos para su inclusión en el presupuesto del próximo año
-      notselected_investment_proyects: Ver lista de proyectos de gasto no seleccionados por los técnicos para la votación final
     executions:
       link: "Seguimiento"
       page_title: "%{budget} - Seguimiento de proyectos"
