@@ -1,16 +1,5 @@
 require_dependency Rails.root.join("app", "models", "verification", "residence").to_s
 class Verification::Residence
-  validate :allowed_age
-  validate :local_postal_code
-  validate :local_residence
-  validates :date_of_birth, presence: true
-
-  VALID_POSTAL_CODES = (35001..35019).to_a + [35220, 35229]
-
-  def local_postal_code
-    errors.add(:postal_code, I18n.t("verification.residence.new.error_not_allowed_postal_code")) unless valid_postal_code?
-  end
-
   def local_residence
     return if errors.any?
 
@@ -23,16 +12,12 @@ class Verification::Residence
 
   private
 
-    def retrieve_census_data
-      @census_data = CensusCaller.new.call(document_type, document_number, date_of_birth)
-    end
-
-    def valid_postal_code?
-      postal_code.to_i.in?(VALID_POSTAL_CODES)
+    def census_data
+      @census_data ||= CensusCaller.new.call(document_type, document_number, date_of_birth)
     end
 
     def residency_valid?
-      @census_data.valid?
+      census_data.valid?
     end
 
     def gender
@@ -40,7 +25,7 @@ class Verification::Residence
     end
 
     def residency_errors
-      @census_data.errors
+      census_data.errors
     end
 
     def document_number_uniqueness

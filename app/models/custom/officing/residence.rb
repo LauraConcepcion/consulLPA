@@ -29,10 +29,6 @@ class Officing::Residence
     end
   end
 
-  def district_code
-    @census_api_response.district_code
-  end
-
   def gender
     "-"
   end
