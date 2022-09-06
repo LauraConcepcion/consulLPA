@@ -272,6 +272,7 @@ es:
       budgets: Presupuestos participativos
       spending_proposals: "Proyectos de gasto"
       register: Regístrate
+      more_info: Más información
   notifications:
     index:
       empty_notifications: No tienes notificaciones nuevas.
