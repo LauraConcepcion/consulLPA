@@ -3,14 +3,10 @@ class Officing::Residence
   include ActiveModel::Dates
 
   attr_accessor :user, :officer, :document_number, :document_type, :date_of_birth
-  skip_callback :validate, :residence_in_madrid
-
-  validate :allowed_age
-  validate :local_residence
 
   def initialize(attrs = {})
     self.date_of_birth = parse_date("date_of_birth", attrs)
-    self.year_of_birth = self.date_of_birth.year if self.date_of_birth.present?
+    self.year_of_birth = date_of_birth.year if date_of_birth.present?
     attrs = remove_date("date_of_birth", attrs)
     super
     clean_document_number
