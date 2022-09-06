@@ -1,5 +1,4 @@
 require "net/http"
-
 class SMSApi
   attr_accessor :client
 
@@ -11,7 +10,7 @@ class SMSApi
   end
 
   def uri
-    return unless end_point_available?
+    return "" unless end_point_available?
 
     URI.parse(Rails.application.secrets.sms_end_point).to_s
   end
@@ -27,13 +26,11 @@ class SMSApi
   end
 
   def request(phone, code)
-    {
-      user_id: Rails.application.secrets.sms_username,
+    { user_id: Rails.application.secrets.sms_username,
       departamento_id: Rails.application.secrets.sms_department,
       telefono_individual: phone,
       texto: "Clave para verificarte: #{code}. LPGC Decide",
-      passwd: Rails.application.secrets.sms_password
-    }
+      passwd: Rails.application.secrets.sms_password }
   end
 
   def success?(response)
