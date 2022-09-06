@@ -29,10 +29,8 @@ class Valuation::BudgetInvestmentsController
   private
 
     def valuation_params
-      params.require(:budget_investment).permit(:price, :price_first_year, :price_explanation,
-                                                :feasibility, :unfeasibility_explanation,
-                                                :not_selected_explanation,
-                                                :duration, :valuation_finished)
+      custom_attributes = [:not_selected_explanation]
+      params.require(:budget_investment).permit(allowed_params, *custom_attributes)
     end
 
     def restrict_access

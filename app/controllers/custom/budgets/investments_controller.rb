@@ -7,13 +7,7 @@ class Budgets::InvestmentsController
   private
 
     def investment_params
-      attributes = [:heading_id, :tag_list,
-                    :organization_name, :location,
-                    :terms_of_service, :related_sdg_list,
-                    :author_phone,
-                    image_attributes: image_attributes,
-                    documents_attributes: document_attributes,
-                    map_location_attributes: map_location_attributes]
-      params.require(:budget_investment).permit(attributes, translation_params(Budget::Investment))
+      custom_attributes = [:author_phone]
+      params.require(:budget_investment).permit(allowed_params, *custom_attributes)
     end
 end

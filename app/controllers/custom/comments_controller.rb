@@ -2,9 +2,6 @@ require_dependency Rails.root.join("app", "controllers", "comments_controller").
 class CommentsController
   before_action :authenticate_user!, only: [:create, :update]
   before_action :load_commentable, only: [:create, :update]
-  before_action :verify_resident_for_commentable!, only: :create
-  before_action :verify_comments_open!, only: [:create, :vote]
-  before_action :build_comment, only: :create
   before_action :update_comment, only: :update
 
   def create
