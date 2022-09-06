@@ -68,6 +68,10 @@ FactoryBot.define do
     trait :with_winner do
       after(:create) { |budget| create(:budget_investment, :winner, budget: budget) }
     end
+
+    trait :hide_money do
+      hide_money { true }
+    end
   end
 
   factory :budget_group, class: "Budget::Group" do
@@ -275,14 +279,5 @@ FactoryBot.define do
     association :heading, factory: :budget_heading
     locale { "en" }
     body { "Some heading contents" }
-  end
-
-  factory :ballot do
-    user
-  end
-
-  factory :ballot_line do
-    ballot
-    spending_proposal { build(:spending_proposal, feasible: true) }
   end
 end
