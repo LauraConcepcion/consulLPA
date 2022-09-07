@@ -1,17 +1,18 @@
-require 'net/http'
+require "net/http"
 class SMSApi
   attr_accessor :client
-  attr_accessor :uri
 
   def initialize
     @uri = uri
     return unless @uri
+
     @client = Net::HTTP.new(@uri.host, @uri.port)
   end
 
   def uri
-    return unless end_point_available?
-    URI.parse(Rails.application.secrets.sms_end_point)
+    return "" unless end_point_available?
+
+    URI.parse(Rails.application.secrets.sms_end_point).to_s
   end
 
   def sms_deliver(phone, code)
@@ -29,13 +30,12 @@ class SMSApi
       departamento_id: Rails.application.secrets.sms_department,
       telefono_individual: phone,
       texto: "Clave para verificarte: #{code}. LPGC Decide",
-      passwd: Rails.application.secrets.sms_password
-    }
+      passwd: Rails.application.secrets.sms_password }
   end
 
   def success?(response)
     xml = Nokogiri::XML(response.body)
-    xml.xpath('estado').text == 'ok'
+    xml.xpath("estado").text == "ok"
   end
 
   def end_point_available?
@@ -44,8 +44,7 @@ class SMSApi
 
   def stubbed_response
     {
-      estado: 'ok'
+      estado: "ok"
     }
   end
-
 end

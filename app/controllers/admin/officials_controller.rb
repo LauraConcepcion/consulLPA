@@ -4,7 +4,7 @@ class Admin::OfficialsController < Admin::BaseController
   end
 
   def search
-    @users = User.search(params[:name_or_email]).page(params[:page]).for_render
+    @users = User.search(params[:search]).page(params[:page]).for_render
   end
 
   def edit
@@ -26,6 +26,10 @@ class Admin::OfficialsController < Admin::BaseController
   private
 
     def user_params
-      params.require(:user).permit(:official_position, :official_level)
+      params.require(:user).permit(allowed_params)
+    end
+
+    def allowed_params
+      [:official_position, :official_level]
     end
 end

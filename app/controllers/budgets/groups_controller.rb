@@ -1,14 +1,17 @@
 module Budgets
   class GroupsController < ApplicationController
+    include FeatureFlags
+    feature_flag :budgets
+
     before_action :load_budget
-    before_action :load_group
+    before_action :load_group, only: [:show]
     authorize_resource :budget
     authorize_resource :group, class: "Budget::Group"
 
-    before_action :set_default_budget_filter, only: :show
-    has_filters %w[not_unfeasible feasible unfeasible unselected selected winners], only: [:show]
-
     def show
+    end
+
+    def index
     end
 
     private

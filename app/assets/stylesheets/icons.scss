@@ -143,10 +143,6 @@
   content: "\f02f";
 }
 
-.icon-blog::before {
-  content: "\f19a";
-}
-
 .icon-box::before {
   content: "\f187";
 }
@@ -184,10 +180,6 @@
 .icon-no-notification::before {
   content: "\f0f3";
   font-weight: normal;
-}
-
-.icon-whatsapp::before {
-  content: "\f232";
 }
 
 .icon-zip::before {
@@ -280,12 +272,10 @@
   content: "\f0c9";
 }
 
-.icon-blog,
 .icon-facebook,
 .icon-instagram,
 .icon-telegram,
 .icon-twitter,
-.icon-whatsapp,
 .icon-youtube {
 
   &::before {

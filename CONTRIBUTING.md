@@ -33,9 +33,10 @@ If you want to contribute code to solve an issue:
 If you'd like us to review your pull request in good spirits, please follow our coding conventions:
 
 * Include specs to test any changes you've made
-* Travis CI will check whether the rest of the application is still working properly; check its build and make sure all tests are passing
-* Your pull request will be automatically reviewed by Hound CI; fix any issues it reports
+* Our CI will check whether the rest of the application is still working properly; check its build and make sure all tests are passing
+* Run `bundle exec pronto run` and fix any issues it reports; these issues will also be automatically reported on the pull request
 * Follow [the seven rules of a great commit message](https://chris.beams.io/posts/git-commit/)
+* Add or modify i18n translations only in the base languages, English (en) and Spanish (es); we manage all other languages through the [Crowdin integration](https://crowdin.com/project/consul).
 
 When we review your pull request and ask for changes, if you're proficient using `git rebase` edit existing commits instead of adding new ones. If you aren't proficient with `git rebase`, ignore this point.
 
@@ -44,8 +45,9 @@ When we review your pull request and ask for changes, if you're proficient using
 ### Core team members
 
 * [Javi Martín](https://github.com/javierm)
-* [Julián Herrero](https://github.com/microweb10)
 * [Raimond García](https://github.com/voodoorai2000)
+* [Sebastià Roig](https://github.com/taitus)
+* [Senén Rodero](https://github.com/Senen)
 
 ### All other contributors
 
@@ -53,4 +55,4 @@ In addition to the formal team, there are [over a hundred contributors](https://
 
 Finally a special thanks to the former core team members. Lovingly known as The Alumni:
 
-[Juanjo Bazán](https://github.com/xuanxu), [Enrique García Cota](https://github.com/kikito), [Alberto Calderón](https://github.com/bertocq), [María Checa](https://github.com/mariacheca), [Alberto García](https://github.com/decabeza)
+[Juanjo Bazán](https://github.com/xuanxu), [Enrique García Cota](https://github.com/kikito), [Alberto Calderón](https://github.com/bertocq), [María Checa](https://github.com/mariacheca), [Alberto García](https://github.com/decabeza), [Julián Herrero](https://github.com/microweb10)

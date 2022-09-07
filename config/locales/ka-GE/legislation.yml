@@ -54,7 +54,6 @@ ka:
           winners: შერჩეული
       debate:
         empty_questions: შეკითხვები არ მოიძებნა
-        participate: დებატებში მონაწილეობა
       index:
         filter: ფილტრი
         filters:
@@ -122,6 +121,8 @@ ka:
       title: "შეჯამება"
       votes:
         zero: "%{count} ხმა"
+        one: "%{count} ხმა"
+        other: "%{count} ხმა"
       debate_phase: "დებატების ფაზა"
       proposals_phase: "ინიციატივების ფაზა"
       allegations_phase: "კომენტირების ფაზა"
@@ -131,6 +132,8 @@ ka:
         zero: "ინიციატივა არ მოიძებნა"
       comments:
         zero: "კომენტარები არ მოიძებნა"
+        one: "%{count} კომენტარი"
+        other: "%{count} კომენტარი"
       download: "შეჯამების ჩამოტვირთვა"
       top_comments:
         zero: "კომენტარები არ მოიძებნა"

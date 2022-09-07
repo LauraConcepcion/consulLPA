@@ -54,7 +54,6 @@ mk:
           winners: Селектирано
       debate:
         empty_questions: Нема ниедно прашање
-        participate: Учествувај во дебата
       index:
         filter: Филтер
         filters:
@@ -118,3 +117,13 @@ mk:
         tags_label: "Категории"
       not_verified: "За предлози за гласање %{verify_account}."
       process_title: Колаборативен легислативен процес
+    summary:
+      title: "Краток опис"
+      votes:
+        zero: "%{count} гласови"
+      comments:
+        zero: "Нема коментари"
+        one: "%{count} коментари"
+        other: "%{count} коментари"
+      top_comments:
+        zero: "Нема коментари"

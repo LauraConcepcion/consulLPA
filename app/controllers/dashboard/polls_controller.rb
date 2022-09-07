@@ -1,4 +1,5 @@
 class Dashboard::PollsController < Dashboard::BaseController
+  include DocumentAttributes
   helper_method :poll
   before_action :authorize_manage_polls
 
@@ -55,10 +56,10 @@ class Dashboard::PollsController < Dashboard::BaseController
     end
 
     def poll_params
-      params.require(:poll).permit(poll_attributes)
+      params.require(:poll).permit(allowed_params)
     end
 
-    def poll_attributes
+    def allowed_params
       [:name, :starts_at, :ends_at, :description, :results_enabled,
        questions_attributes: question_attributes]
     end
@@ -70,11 +71,7 @@ class Dashboard::PollsController < Dashboard::BaseController
 
     def question_answers_attributes
       [:id, :_destroy, :title, :description, :given_order, :question_id,
-       documents_attributes: documents_attributes]
-    end
-
-    def documents_attributes
-      [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy]
+       documents_attributes: document_attributes]
     end
 
     def authorize_manage_polls

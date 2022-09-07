@@ -4,6 +4,10 @@ en:
     results_enabled: "Show results"
     stats_enabled: "Show stats"
     advanced_stats_enabled: "Show advanced stats"
+    name: Name
+    email: Email
+    description: Description
+    related_sdg_list: Goals and Targets
   activerecord:
     models:
       activity:
@@ -72,6 +76,18 @@ en:
       proposal:
         one: "Citizen proposal"
         other: "Citizen proposals"
+      sdg/goal:
+        one: "goal"
+        other: "goals"
+      sdg/local_target:
+        one: "local target"
+        other: "local targets"
+      sdg/manager:
+        one: "SDG manager"
+        other: "SDG managers"
+      sdg/target:
+        one: "target"
+        other: "targets"
       site_customization/page:
         one: Custom page
         other: Custom pages
@@ -139,12 +155,15 @@ en:
         description_balloting: "Description during Balloting phase"
         description_reviewing_ballots: "Description during Reviewing Ballots phase"
         description_finished: "Description when the budget is finished"
-        phase: "Phase"
+        phase: "Active phase"
         currency_symbol: "Currency"
         voting_style: "Final voting style"
         voting_style_knapsack: "Knapsack"
         voting_style_approval: "Approval"
+        hide_money: "Hide money amount for this budget"
       budget/translation:
+        main_link_text: "Text on the link"
+        main_link_url: "The link takes you to (add a link)"
         name: "Name"
       budget/investment:
         heading_id: "Heading"
@@ -204,7 +223,7 @@ en:
         latitude: "Latitude (optional)"
         longitude: "Longitude (optional)"
         name: "Heading name"
-        price: "Amount"
+        price: "Money amount"
         population: "Population (optional)"
         max_ballot_lines: "Votes allowed"
       budget/heading/translation:
@@ -214,8 +233,11 @@ en:
         ends_at: "End date"
         starts_at: "Start date"
       budget/phase/translation:
+        name: "Name"
         description: "Description"
         summary: "Summary"
+        main_link_text: "Text on the link"
+        main_link_url: "The link takes you to (add a link)"
       comment:
         body: "Comment"
         user: "User"
@@ -234,7 +256,7 @@ en:
         question: "Question"
         description: "Description"
         responsible_name: "Full name of the person submitting the proposal"
-        retired_reason: "Reason to retire the proposal"
+        retired_reason: "Reason to withdraw the proposal"
         selected: "Mark as selected"
         terms_of_service: "Terms of service"
         video_url: "External video URL"
@@ -251,18 +273,18 @@ en:
         password: "Password"
         current_password: "Current password"
         email_digest: "Receive a summary of proposal notifications"
-        email_on_comment: "Notify me by email when someone comments on my proposals or debates"
+        email_on_comment: "Notify me by email when someone comments on my contents"
         email_on_comment_reply: "Notify me by email when someone replies to my comments"
         email_on_direct_message: "Receive emails about direct messages"
-        newsletter: "Receive by email website relevant information"
+        newsletter: "Receive relevant information by email"
         official_position: "Official position"
         official_position_badge: "Show official position badge"
         official_level: "Official level"
         phone_number: "Phone number"
         public_activity: "Keep my list of activities public"
-        public_interests: "Keep the labels of the elements I follow public"
-        recommended_debates: "Show debates recommendations"
-        recommended_proposals: "Show proposals recommendations"
+        public_interests: "Keep the elements I follow public"
+        recommended_debates: "Recommend debates to me"
+        recommended_proposals: "Recommend proposals to me"
         redeemable_code: "Verification code received via email"
       direct_message:
         title: "Title"
@@ -272,6 +294,7 @@ en:
         responsible_name: "Person responsible for the group"
       poll:
         name: "Name"
+        title: "Name"
         starts_at: "Start Date"
         ends_at: "Closing Date"
         geozone_restricted: "Restricted by geozone"
@@ -308,6 +331,24 @@ en:
         signable_type: "Signable type"
         signable_id: "Signable ID"
         document_numbers: "Documents numbers"
+      sdg/goal:
+        code: "Code"
+        title: "Title"
+        description: "Description"
+      sdg/local_target:
+        code: "Code"
+        target_id: "Target"
+        title: "Title"
+      sdg/local_target/translation:
+        title: "Title"
+        description: "Description"
+      sdg/phase/kind:
+        sensitization: "Sensitization"
+        planning: "Planning"
+        monitoring: "Monitoring"
+      sdg/target:
+        code: "Code"
+        title: "Title"
       site_customization/page:
         content: Content
         created_at: Created at
@@ -460,7 +501,7 @@ en:
         user: Executed by
       link:
         label: Title
-        url: Link
+        url: URL
       valuator:
         description: Description
         valuator_group_id: Valuator group
@@ -500,10 +541,6 @@ en:
           attributes:
             segment_recipient:
               invalid: "The user recipients segment is invalid"
-        map_location:
-          attributes:
-            map:
-              invalid: Map location can't be blank. Place a marker or select the checkbox if geolocalization is not needed
         poll/voter:
           attributes:
             document_number:
@@ -558,6 +595,10 @@ en:
           attributes:
             locale:
               already_translated: Already translated resource
+        sdg/local_target:
+          attributes:
+            code:
+              invalid: "must start with the same code as its target followed by a dot and end with a number"
       messages:
         translations_too_short: Is mandatory to provide one translation at least
         record_invalid: "Validation failed: %{errors}"

@@ -5,30 +5,24 @@ de:
       erase_account_link: Mein Konto löschen
       finish_verification: Verifizierung abschließen
       notifications: Benachrichtigungen
-      organization_name_label: Name der Organisation
-      organization_responsible_name_placeholder: Vertreter der Organisation/des Kollektivs
       personal: Persönliche Daten
-      phone_number_label: Telefonnummer
       public_interests_my_title_list: Tags der Themen, denen Sie folgen
       public_interests_user_title_list: Kennzeichnungen der Elemente denen dieser Benutzer folgt
       save_changes_submit: Änderungen speichern
       recommendations: Empfehlungen
       title: Mein Benutzerkonto
-      user_permission_debates: An Diskussion teilnehmen
       user_permission_info: Mit Ihrem Konto können Sie...
-      user_permission_proposal: Neuen Vorschlag erstellen
-      user_permission_support_proposal: Vorschläge unterstützen
       user_permission_title: Teilnahme
       user_permission_verify: Damit Sie alle Funktionen nutzen können, müssen Sie ihr Konto verifizieren.
-      user_permission_verify_info: "* Nur für in der Volkszählung registrierte Nutzer."
-      user_permission_votes: An finaler Abstimmung teilnehmen
-      username_label: Benutzer*innenname
       verified_account: Konto verifiziert
       verify_my_account: Mein Konto verifizieren
   application:
     close: Schließen
     menu: Menü
   comments:
+    actions:
+      confirm_delete: "Sind Sie sicher? Diese Aktion wird den Kommentar löschen. Das Löschen kann nicht rückgängig gemacht werden."
+      delete: "Kommentar löschen"
     comments_closed: Kommentare sind geschlossen
     verified_only: Zur Teilnahme %{verify_account}
     comment:
@@ -62,7 +56,6 @@ de:
       newest: Neueste zuerst
       oldest: Älteste zuerst
       most_commented: meist kommentiert
-    select_order: Sortieren nach
     show:
       return_to_commentable: "Zurück zu"
   comments_helper:
@@ -90,7 +83,6 @@ de:
         submit_button: Änderungen speichern
       show_link: Diskussion anzeigen
     form:
-      debate_title: Titel der Diskussion
       tags_instructions: Diskussion markieren.
       tags_placeholder: "Trennen Sie die Tags mit einem Komma (',')"
     index:
@@ -113,10 +105,6 @@ de:
         button: Suche
         placeholder: Suche Diskussionen...
         title: Suche
-      search_results:
-        one: " enthält den Begriff <strong>'%{search_term}'</strong>"
-        other: " enthält den Begriff <strong>'%{search_term}'</strong>"
-      select_order: Sortieren nach
       start_debate: Starten Sie eine Diskussion
       title: Diskussionen
       section_header:
@@ -131,8 +119,6 @@ de:
     new:
       form:
         submit_button: Eine Diskussion starten
-      info: Wenn Sie einen Vorschlag veröffentlichen möchten, sind Sie hier falsch, gehen Sie zu %{info_link}.
-      info_link: Neuen Vorschlag erstellen
       more_info: Weitere Informationen
       recommendation_four: Genießen Sie diesen Ort und die Stimmen, die ihn füllen. Er gehört auch Ihnen.
       recommendation_one: Verwenden Sie bitte nicht ausschließlich Großbuchstaben für die Überschrift oder für komplette Sätze. Im Internet gilt das als schreien. Und niemand möchte gerne angeschrien werden.
@@ -190,6 +176,7 @@ de:
     local_census_records/import: Import von Datensätzen aus dem lokalen Register
     site_customization/content_block: Inhaltsblöcke
     site_customization/page: Seite
+    sdg/local_target: lokales Ziel
   geozones:
     none: Ganze Stadt
   layouts:
@@ -218,7 +205,6 @@ de:
       conditions: Allgemeine Nutzungsbedingungen
       consul: CONSUL Anwendung
       consul_url: https://github.com/consul/consul
-      contact_us: Für technische Unterstützung geben Sie ein
       copyright: CONSUL, %{year}
       description: Die Plattform basiert auf %{consul}, einer %{open_source}.
       open_source: Open-Source Software
@@ -229,11 +215,9 @@ de:
     header:
       administration_menu: Admin
       administration: Administration
-      available_locales: Verfügbare Sprachen
       collaborative_legislation: Gesetzgebungsverfahren
       debates: Diskussionen
       locale: "Sprache:"
-      logo: Consul-Logo
       management: Verwaltung
       moderation: Moderation
       valuation: Bewertung
@@ -247,10 +231,11 @@ de:
       budgets: Bürgerhaushalte
       notification_item:
         new_notifications:
+          zero: "Sie haben keine neuen Benachrichtigungen"
           one: Sie haben eine neue Benachrichtigung
           other: Sie haben %{count} neue Benachrichtigungen
         notifications: Benachrichtigungen
-        no_notifications: "Sie haben keine neuen Benachrichtigungen"
+      sdg: "SDG"
   notifications:
     index:
       empty_notifications: Sie haben keine neuen Benachrichtigungen.
@@ -288,10 +273,17 @@ de:
       sign_in: Anmelden mit Google
       sign_up: Registrierung mit Google
       name: Google
+    wordpress_oauth2:
+      sign_in: Anmelden mit Wordpress
+      sign_up: Abmelden mit Wordpress
+      name: Wordpress
     twitter:
       sign_in: Anmelden mit Twitter
       sign_up: Registrierung mit Twitter
       name: Twitter
+    info:
+      sign_in: "Anmelden mit:"
+      sign_up: "Abmelden mit:"
     or_fill: "Oder folgendes Formular ausfüllen:"
   proposals:
     create:
@@ -336,7 +328,6 @@ de:
       map_location: "Kartenposition"
       map_location_instructions: "Navigieren Sie auf der Karte zum Standort und setzen Sie die Markierung."
       map_remove_marker: "Entfernen Sie die Kartenmarkierung"
-      map_skip_checkbox: "Dieser Vorschlag hat keinen konkreten Ort oder ich kenne ihn nicht."
     index:
       featured_proposals: Hervorgehoben
       orders:
@@ -374,11 +365,9 @@ de:
       search_results:
         one: " enthält den Begriff <strong>'%{search_term}'</strong>"
         other: " enthält den Begriff <strong>'%{search_term}'</strong>"
-      select_order: Sortieren nach
       select_order_long: "Sie sehen Vorschläge nach:"
       start_proposal: Vorschlag erstellen
       title: Vorschläge
-      top: Tops der Woche
       top_link_proposals: Die am meisten unterstützten Vorschläge nach Kategorie
       section_header:
         icon_alt: Vorschläge-Symbol
@@ -666,14 +655,13 @@ de:
       back: "Zurück zu meiner Aktivität"
   shared:
     edit: "Bearbeiten"
+    filter: "Filter"
     save: "Speichern"
     delete: "Löschen"
     "yes": "Ja"
     "no": "Nein"
     search_results: "Suchergebnisse"
     advanced_search:
-      author_type: "Nach Kategorie Verfasser*in"
-      author_type_blank: "Kategorie auswählen"
       date: "Nach Datum"
       date_placeholder: "TT/MM/JJJJ"
       date_range_blank: "Wählen Sie ein Datum"
@@ -684,8 +672,11 @@ de:
       date_5: "Angepasst"
       from: "Von"
       general: "Mit dem Text"
-      general_placeholder: "Text verfassen"
+      goal: "Nach SDG"
+      goal_blank: "Ziel wählen"
       search: "Filter"
+      target: "Nach Ziel"
+      target_blank: "Ziel auswählen"
       title: "Erweiterte Suche"
       to: "An"
     author_info:
@@ -771,7 +762,6 @@ de:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
     youtube: "%{org} YouTube"
-    whatsapp: WhatsApp
     telegram: "%{org} Telegramm"
     instagram: "%{org} Instagram"
   stats:
@@ -846,26 +836,31 @@ de:
   votes:
     agree: Ich stimme zu
     anonymous: Zu viele anonyme Stimmen, um die Wahl anzuerkennen %{verify_account}.
-    comment_unauthenticated: Sie müssen sich %{signin} oder %{signup}, um abzustimmen.
     disagree: Ich stimme nicht zu
     organizations: Organisationen ist es nicht erlaubt abzustimmen
     supports: Unterstützer*innen
     verified_only: 'Nur verifizierte Benutzer können Vorschläge bewerten: %{verify_account}.'
     budget_investments:
-      not_logged_in: Sie müssen sich %{signin} oder %{signup}, um fortfahren zu können.
       not_verified: Nur verifizierte Benutzer können über ein Investitionsprojekt abstimmen; %{verify_account}.
-      organization: Organisationen ist es nicht erlaubt abzustimmen
       unfeasible: Undurchführbare Investitionsprojekte können nicht unterstützt werden
       not_voting_allowed: Die Abstimmungsphase ist beendet
+      different_heading_assigned:
+        one: "Sie können nur Investitionsprojekte in %{count} Bezirk unterstützen. Sie haben bereits Projekte in %{supported_headings} unterstützt."
+        other: "Sie können nur Investitionsprojekte in %{count} Bezirken unterstützen. Sie haben bereits Projekte in %{supported_headings} unterstützt."
   welcome:
     feed:
       most_active:
         debates: "Aktivste Debatten"
         proposals: "Aktivste Vorschläge"
         processes: "Laufende Verfahren"
-      see_all_debates: Alle Debatten anzeigen
-      see_all_proposals: Alle Vorschläge anzeigen
-      see_all_processes: Alle Beteiligungsverfahren anzeigen
+      see_all:
+        debates: Alle Debatten anzeigen
+        proposals: Alle Vorschläge anzeigen
+        processes: Alle Beteiligungsverfahren anzeigen
+      no_items:
+        debates: Aktuell gibt es keine Diskussionen
+        proposals: Aktuell gibt es keine Vorschläge
+        processes: Aktuell gibt es keine laufende Prozesse
       process_label: Beteiligungsverfahren
       see_process: Beteiligungsverfahren anzeigen
     cards:
@@ -882,23 +877,13 @@ de:
       budget_investments:
         title: Empfohlene Investitionen
       slide: "%{title} anzeigen"
-    verification:
-      i_dont_have_an_account: Ich habe kein Konto
-      i_have_an_account: Ich habe bereits ein Konto
-      question: Haben Sie bereits in Konto bei %{org_name}?
-      title: Konto Verifizierung
     welcome:
       go_to_index: Vorschläge und Diskussionen anzeigen
       start_using_consul: Gehe zum Index
       title: Teilnehmen
-      user_permission_debates: An Diskussionen teilnehmen
       user_permission_info: Mit Ihrem Konto können Sie...
-      user_permission_proposal: Neue Vorschläge erstellen
-      user_permission_support_proposal: Vorschläge unterstützen*
       user_permission_verify: "Damit Sie alle Funktionen nutzen können, müssen Sie ihr Konto verifizieren."
-      user_permission_verify_info: "* Nur für Benutzer*innen im Melderegister."
       user_permission_verify_my_account: Mein Konto verifizieren
-      user_permission_votes: An finaler Abstimmung teilnehmen
   invisible_captcha:
     sentence_for_humans: "Wenn Sie ein Mensch sind, ignorieren Sie dieses Feld"
     timestamp_error_message: "Entschuldigung, das war zu schnell! Bitte erneut senden."
@@ -935,9 +920,6 @@ de:
       title: Links
       note: Fügen Sie Links hinzu, die von Interesse sind
       add_new_link: Neuen Link hinzufügen
-    link_fields:
-      label_placeholder: Titel Link
-      url_placeholder: Link Adresse
   communities:
     show:
       surveys: Umfragen
@@ -952,3 +934,9 @@ de:
     create:
       enqueue_remote_translation: Übersetzungen wurden korrekt angefordert.
     button: Seite übersetzen
+  tags:
+    list:
+      filter:
+        more:
+          one: "Einen Tag mehr"
+          other: "%{count} mehr Tags"

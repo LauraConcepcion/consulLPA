@@ -33,28 +33,6 @@ describe User do
     end
   end
 
-  describe "#debate_votes" do
-    let(:user) { create(:user) }
-
-    it "returns {} if no debate" do
-      expect(user.debate_votes([])).to eq({})
-    end
-
-    it "returns a hash of debates ids and votes" do
-      debate1 = create(:debate)
-      debate2 = create(:debate)
-      debate3 = create(:debate)
-      create(:vote, voter: user, votable: debate1, vote_flag: true)
-      create(:vote, voter: user, votable: debate3, vote_flag: false)
-
-      voted = user.debate_votes([debate1, debate2, debate3])
-
-      expect(voted[debate1.id]).to eq(true)
-      expect(voted[debate2.id]).to eq(nil)
-      expect(voted[debate3.id]).to eq(false)
-    end
-  end
-
   describe "#comment_flags" do
     let(:user) { create(:user) }
 
@@ -186,6 +164,18 @@ describe User do
       subject.save!
       create(:manager, user: subject)
       expect(subject.manager?).to be true
+    end
+  end
+
+  describe "sdg_manager?" do
+    it "is false when the user is not a sdg manager" do
+      expect(subject.sdg_manager?).to be false
+    end
+
+    it "is true when the user is a sdg manager" do
+      subject.save!
+      create(:sdg_manager, user: subject)
+      expect(subject.sdg_manager?).to be true
     end
   end
 
@@ -401,23 +391,61 @@ describe User do
         expect(User.erased).not_to include(user3)
       end
     end
+
+    describe ".by_username_email_or_document_number" do
+      let!(:larry) do
+        create(:user, email: "larry@consul.dev", username: "Larry Bird", document_number: "12345678Z")
+      end
+
+      before { create(:user, email: "robert@consul.dev", username: "Robert Parish") }
+
+      it "finds users by email" do
+        expect(User.by_username_email_or_document_number("larry@consul.dev")).to eq [larry]
+      end
+
+      it "finds users by email with whitespaces" do
+        expect(User.by_username_email_or_document_number(" larry@consul.dev ")).to eq [larry]
+      end
+
+      it "finds users by name" do
+        expect(User.by_username_email_or_document_number("larry")).to eq [larry]
+      end
+
+      it "finds users by name with whitespaces" do
+        expect(User.by_username_email_or_document_number(" larry ")).to eq [larry]
+      end
+
+      it "finds users by document_number" do
+        expect(User.by_username_email_or_document_number("12345678Z")).to eq [larry]
+      end
+
+      it "finds users by document_number with whitespaces" do
+        expect(User.by_username_email_or_document_number(" 12345678Z ")).to eq [larry]
+      end
+    end
   end
 
   describe "self.search" do
-    it "find users by email" do
-      user1 = create(:user, email: "larry@consul.dev")
-      create(:user, email: "bird@consul.dev")
-      search = User.search("larry@consul.dev")
+    describe "find users" do
+      let!(:larry) { create(:user, email: "larry@consul.dev", username: "Larry Bird") }
 
-      expect(search).to eq [user1]
-    end
+      before { create(:user, email: "robert@consul.dev", username: "Robert Parish") }
 
-    it "find users by name" do
-      user1 = create(:user, username: "Larry Bird")
-      create(:user, username: "Robert Parish")
-      search = User.search("larry")
+      it "by email" do
+        expect(User.search("larry@consul.dev")).to eq [larry]
+      end
 
-      expect(search).to eq [user1]
+      it "by email with whitespaces" do
+        expect(User.search(" larry@consul.dev ")).to eq [larry]
+      end
+
+      it "by name" do
+        expect(User.search("larry")).to eq [larry]
+      end
+
+      it "by name with whitespaces" do
+        expect(User.search(" larry ")).to eq [larry]
+      end
     end
 
     it "returns no results if no search term provided" do
@@ -433,19 +461,16 @@ describe User do
     let(:user) { create(:user) }
 
     it "expires cache with becoming a moderator" do
-      expect { create(:moderator, user: user) }
-      .to change { user.updated_at }
+      expect { create(:moderator, user: user) }.to change { user.cache_version }
     end
 
     it "expires cache with becoming an admin" do
-      expect { create(:administrator, user: user) }
-      .to change { user.updated_at }
+      expect { create(:administrator, user: user) }.to change { user.cache_version }
     end
 
     it "expires cache with becoming a veridied organization" do
       create(:organization, user: user)
-      expect { user.organization.verify }
-      .to change { user.reload.updated_at }
+      expect { user.organization.verify }.to change { user.reload.cache_version }
     end
   end
 
@@ -496,9 +521,7 @@ describe User do
     end
 
     it "maintains associated identification document" do
-      user = create(:user,
-                     document_number: "1234",
-                     document_type:   "1")
+      user = create(:user, document_number: "1234", document_type: "1")
       user.erase
       user.reload
 
@@ -514,6 +537,19 @@ describe User do
       user.erase("an identity test")
 
       expect(Identity.exists?(identity.id)).not_to be
+    end
+
+    it "removes all user roles" do
+      user = create(:user)
+      [:administrator, :moderator, :manager, :sdg_manager, :valuator].each do |role|
+        create(role, user: user)
+      end
+
+      expect { user.erase }.to change { Administrator.count }.by(-1)
+                           .and change { Moderator.count }.by(-1)
+                           .and change { Manager.count }.by(-1)
+                           .and change { SDG::Manager.count }.by(-1)
+                           .and change { Valuator.count }.by(-1)
     end
   end
 
@@ -661,10 +697,7 @@ describe User do
     end
 
     it "is false for verified users with no email" do
-      user = create(:user,
-                     username: "Lois",
-                     email: "",
-                     verified_at: Time.current)
+      user = create(:user, username: "Lois", email: "", verified_at: Time.current)
 
       expect(user).to be_valid
       expect(user.email_required?).to eq(false)
@@ -697,6 +730,12 @@ describe User do
     end
   end
 
+  describe "#public_interests" do
+    it "is false by default" do
+      expect(User.new.public_interests).to be false
+    end
+  end
+
   describe ".find_by_manager_login" do
     it "works with a low ID" do
       user = create(:user)
@@ -707,6 +746,103 @@ describe User do
       10.times { create(:user) }
       user = User.last
       expect(User.find_by_manager_login("admin_user_#{user.id}")).to eq user
+    end
+  end
+
+  describe "#block" do
+    it "hides legislation proposals created by the user" do
+      user = create(:user)
+      other_user = create(:user)
+
+      proposal = create(:legislation_proposal, author: user)
+      other_proposal = create(:legislation_proposal, author: other_user)
+
+      user.block
+
+      expect(Legislation::Proposal.all).to eq [other_proposal]
+      expect(Legislation::Proposal.with_hidden).to match_array [proposal, other_proposal]
+    end
+
+    it "removes all user roles" do
+      user = create(:user)
+      [:administrator, :moderator, :manager, :sdg_manager, :valuator].each do |role|
+        create(role, user: user)
+      end
+
+      expect { user.block }.to change { Administrator.count }.by(-1)
+                           .and change { Moderator.count }.by(-1)
+                           .and change { Manager.count }.by(-1)
+                           .and change { SDG::Manager.count }.by(-1)
+                           .and change { Valuator.count }.by(-1)
+    end
+  end
+
+  describe "#full_restore" do
+    it "restore all previous hidden user content" do
+      user = create(:user, :hidden)
+      other_user = create(:user, :hidden)
+
+      comment = create(:comment, :hidden, author: user)
+      debate = create(:debate, :hidden, author: user)
+      investment = create(:budget_investment, :hidden, author: user)
+      proposal = create(:proposal, :hidden, author: user)
+      proposal_notification = create(:proposal_notification, :hidden, proposal: proposal)
+      legislation_proposal = create(:legislation_proposal, :hidden, author: user)
+
+      old_hidden_comment = create(:comment, hidden_at: 3.days.ago, author: user)
+      old_hidden_debate = create(:debate, hidden_at: 3.days.ago, author: user)
+      old_hidden_investment = create(:budget_investment, hidden_at: 3.days.ago, author: user)
+      old_hidden_proposal = create(:proposal, hidden_at: 3.days.ago, author: user)
+      old_hidden_proposal_notification = create(:proposal_notification, hidden_at: 3.days.ago, proposal: proposal)
+      old_hidden_legislation_proposal = create(:legislation_proposal, hidden_at: 3.days.ago, author: user)
+
+      other_user_comment = create(:comment, :hidden, author: other_user)
+      other_user_debate = create(:debate, :hidden, author: other_user)
+      other_user_proposal = create(:proposal, :hidden, author: other_user)
+      other_user_investment = create(:budget_investment, :hidden, author: other_user)
+      other_user_proposal_notification = create(:proposal_notification, :hidden, proposal: other_user_proposal)
+      other_user_legislation_proposal = create(:legislation_proposal, :hidden, author: other_user)
+
+      user.full_restore
+
+      expect(debate.reload).not_to be_hidden
+      expect(comment.reload).not_to be_hidden
+      expect(investment.reload).not_to be_hidden
+      expect(proposal.reload).not_to be_hidden
+      expect(proposal_notification.reload).not_to be_hidden
+      expect(legislation_proposal.reload).not_to be_hidden
+
+      expect(old_hidden_comment.reload).to be_hidden
+      expect(old_hidden_debate.reload).to be_hidden
+      expect(old_hidden_investment.reload).to be_hidden
+      expect(old_hidden_proposal.reload).to be_hidden
+      expect(old_hidden_proposal_notification.reload).to be_hidden
+      expect(old_hidden_legislation_proposal.reload).to be_hidden
+
+      expect(other_user_comment.reload).to be_hidden
+      expect(other_user_debate.reload).to be_hidden
+      expect(other_user_investment.reload).to be_hidden
+      expect(other_user_proposal.reload).to be_hidden
+      expect(other_user_proposal_notification.reload).to be_hidden
+      expect(other_user_legislation_proposal.reload).to be_hidden
+    end
+  end
+
+  describe "#add_subscriptions_token" do
+    let(:user) { build(:user, subscriptions_token: nil) }
+
+    it "generates a subscriptions token when the user doesn't have one" do
+      user.add_subscriptions_token
+
+      expect(user.subscriptions_token).to be_present
+    end
+
+    it "keeps the existing subscriptions token when the user already has one" do
+      user.update!(subscriptions_token: "already_set")
+
+      user.add_subscriptions_token
+
+      expect(user.subscriptions_token).to eq "already_set"
     end
   end
 end

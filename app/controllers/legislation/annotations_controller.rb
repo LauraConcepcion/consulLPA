@@ -61,7 +61,7 @@ class Legislation::AnnotationsController < Legislation::BaseController
   end
 
   def search
-    @annotations = @draft_version.annotations.order("LENGTH(quote) DESC")
+    @annotations = @draft_version.annotations.order(Arel.sql("LENGTH(quote) DESC"))
     annotations_hash = { total: @annotations.size, rows: @annotations }
     render json: annotations_hash.to_json(methods: :weight)
   end
@@ -95,13 +95,17 @@ class Legislation::AnnotationsController < Legislation::BaseController
     def annotation_params
       params
         .require(:legislation_annotation)
-        .permit(:quote, :text, ranges: [:start, :startOffset, :end, :endOffset])
+        .permit(allowed_params)
+    end
+
+    def allowed_params
+      [:quote, :text, ranges: [:start, :startOffset, :end, :endOffset]]
     end
 
     def track_event
-      ahoy.track "legislation_annotation_created".to_sym,
-                 "legislation_annotation_id": @annotation.id,
-                 "legislation_draft_version_id": @draft_version.id
+      ahoy.track :legislation_annotation_created,
+                 legislation_annotation_id: @annotation.id,
+                 legislation_draft_version_id: @draft_version.id
     end
 
     def convert_ranges_parameters

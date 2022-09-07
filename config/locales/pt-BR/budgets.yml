@@ -29,9 +29,7 @@ pt-BR:
         voted_info_2: "Mas você pode alterar o seu voto a qualquer momento antes da conclusão desta fase."
         zero: Você não votou em um projeto de investimento.
       reasons_for_not_balloting:
-        not_logged_in: Você precisa %{signin} ou %{signup} para continuar.
         not_verified: Somente usuários verificados podem votar em investimentos; %{verify_account}.
-        organization: Organizações não tem permissão de voto
         not_selected: Projetos de investimento não selecionados não podem ser apoiados
         not_enough_money: "Você já atribuiu o orçamento disponível.<br><small>Lembre-se que pode %{change_ballot} a qualquer momento</small>"
         no_ballots_allowed: A fase de seleção está fechada
@@ -42,10 +40,6 @@ pt-BR:
     groups:
       show:
         title: Selecione uma opção
-        unfeasible_title: Investimentos inviáveis
-        unfeasible: Ver investimentos inviáveis
-        unselected_title: Investimentos não selecionados para a fase de votação
-        unselected: Ver investimentos não selecionados para a fase de votação
     phase:
       drafting: Rascunho (não visível ao público)
       informing: Informação
@@ -64,12 +58,8 @@ pt-BR:
         icon_alt: Ícone dos orçamentos participativos
         title: Orçamentos participativos
         help: Ajuda com orçamentos participativos
-        all_phases: Ver todas as fases
       all_phases: Fases do investimento orçamental
       map: Propostas de investimentos orçamentários localizadas geograficamente
-      investment_proyects: Lista de todos os projetos de investimento
-      unfeasible_investment_proyects: Lista de todos os projetos de investimento inviáveis
-      not_selected_investment_proyects: Lista de todos os projetos de investimento não selecionados para votação
       finished_budgets: Orçamentos participativos concluídos
       see_results: Exibir resultados
       section_footer:
@@ -78,6 +68,7 @@ pt-BR:
       milestones: Marcos
     investments:
       form:
+        title: "Criar um investimento orçamentário"
         tag_category_label: "Categorias"
         tags_instructions: "Marque esta proposta. Você pode escolher entre as categorias propostas ou adicionar a sua própria"
         tags_label: Marcação
@@ -85,7 +76,6 @@ pt-BR:
         map_location: "Localização no mapa"
         map_location_instructions: "Navegue no mapa até o local e fixe o marcador."
         map_remove_marker: "Remover o marcador do mapa"
-        map_skip_checkbox: "Esta proposta não tem uma localização concreta ou não a conheço."
       index:
         title: Orçamento participativo
         unfeasible: Projetos de investimento inviáveis
@@ -95,9 +85,6 @@ pt-BR:
           button: Buscar
           placeholder: Buscar projetos de investimento...
           title: Buscar
-        search_results:
-          one: " contendo o termo <strong>'%{search_term}'</strong>"
-          other: " contendo o termo <strong>'%{search_term}'</strong>"
         sidebar:
           my_ballot: Minha cédula
           voted_info:
@@ -107,9 +94,6 @@ pt-BR:
             approval:
               one: "<strong>Você votou em uma proposta</strong>"
               other: "<strong>Você votou em %{count} propostas</strong>"
-          change_vote_info:
-            knapsack: "Você pode %{link} a qualquer momento até o encerramento desta fase. Não há necessidade de gastar todo o dinheiro disponível."
-            approval: "Você pode %{link} a qualquer momento até o final desta fase."
           change_vote_link: "mudar seu voto"
           different_heading_assigned: "Você tem votos ativos num título diferente: %{heading_link}"
           change_ballot: "Se você mudar de ideia, poderá remover seus votos em %{check_ballot} e começar de novo."
@@ -118,9 +102,10 @@ pt-BR:
           verified_only: "Para criar um novo investimento orçamentário %{verify}."
           create: "Criar um investimento orçamentário"
           not_logged_in: "Para criar um novo investimento orçamentário, você deve %{sign_in} ou %{sign_up}."
-          by_feasibility: Por viabilidade
-          feasible: Projetos viáveis
-          unfeasible: Projetos inviáveis
+        filters:
+          selected: "Selecionado"
+          unfeasible: "Inviável"
+          winners: "Vencedores"
         orders:
           random: aleatório
           confidence_score: melhor avaliado
@@ -151,36 +136,28 @@ pt-BR:
       investment:
         add: Voto
         already_added: Você já adicionou este projeto de investimento
-        already_supported: Você já apoiou esta proposta de investimento. Compartilhe!
         support_title: Apoiar este projeto
-        confirm_group:
-          one: "Você pode somente apoiar investimentos no distrito de %{count}. Se você continuar, não poderá alterar a eleição de seu distrito. Tem certeza?"
-          other: "Você pode somente apoiar investimentos no distrito de %{count}. Se você continuar, não poderá alterar a eleição de seu distrito. Tem certeza?"
         supports:
           zero: Nenhum apoio
           one: 1 apoio
           other: "%{count} apoios"
-        give_support: Apoiar
       header:
-        check_ballot: Verificar minha cédula
+        check_ballot: "Verificar minha cédula"
         different_heading_assigned: "Você tem votos ativos num título diferente: %{heading_link}"
         change_ballot: "Se você mudar de ideia, poderá remover seus votos em %{check_ballot} e começar de novo."
         check_ballot_link: "verificar minha cédula"
         price: "Este título tem um orçamento de"
-    progress_bar:
-      assigned: "Você atribuiu: "
-      available: "Orçamento disponível: "
       votes:
-        zero: "Você selecionou <strong>0</strong> projetos de um total de <strong>%{limit}</strong>"
-        one: "Você selecionou <strong>1</strong> projeto de um total de <strong>%{limit}</strong>"
-        other: "Você selecionou <strong>%{count}</strong> projetos de um total de <strong>%{limit}</strong>"
+        already_supported: "Você já apoiou esta proposta de investimento. Compartilhe!"
+        confirm_group:
+          one: "Você pode somente apoiar investimentos no distrito de %{count}. Se você continuar, não poderá alterar a eleição de seu distrito. Tem certeza?"
+          other: "Você pode somente apoiar investimentos no distrito de %{count}. Se você continuar, não poderá alterar a eleição de seu distrito. Tem certeza?"
+        support: "Apoiar"
+    investments_list:
+      investment:
+        price: "Preço"
+        supports: "Apoios"
     show:
-      group: Grupo
-      phase: Fase atual
-      unfeasible_title: Investimentos inviáveis
-      unfeasible: Ver investimentos inviáveis
-      unselected_title: Investimentos não selecionados para a fase de votação
-      unselected: Ver investimentos não selecionados para a fase de votação
       see_results: Exibir resultados
     results:
       link: Resultados

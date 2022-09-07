@@ -54,7 +54,6 @@ sq:
           winners: I zgjedhur
       debate:
         empty_questions: Nuk ka pyetje.
-        participate: Merrni pjesë në debat
       index:
         filter: Filtër
         filters:
@@ -117,3 +116,17 @@ sq:
       form:
         tags_label: "Kategoritë"
       not_verified: "Për propozimet e votimit %{verify_account}"
+      process_title: Procesi i Legjislacionit bashkëpunues
+    summary:
+      title: "Përmbledhje"
+      votes:
+        zero: "%{count} Vota"
+      debate_phase: "Faza e debatit"
+      proposals_phase: "Faza e propozimit"
+      allegations_phase: "Faza e komenteve"
+      comments:
+        zero: "Nuk ka komente"
+        one: "%{count} komente"
+        other: "%{count} komente"
+      top_comments:
+        zero: "Nuk ka komente"

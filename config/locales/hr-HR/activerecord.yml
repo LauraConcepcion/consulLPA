@@ -4,6 +4,9 @@ hr:
     results_enabled: "Prikaži rezultate"
     stats_enabled: "Prikaži statistike"
     advanced_stats_enabled: "Prikaži napredne statistike"
+    name: Ime
+    email: E-mail
+    description: Opis
   activerecord:
     models:
       activity:
@@ -63,7 +66,7 @@ hr:
         few: "Grupa procjenitelja"
         other: "Grupa procjenitelja"
       manager:
-        one: "Menadžer"
+        one: "Upravitelj"
         few: "Menadžeri"
         other: "Menadžeri"
       newsletter:
@@ -119,9 +122,9 @@ hr:
         few: "Prijedlozi"
         other: "Prijedlozi"
       legislation/draft_versions:
-        one: "Draft verzija"
-        few: "Draft verzije"
-        other: "Draft verzije"
+        one: "Verzija nacrta"
+        few: "Verzije nacrta"
+        other: "Verzija nacrta"
       legislation/questions:
         one: "Pitanje"
         few: "Pitanja"
@@ -255,6 +258,7 @@ hr:
         ends_at: "Datum završetka"
         starts_at: "Datum početka"
       budget/phase/translation:
+        name: "Ime"
         description: "Opis"
         summary: "Sažetak"
       comment:
@@ -313,6 +317,7 @@ hr:
         responsible_name: "Osoba odgovorna za grupu"
       poll:
         name: "Ime"
+        title: "Ime"
         starts_at: "Datum početka"
         ends_at: "Datum zatvaranja"
         geozone_restricted: "Ograničeno geozonom"
@@ -328,7 +333,7 @@ hr:
         summary: "Sažetak"
         description: "Opis"
       poll/question:
-        poll_id: "Glasovanje"
+        poll_id: "Anketa"
         title: "Pitanje"
         summary: "Sažetak"
         description: "Opis"
@@ -349,13 +354,23 @@ hr:
         signable_type: "Tip potpisa"
         signable_id: "Potpis ID"
         document_numbers: "Broj dukumenata"
+      sdg/goal:
+        title: "Naziv"
+        description: "Opis"
+      sdg/local_target:
+        title: "Naziv"
+      sdg/local_target/translation:
+        title: "Naziv"
+        description: "Opis"
+      sdg/target:
+        title: "Naziv"
       site_customization/page:
         content: Sadržaj
         created_at: Stvoreno kod
         subtitle: Podnaslov
         slug: Žeton
         status: Status
-        status_draft: "Skica"
+        status_draft: "Nacrt"
         status_published: "Objavljeno"
         title: Naziv
         updated_at: Ažurirano u
@@ -398,7 +413,7 @@ hr:
         debate_end_date: Kraj
         draft_start_date: Početak
         draft_end_date: Kraj
-        draft_publication_date: Datum objave publikacije
+        draft_publication_date: Datum objave nacrta
         allegations_start_date: Početak
         allegations_end_date: Kraj
         proposals_phase_start_date: Početak
@@ -420,11 +435,11 @@ hr:
         title: "Naziv prijedloga"
         video_url: "Poveznica na vanjski video"
       legislation/draft_version:
-        title: Naziv Verzije
+        title: Naslov verzije
         body: Tekst
         changelog: Izmjene
         status: Status
-        status_draft: "Skica"
+        status_draft: "Nacrt"
         status_published: "Objavljeno"
         final_version: Finalna verzija
       legislation/draft_version/translation:
@@ -541,10 +556,6 @@ hr:
           attributes:
             segment_recipient:
               invalid: "Segment korisničkih primatelja nije valjan"
-        map_location:
-          attributes:
-            map:
-              invalid: Lokacija karte ne može biti prazna. Postavite oznaku ili potvrdite okvir ako nije potrebna geolokalizacija
         poll/voter:
           attributes:
             document_number:
@@ -558,7 +569,7 @@ hr:
             debate_end_date:
               invalid_date_range: mora biti na datum debate ili nakon početnog datuma
             draft_end_date:
-              invalid_date_range: mora biti na datum drafta ili nakon početnog datuma
+              invalid_date_range: mora biti na datum nacrta ili nakon njegovog početnog datuma
             allegations_end_date:
               invalid_date_range: mora biti na datum komentara ili nakon početnog datuma
         local_census_record:
@@ -602,7 +613,7 @@ hr:
       messages:
         translations_too_short: Obvezatno je priložiti barem jedan prijevod
         record_invalid: "Valicaija nije uspjela: %{errors}"
-        another_poll_active: Postoji još jedno aktivno glasovanje za dat period
+        another_poll_active: Postoji još jedno aktivno glasanje za dani period
         restrict_dependent_destroy:
           has_one: "Nemožete obrisati zapis jer ovisi o postojećem %{record}"
           has_many: "Nemožete obrisati zapis jer ovisi o postojećem %{record}"

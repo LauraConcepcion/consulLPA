@@ -6,18 +6,11 @@ describe "Moderate budget investments" do
   let(:mod)         { create(:moderator) }
   let!(:investment) { create(:budget_investment, heading: heading, author: create(:user)) }
 
-  scenario "Disabled with a feature flag" do
-    Setting["process.budgets"] = nil
-    login_as(mod.user)
-
-    expect { visit moderation_budget_investments_path }.to raise_exception(FeatureFlags::FeatureDisabled)
-  end
-
-  scenario "Hiding an investment", :js do
+  scenario "Hiding an investment" do
     login_as(mod.user)
     visit budget_investment_path(budget, investment)
 
-    accept_confirm { click_link "Hide" }
+    accept_confirm("Are you sure? Hide \"#{investment.title}\"") { click_button "Hide" }
 
     expect(page).to have_css(".faded", count: 2)
 
@@ -26,16 +19,15 @@ describe "Moderate budget investments" do
     expect(page).not_to have_content(investment.title)
   end
 
-  scenario "Hiding an investment's author", :js do
+  scenario "Hiding an investment's author" do
     login_as(mod.user)
     visit budget_investment_path(budget, investment)
 
-    accept_confirm { click_link "Hide author" }
+    accept_confirm("Are you sure? This will hide the user \"#{investment.author.name}\" and all their contents.") do
+      click_button "Block author"
+    end
 
-    expect(page).to have_current_path(debates_path)
-
-    visit budget_investments_path(budget.id, heading_id: heading.id)
-
+    expect(page).to have_current_path(budget_investments_path(budget))
     expect(page).not_to have_content(investment.title)
   end
 
@@ -46,8 +38,8 @@ describe "Moderate budget investments" do
     visit budget_investment_path(budget, investment)
 
     within "#budget_investment_#{investment.id}" do
-      expect(page).not_to have_link("Hide")
-      expect(page).not_to have_link("Hide author")
+      expect(page).not_to have_button "Hide"
+      expect(page).not_to have_button "Block author"
     end
   end
 
@@ -68,31 +60,40 @@ describe "Moderate budget investments" do
           within("#investment_#{investment.id}") do
             check "budget_investment_#{investment.id}_check"
           end
-
-          expect(page).not_to have_css("investment#{investment.id}")
         end
 
         scenario "Hide the investment" do
-          click_button "Hide budget investments"
-          expect(page).not_to have_css("investment_#{investment.id}")
+          accept_confirm("Are you sure? Hide budget investments") do
+            click_button "Hide budget investments"
+          end
 
-          investment.reload
+          expect(page).not_to have_css("#investment_#{investment.id}")
 
-          expect(investment.author).not_to be_hidden
+          click_link "Block users"
+          fill_in "email or name of user", with: investment.author.email
+          click_button "Search"
+
+          within "tr", text: investment.author.name do
+            expect(page).to have_button "Block"
+          end
         end
 
         scenario "Block the author" do
-          click_button "Block authors"
-          expect(page).not_to have_css("investment_#{investment.id}")
+          accept_confirm("Are you sure? Block authors") { click_button "Block authors" }
 
-          investment.reload
+          expect(page).not_to have_css("#investment_#{investment.id}")
 
-          expect(investment.author).to be_hidden
+          click_link "Block users"
+          fill_in "email or name of user", with: investment.author.email
+          click_button "Search"
+
+          within "tr", text: investment.author.name do
+            expect(page).to have_content "Blocked"
+          end
         end
 
-        scenario "Ignore the investment" do
+        scenario "Ignore the investment", :no_js do
           click_button "Mark as viewed"
-          expect(page).not_to have_css("investment_#{investment.id}")
 
           investment.reload
 
@@ -102,7 +103,7 @@ describe "Moderate budget investments" do
         end
       end
 
-      scenario "select all/none", :js do
+      scenario "select all/none" do
         create_list(:budget_investment, 2, heading: heading, author: create(:user))
 
         visit moderation_budget_investments_path
@@ -124,13 +125,14 @@ describe "Moderate budget investments" do
 
         visit moderation_budget_investments_path(filter: "all", page: "2", order: "created_at")
 
-        click_button "Mark as viewed"
+        accept_confirm("Are you sure? Mark as viewed") { click_button "Mark as viewed" }
 
-        expect(page).to have_selector(".js-order-selector[data-order='created_at']")
+        expect(page).to have_link "Most recent", class: "is-active"
+        expect(page).to have_link "Most flagged"
 
-        expect(current_url).to include("filter=all")
-        expect(current_url).to include("page=2")
-        expect(current_url).to include("order=created_at")
+        expect(page).to have_current_path(/filter=all/)
+        expect(page).to have_current_path(/page=2/)
+        expect(page).to have_current_path(/order=created_at/)
       end
     end
 

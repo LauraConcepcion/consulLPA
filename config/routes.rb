@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   draw :account
   draw :admin
-  draw :annotation
   draw :budget
   draw :comment
   draw :community
@@ -21,6 +20,8 @@ Rails.application.routes.draw do
   draw :poll
   draw :proposal
   draw :related_content
+  draw :sdg
+  draw :sdg_management
   draw :tag
   draw :user
   draw :valuation

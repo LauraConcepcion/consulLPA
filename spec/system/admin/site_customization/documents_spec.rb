@@ -1,12 +1,7 @@
 require "rails_helper"
 
-describe "Documents" do
-  before do
-    admin = create(:administrator)
-    login_as(admin.user)
-  end
-
-  scenario "Navigation", :js do
+describe "Documents", :admin do
+  scenario "Navigation" do
     visit admin_root_path
 
     within("#side_menu") do
@@ -22,12 +17,13 @@ describe "Documents" do
     3.times { create(:document, :admin) }
     1.times { create(:document) }
 
+    document = Document.first
+    url = polymorphic_path(document.attachment)
+
     visit admin_site_customization_documents_path
 
     expect(page).to have_content "There are 3 documents"
-
-    document = Document.first
-    expect(page).to have_link document.title, href: document.attachment.url
+    expect(page).to have_link document.title, href: url
   end
 
   scenario "Index (empty)" do
@@ -58,11 +54,11 @@ describe "Documents" do
   scenario "Create" do
     visit new_admin_site_customization_document_path
 
-    attach_file("document_attachment", Rails.root + "spec/fixtures/files/logo.pdf")
+    attach_file("document_attachment", file_fixture("logo.pdf"))
     click_button "Upload"
 
     expect(page).to have_content "Document uploaded succesfully"
-    expect(page).to have_link "logo.pdf", href: Document.last.attachment.url
+    expect(page).to have_link "logo.pdf"
   end
 
   scenario "Errors on create" do
@@ -73,13 +69,15 @@ describe "Documents" do
     expect(page).to have_content "Invalid document"
   end
 
-  scenario "Destroy", :js do
+  scenario "Destroy" do
     document = create(:document, :admin)
 
     visit admin_site_customization_documents_path
 
     within("#document_#{document.id}") do
-      accept_confirm { click_link "Delete" }
+      accept_confirm("Are you sure? This action will delete \"#{document.title}\" and can't be undone.") do
+        click_button "Delete"
+      end
     end
 
     expect(page).to have_content "Document deleted succesfully"

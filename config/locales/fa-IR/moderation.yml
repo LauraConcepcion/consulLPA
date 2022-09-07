@@ -3,7 +3,6 @@ fa:
     comments:
       index:
         block_authors: انسداد  نویسنده
-        confirm: آیا مطمئن هستید؟
         filter: فیلتر
         filters:
           all: همه
@@ -12,9 +11,8 @@ fa:
         headers:
           comment: توضیح
           moderate: سردبیر
-        hide_comments: پنهان کردن نظرات
+        hide: پنهان کردن نظرات
         ignore_flags: علامتگذاری به عنوان مشاهده شده
-        order: سفارش
         orders:
           flags: بیشتر پرچم گذاری شده 
           newest: جدیدترین
@@ -25,7 +23,6 @@ fa:
     debates:
       index:
         block_authors: بلوک نویسنده
-        confirm: آیا مطمئن هستید؟
         filter: فیلتر
         filters:
           all: همه
@@ -34,9 +31,8 @@ fa:
         headers:
           debate: بحث
           moderate: سردبیر
-        hide_debates: پنهان کردن بحث
+        hide: پنهان کردن بحث
         ignore_flags: علامتگذاری به عنوان مشاهده شده
-        order: سفارش
         orders:
           created_at: جدیدترین
           flags: بیشتر پرچم گذاری شده 
@@ -52,7 +48,6 @@ fa:
     proposals:
       index:
         block_authors: بلوک نویسنده
-        confirm: آیا مطمئن هستید؟
         filter: فیلتر
         filters:
           all: همه
@@ -61,9 +56,8 @@ fa:
         headers:
           moderate: سردبیر
           proposal: طرح های پیشنهادی
-        hide_proposals: پنهان کردن پیشنهادات
+        hide: پنهان کردن پیشنهادات
         ignore_flags: علامتگذاری به عنوان مشاهده شده
-        order: "سفارش توسط\n"
         orders:
           created_at: جدید ترین
           flags: بیشتر پرچم گذاری شده 
@@ -71,7 +65,6 @@ fa:
     budget_investments:
       index:
         block_authors: بلوک نویسنده
-        confirm: آیا مطمئن هستید؟
         filter: فیلتر
         filters:
           all: همه
@@ -81,7 +74,6 @@ fa:
           moderate: سردبیر
           budget_investment: بودجه سرمایه گذاری
         ignore_flags: علامتگذاری به عنوان مشاهده شده
-        order: "سفارش توسط\n"
         orders:
           created_at: جدید ترین
           flags: بیشتر پرچم گذاری شده 
@@ -89,7 +81,6 @@ fa:
     proposal_notifications:
       index:
         block_authors: بلوک نویسنده
-        confirm: آیا مطمئن هستید؟
         filter: فیلتر
         filters:
           all: همه
@@ -97,17 +88,14 @@ fa:
           ignored: علامتگذاری به عنوان مشاهده شده
         headers:
           moderate: سردبیر
-        hide_proposal_notifications: پنهان کردن پیشنهادات
+        hide: پنهان کردن پیشنهادات
         ignore_flags: علامتگذاری به عنوان مشاهده شده
-        order: "سفارش توسط\n"
         orders:
           created_at: جدید ترین
         title: اطلاعیه های پیشنهاد
     users:
       index:
-        hidden: مسدود شده
         hide: مسدود کردن
-        search: جستجو
         search_placeholder: ایمیل یا نام کاربر
         title: انسداد کاربران
       notice_hide: کاربر مسدود شده. همه بحث و نظرات این کاربر  پنهان شده اند.

@@ -47,15 +47,15 @@ shared_examples_for "globalizable" do |factory_name|
     end
 
     it "Does not create invalid translations in the database" do
-      skip("cannot have invalid translations") if required_fields.empty?
+      if required_fields.any?
+        record.update(translations_attributes: [{ locale: :fr }])
 
-      record.update(translations_attributes: [{ locale: :fr }])
+        expect(record.translations.map(&:locale)).to match_array %i[en es fr]
 
-      expect(record.translations.map(&:locale)).to match_array %i[en es fr]
+        record.reload
 
-      record.reload
-
-      expect(record.translations.map(&:locale)).to match_array %i[en es]
+        expect(record.translations.map(&:locale)).to match_array %i[en es]
+      end
     end
 
     it "Does not automatically add a translation for the current locale" do
@@ -63,7 +63,7 @@ shared_examples_for "globalizable" do |factory_name|
       record.reload
 
       record.update!(translations_attributes: [
-        { locale: :de }.merge(fields.map { |field| [field, "Deutsch"] }.to_h)
+        { locale: :de }.merge(fields.map { |field| [field, "Deutsche Sprache"] }.to_h)
       ])
 
       record.reload
@@ -84,17 +84,17 @@ shared_examples_for "globalizable" do |factory_name|
     end
 
     it "Does not save invalid translations" do
-      skip("cannot have invalid translations") if required_fields.empty?
+      if required_fields.any?
+        record.update(translations_attributes: [
+          { id: record.translations.find_by(locale: :es).id, attribute => "" }
+        ])
 
-      record.update(translations_attributes: [
-        { id: record.translations.find_by(locale: :es).id, attribute => "" }
-      ])
+        I18n.with_locale(:es) { expect(record.send(attribute)).to eq "" }
 
-      I18n.with_locale(:es) { expect(record.send(attribute)).to eq "" }
+        record.reload
 
-      record.reload
-
-      I18n.with_locale(:es) { expect(record.send(attribute)).to eq "En español" }
+        I18n.with_locale(:es) { expect(record.send(attribute)).to eq "En español" }
+      end
     end
 
     it "Does not automatically add a translation for the current locale" do
@@ -102,7 +102,7 @@ shared_examples_for "globalizable" do |factory_name|
       record.reload
 
       record.update!(translations_attributes: [
-        { id: record.translations.first.id }.merge(fields.map { |field| [field, "Cambiado"] }.to_h)
+        { id: record.translations.first.id }.merge(fields.map { |field| [field, "Actualizado"] }.to_h)
       ])
 
       record.reload
@@ -122,41 +122,41 @@ shared_examples_for "globalizable" do |factory_name|
     end
 
     it "Does not remove all translations" do
-      skip("cannot have invalid translations") if required_fields.empty?
+      if required_fields.any?
+        record.translations_attributes = [
+          { id: record.translations.find_by(locale: :en).id, _destroy: true },
+          { id: record.translations.find_by(locale: :es).id, _destroy: true }
+        ]
 
-      record.translations_attributes = [
-        { id: record.translations.find_by(locale: :en).id, _destroy: true },
-        { id: record.translations.find_by(locale: :es).id, _destroy: true }
-      ]
+        expect(record).not_to be_valid
 
-      expect(record).not_to be_valid
+        record.reload
 
-      record.reload
-
-      expect(record.translations.map(&:locale)).to match_array %i[en es]
+        expect(record.translations.map(&:locale)).to match_array %i[en es]
+      end
     end
 
     it "Does not remove translations when there's invalid data" do
-      skip("cannot have invalid translations") if required_fields.empty?
+      if required_fields.any?
+        record.translations_attributes = [
+          { id: record.translations.find_by(locale: :es).id, attribute => "" },
+          { id: record.translations.find_by(locale: :en).id, _destroy: true }
+        ]
 
-      record.translations_attributes = [
-        { id: record.translations.find_by(locale: :es).id, attribute => "" },
-        { id: record.translations.find_by(locale: :en).id, _destroy: true }
-      ]
+        expect(record).not_to be_valid
 
-      expect(record).not_to be_valid
+        record.reload
 
-      record.reload
-
-      expect(record.translations.map(&:locale)).to match_array %i[en es]
+        expect(record.translations.map(&:locale)).to match_array %i[en es]
+      end
     end
   end
 
   describe "Fallbacks" do
     before do
       I18n.with_locale(:de) do
-        record.update!(required_fields.map { |field| [field, "Deutsch"] }.to_h)
-        record.update!(attribute => "Deutsch")
+        record.update!(required_fields.map { |field| [field, "Deutsche Sprache"] }.to_h)
+        record.update!(attribute => "Deutsche Sprache")
       end
     end
 
@@ -174,7 +174,7 @@ shared_examples_for "globalizable" do |factory_name|
       Globalize.set_fallbacks_to_all_available_locales
 
       I18n.with_locale(:fr) do
-        expect(record.send(attribute)).to eq "Deutsch"
+        expect(record.send(attribute)).to eq "Deutsche Sprache"
       end
     end
 
@@ -185,7 +185,7 @@ shared_examples_for "globalizable" do |factory_name|
         { id: record.translations.find_by(locale: :en).id, _destroy: true }
       ])
 
-      expect(record.send(attribute)).to eq "Deutsch"
+      expect(record.send(attribute)).to eq "Deutsche Sprache"
     end
   end
 end

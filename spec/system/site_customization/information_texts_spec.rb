@@ -1,45 +1,40 @@
 require "rails_helper"
 
-describe "Custom information texts" do
+describe "Custom information texts", :admin do
   scenario "Show custom texts instead of default ones" do
-    admin = create(:administrator)
-    login_as(admin.user)
-
     debate_key = "debates.index.section_footer.title"
     proposal_key = "proposals.index.section_footer.title"
 
     visit admin_site_customization_information_texts_path(tab: "debates")
-    fill_in "contents[content_#{debate_key}]values[value_en]", with: "Custom help about debates"
+    fill_in "contents[content_#{debate_key}]values[value_en]", with: "Custom help with debates"
     click_button "Save"
 
     visit admin_site_customization_information_texts_path(tab: "proposals")
-    fill_in "contents[content_#{proposal_key}]values[value_en]", with: "Custom help about proposals"
+    fill_in "contents[content_#{proposal_key}]values[value_en]", with: "Custom help with proposals"
     click_button "Save"
 
     visit debates_path
 
     within("#section_help") do
-      expect(page).to have_content "Custom help about debates"
-      expect(page).not_to have_content "Help about debates"
+      expect(page).to have_content "Custom help with debates"
+      expect(page).not_to have_content "Help with debates"
     end
 
     visit proposals_path
 
     within("#section_help") do
-      expect(page).to have_content "Custom help about proposals"
-      expect(page).not_to have_content "Help about proposals"
+      expect(page).to have_content "Custom help with proposals"
+      expect(page).not_to have_content "Help with proposals"
     end
   end
 
-  scenario "Show custom text with options", :js do
-    admin = create(:administrator)
+  scenario "Show custom text with options" do
     user = create(:user, username: "Rachel")
     create(:budget_investment, author_id: user.id)
 
     intro_key = "mailers.budget_investment_created.intro"
     create(:i18n_content, key: intro_key, value_en: "Hi %{author}")
 
-    login_as(admin.user)
     visit admin_site_customization_information_texts_path(tab: "mailers")
 
     expect(page).to have_content "Hi %{author}"

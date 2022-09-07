@@ -35,7 +35,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :debate_phase
 
-    if @process.debate_phase.started? || (current_user&.administrator?)
+    if @process.debate_phase.started? || current_user&.administrator?
       render :debate
     else
       render :phase_not_open
@@ -112,7 +112,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :proposals_phase
 
-    @proposals = ::Legislation::Proposal.where(process: @process)
+    @proposals = ::Legislation::Proposal.where(process: @process).filter_by(params[:advanced_search])
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
     @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
@@ -123,8 +123,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       @proposals = @proposals.send(@current_filter).page(params[:page])
     end
 
-    if @process.proposals_phase.started? || (current_user&.administrator?)
-      legislation_proposal_votes(@proposals)
+    if @process.proposals_phase.started? || current_user&.administrator?
       render :proposals
     else
       render :phase_not_open

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Registration form" do
-  scenario "username is not available", :js do
+  scenario "username is not available" do
     user = create(:user)
 
     visit new_user_registration_path
@@ -13,7 +13,7 @@ describe "Registration form" do
     expect(page).to have_content I18n.t("devise_views.users.registrations.new.username_is_not_available")
   end
 
-  scenario "username is available", :js do
+  scenario "username is available" do
     visit new_user_registration_path
     expect(page).not_to have_content I18n.t("devise_views.users.registrations.new.username_is_available")
 
@@ -21,6 +21,21 @@ describe "Registration form" do
     check "user_terms_of_service"
 
     expect(page).to have_content I18n.t("devise_views.users.registrations.new.username_is_available")
+  end
+
+  scenario "do not save blank user_email" do
+    Setting["feature.user.skip_verification"] = true
+    visit new_user_registration_path
+
+    fill_in "user_username",              with: "NewUser"
+    fill_in "user_password",              with: "password"
+    fill_in "user_password_confirmation", with: "password"
+
+    check "user_terms_of_service"
+
+    click_button "Register"
+
+    expect(page).to have_content "can't be blank"
   end
 
   scenario "do not save blank redeemable codes" do
@@ -43,7 +58,7 @@ describe "Registration form" do
     expect(new_user.redeemable_code).to be_nil
   end
 
-  scenario "Create with invisible_captcha honeypot field" do
+  scenario "Create with invisible_captcha honeypot field", :no_js do
     visit new_user_registration_path
 
     fill_in "user_username",              with: "robot"
@@ -65,7 +80,6 @@ describe "Registration form" do
     visit new_user_registration_path
 
     fill_in "user_username",              with: "robot"
-    fill_in "user_address",               with: "This is the honeypot field"
     fill_in "user_email",                 with: "robot@robot.com"
     fill_in "user_password",              with: "destroyallhumans"
     fill_in "user_password_confirmation", with: "destroyallhumans"

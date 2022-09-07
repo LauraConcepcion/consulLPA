@@ -1,20 +1,16 @@
 require "rails_helper"
 
-describe "Admin custom images" do
-  before do
-    admin = create(:administrator)
-    login_as(admin.user)
-  end
-
+describe "Admin custom images", :admin do
   scenario "Upload valid png image" do
     visit admin_root_path
 
     within("#side_menu") do
+      click_link "Settings"
       click_link "Custom images"
     end
 
     within("tr#image_logo_header") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/logo_header.png"
+      attach_file "site_customization_image_image", file_fixture("logo_header.png")
       click_button "Update"
     end
 
@@ -23,14 +19,10 @@ describe "Admin custom images" do
   end
 
   scenario "Upload valid jpg image" do
-    visit admin_root_path
-
-    within("#side_menu") do
-      click_link "Custom images"
-    end
+    visit admin_site_customization_images_path
 
     within("tr#image_map") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/custom_map.jpg"
+      attach_file "site_customization_image_image", file_fixture("custom_map.jpg")
       click_button "Update"
     end
 
@@ -41,14 +33,11 @@ describe "Admin custom images" do
   scenario "Image is replaced on front views" do
     budget = create(:budget)
     group = create(:budget_group, budget: budget)
-    visit admin_root_path
 
-    within("#side_menu") do
-      click_link "Custom images"
-    end
+    visit admin_site_customization_images_path
 
     within("tr#image_map") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/custom_map.jpg"
+      attach_file "site_customization_image_image", file_fixture("custom_map.jpg")
       click_button "Update"
     end
 
@@ -71,13 +60,24 @@ describe "Admin custom images" do
     end
   end
 
+  scenario "Custom apple touch icon is replaced on front views" do
+    create(:site_customization_image,
+           name: "apple-touch-icon-200",
+           image: fixture_file_upload("apple-touch-icon-custom-200.png"))
+
+    visit root_path
+
+    expect(page).not_to have_css("link[href*='apple-touch-icon-200']", visible: :all)
+    expect(page).to have_css("link[href*='apple-touch-icon-custom-200']", visible: :hidden)
+  end
+
   scenario "Image is replaced on admin newsletters" do
     newsletter = create(:newsletter, segment_recipient: "all_users")
 
     visit admin_site_customization_images_path
 
     within("tr#image_logo_email") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/logo_email_custom.png"
+      attach_file "site_customization_image_image", file_fixture("logo_email_custom.png")
       click_button "Update"
     end
 
@@ -89,14 +89,10 @@ describe "Admin custom images" do
   end
 
   scenario "Upload invalid image" do
-    visit admin_root_path
-
-    within("#side_menu") do
-      click_link "Custom images"
-    end
+    visit admin_site_customization_images_path
 
     within("tr#image_social_media_icon") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/logo_header.png"
+      attach_file "site_customization_image_image", file_fixture("logo_header.png")
       click_button "Update"
     end
 
@@ -105,14 +101,10 @@ describe "Admin custom images" do
   end
 
   scenario "Delete image" do
-    visit admin_root_path
-
-    within("#side_menu") do
-      click_link "Custom images"
-    end
+    visit admin_site_customization_images_path
 
     within("tr#image_social_media_icon") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/social_media_icon.png"
+      attach_file "site_customization_image_image", file_fixture("social_media_icon.png")
       click_button "Update"
     end
 

@@ -3,14 +3,14 @@
     <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-      <%= t("officing.residence.new.#{error}") %>
-      <%= t("verification.residence.new.census_error_help",
-        offices: link_to( t("verification.residence.new.error_verifying_census_offices"),
-        setting['verification_offices_url'], title: t('shared.target_blank_html'), target: "_blank")).html_safe %>
+      <%= t("verification.residence.new.#{error}") %>
+      <%= sanitize(t("officing.residence.new.census_error_help",
+        offices: link_to(t("officing.residence.new.error_verifying_census_offices"),
+        setting["verification_offices_url"], title: t("shared.target_blank_html"), target: "_blank"))) %>
   </div>
 
 <% else %>
   <%= render "shared/errors",
              resource: @residence,
-             message: t("officing.residence.new.form_errors")  %>
+             message: t("officing.residence.new.form_errors") %>
 <% end %>

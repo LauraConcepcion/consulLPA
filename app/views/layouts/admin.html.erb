@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html <%= "dir=rtl" if rtl? %> lang="<%= I18n.locale %>">
 
   <head>
     <%= render "layouts/common_head", default_title: "Admin" %>
@@ -13,7 +13,13 @@
       <%= check_box_tag :show_menu, nil, false, role: "switch" %>
 
       <nav id="side_menu" class="admin-sidebar">
-        <%= render "/#{namespace}/menu" %>
+        <% if namespace == "admin" %>
+          <%= render Admin::MenuComponent.new %>
+        <% elsif namespace == "sdg_management" %>
+          <%= render SDGManagement::MenuComponent.new %>
+        <% else %>
+          <%= render "/#{namespace}/menu" %>
+        <% end %>
       </nav>
 
       <div class="admin-content">

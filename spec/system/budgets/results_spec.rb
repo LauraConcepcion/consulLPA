@@ -36,7 +36,7 @@ describe "Results" do
     visit budget_path(budget)
     click_link "See results"
 
-    expect(page).to have_selector("a.is-active", text: budget.headings.first.name)
+    expect(page).to have_selector("a.is-active", text: heading.name)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content investment1.title
@@ -48,7 +48,7 @@ describe "Results" do
     end
   end
 
-  scenario "Show non winner & incomaptible investments", :js do
+  scenario "Show non winner & incomaptible investments" do
     visit budget_path(budget)
     click_link "See results"
     click_link "Show all"
@@ -65,6 +65,41 @@ describe "Results" do
     within("#budget-investments-incompatible") do
       expect(page).to have_content investment3.title
     end
+  end
+
+  scenario "Does not show price and available budget when hide money" do
+    budget.update!(voting_style: "approval", hide_money: true)
+    visit budget_path(budget)
+    click_link "See results"
+
+    expect(page).to have_content investment1.title
+    expect(page).to have_content investment2.title
+    expect(page).not_to have_content investment1.price
+    expect(page).not_to have_content investment2.price
+    expect(page).not_to have_content "Price"
+    expect(page).not_to have_content "Available budget"
+    expect(page).not_to have_content "€"
+  end
+
+  scenario "Does not have in account the price on hide money budgets" do
+    budget.update!(voting_style: "approval", hide_money: true)
+    heading.update!(price: 0)
+
+    inv1 = create(:budget_investment, :selected, heading: heading, price: 2000, ballot_lines_count: 1000)
+    inv2 = create(:budget_investment, :selected, heading: heading, price: 5000, ballot_lines_count: 1000)
+
+    Budget::Result.new(budget, heading).calculate_winners
+
+    visit budget_path(budget)
+    click_link "See results"
+
+    expect(page).to have_content inv1.title
+    expect(page).to have_content inv2.title
+    expect(page).not_to have_content inv1.price
+    expect(page).not_to have_content inv2.price
+    expect(page).not_to have_content "Price"
+    expect(page).not_to have_content "Available budget"
+    expect(page).not_to have_content "€"
   end
 
   scenario "Does not raise error if budget (slug or id) is not found" do
@@ -108,11 +143,12 @@ describe "Results" do
     visit budget_path(budget)
     expect(page).not_to have_link "See results"
 
-    visit budget_results_path(budget, heading_id: budget.headings.first)
+    visit budget_results_path(budget, heading_id: heading)
+
     expect(page).to have_content "You do not have permission to carry out the action"
   end
 
-  scenario "No incompatible investments", :js do
+  scenario "No incompatible investments" do
     investment3.incompatible = false
     investment3.save!
 

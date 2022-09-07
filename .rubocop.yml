@@ -8,6 +8,7 @@ AllCops:
   DisplayStyleGuide: true
   Exclude:
     - "db/schema.rb"
+    - "lib/ckeditor/backend/active_storage.rb"
   DisabledByDefault: true
 
 Bundler/DuplicatedGem:
@@ -15,18 +16,7 @@ Bundler/DuplicatedGem:
 
 Bundler/OrderedGems:
   Enabled: true
-
-Capybara/CurrentPathExpectation:
-  Enabled: true
-
-Capybara/FeatureMethods:
-  Enabled: true
-  EnabledMethods:
-    - scenario
-    - xscenario
-
-FactoryBot/AttributeDefinedStatically:
-  Enabled: true
+  ConsiderPunctuation: true
 
 Layout/AssignmentIndentation:
   Enabled: true
@@ -165,7 +155,22 @@ Layout/TrailingWhitespace:
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/BooleanSymbol:
+  Enabled: true
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+
+Lint/DuplicateBranch:
+  Enabled: true
+
 Lint/DuplicateMethods:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyFile:
   Enabled: true
 
 Lint/LiteralAsCondition:
@@ -183,10 +188,22 @@ Lint/SafeNavigationChain:
 Lint/ShadowingOuterLocalVariable:
   Enabled: true
 
+Lint/SymbolConversion:
+  Enabled: true
+  Exclude:
+    - "app/models/setting.rb"
+    - "db/dev_seeds/settings.rb"
+
 Lint/UselessAssignment:
   Enabled: true
 
 Lint/Void:
+  Enabled: true
+
+Naming/VariableName:
+  Enabled: true
+
+Performance/BlockGivenWithExplicitBlock:
   Enabled: true
 
 Performance/CompareWithBlock:
@@ -199,6 +216,15 @@ Performance/EndWith:
   Enabled: true
 
 Performance/StartWith:
+  Enabled: true
+
+Performance/Sum:
+  Enabled: true
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/AddColumnIndex:
   Enabled: true
 
 Rails/CreateTableWithTimestamps:
@@ -238,6 +264,14 @@ Rails/HasManyOrHasOneDependent:
   Enabled: true
   Severity: refactor
 
+Rails/HttpStatus:
+  Enabled: true
+
+Rails/I18nLocaleAssignment:
+  Enabled: true
+  Include:
+    - "**/*.rb"
+
 Rails/InverseOf:
   Enabled: true
   Exclude:
@@ -253,7 +287,9 @@ Rails/OutputSafety:
   Severity: warning
   Exclude:
     - app/helpers/text_with_links_helper.rb
-    - config/initializers/escape_javascript_fix.rb
+
+Rails/PluckId:
+  Enabled: true
 
 Rails/PluralizationGrammar:
   Enabled: true
@@ -280,13 +316,20 @@ Rails/SaveBang:
 
 Rails/SkipsModelValidations:
   Enabled: true
-  Blacklist:
+  ForbiddenMethods:
     - update_attribute
   Exclude:
     - lib/acts_as_paranoid_aliases.rb
 
 Rails/TimeZone:
   Enabled: true
+
+Rails/UniqBeforePluck:
+  Enabled: true
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: true
+  Severity: refactor
 
 Rails/UnknownEnv:
   Enabled: true
@@ -300,10 +343,31 @@ Rails/UnknownEnv:
 Rails/Validation:
   Enabled: true
 
+Rails/WhereEquals:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true
+
 RSpec/AroundBlock:
   Enabled: true
 
 RSpec/BeforeAfterAll:
+  Enabled: true
+
+RSpec/Capybara/CurrentPathExpectation:
+  Enabled: true
+
+RSpec/Capybara/FeatureMethods:
+  Enabled: true
+  EnabledMethods:
+    - scenario
+    - xscenario
+
+RSpec/Capybara/VisibilityMatcher:
+  Enabled: true
+
+RSpec/ContextMethod:
   Enabled: true
 
 RSpec/DescribedClass:
@@ -315,12 +379,24 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - spec/factories/**/*
 
+RSpec/EmptyHook:
+  Enabled: true
+
+RSpec/EmptyLineAfterExample:
+  Enabled: true
+
 RSpec/EmptyLineAfterExampleGroup:
   Enabled: true
   Exclude:
     - spec/factories/**/*
 
 RSpec/ExampleWording:
+  Enabled: true
+
+RSpec/FactoryBot/FactoryClassName:
+  Enabled: true
+
+RSpec/FilePath:
   Enabled: true
 
 RSpec/Focus:
@@ -332,7 +408,6 @@ RSpec/HookArgument:
 RSpec/InstanceVariable:
   Enabled: true
   Exclude:
-    - spec/controllers/concerns/has_filters_spec.rb
     - spec/controllers/concerns/has_orders_spec.rb
 
 RSpec/LetBeforeExamples:
@@ -350,6 +425,12 @@ RSpec/OverwritingSetup:
 RSpec/RepeatedExample:
   Enabled: true
 
+RSpec/RepeatedExampleGroupBody:
+  Enabled: true
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: true
+
 RSpec/ScatteredLet:
   Enabled: true
 
@@ -365,10 +446,19 @@ Security/Eval:
 Security/JSONLoad:
   Enabled: true
 
+Security/Open:
+  Enabled: true
+
 Security/YAMLLoad:
   Enabled: true
 
+Style/AccessorGrouping:
+  Enabled: true
+
 Style/AndOr:
+  Enabled: true
+
+Style/ArrayCoercion:
   Enabled: true
 
 Style/BlockDelimiters:
@@ -383,16 +473,31 @@ Style/ClassVars:
 Style/CollectionMethods:
   Enabled: true
 
+Style/HashConversion:
+  Enabled: true
+
 Style/HashSyntax:
   Enabled: true
 
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 Style/IdenticalConditionalBranches:
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches:
   Enabled: true
 
 Style/MethodDefParentheses:
   Enabled: true
 
 Style/MutableConstant:
+  Enabled: true
+
+Style/NegatedIfElseCondition:
   Enabled: true
 
 Style/Not:
@@ -407,13 +512,43 @@ Style/PercentLiteralDelimiters:
 Style/Proc:
   Enabled: true
 
+Style/RaiseArgs:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
+Style/RedundantCondition:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
 Style/RedundantFreeze:
+  Enabled: true
+
+Style/RedundantInterpolation:
+  Enabled: true
+
+Style/RedundantParentheses:
   Enabled: true
 
 Style/RedundantReturn:
   Enabled: true
 
+Style/RedundantSelf:
+  Enabled: true
+
 Style/SafeNavigation:
+  Enabled: true
+
+Style/SingleLineMethods:
+  Enabled: true
+
+Style/SoleNestedConditional:
+  Enabled: true
+
+Style/StringChars:
   Enabled: true
 
 Style/StringLiterals:

@@ -1,4 +1,4 @@
-<% provide :title do %><%= t('budgets.investments.index.title') %><% end %>
+<% provide :title do %><%= t("budgets.investments.index.title") %><% end %>
 <% content_for :header_addon do %>
   <%= render "shared/search_form",
              search_path: budget_investments_path(budget_id: @budget.id, page: 1),
@@ -16,25 +16,14 @@
 <% end %>
 
 <main id="budget-investments-main">
-
-  <% unless params[:search].present? %>
-    <%= render '/budgets/investments/header' %>
-  <% end %>
-
-  <% if params[:search].present? || params[:advanced_search].present?  %>
-    <div class="highlight no-margin-top padding margin-bottom">
-      <div class="row">
-        <div class="small-12 column">
-          <h2><%= t("shared.search_results") %></h2>
-          <p>
-            <%= page_entries_info @investments %>
-            <%= t("budgets.investments.index.search_results_html",
-                   count: @investments.size,
-                   search_term: params[:search]) %>
-          </p>
-        </div>
-      </div>
-    </div>
+  <% if @search_terms || @advanced_search_terms %>
+    <%= render Shared::SearchResultsSummaryComponent.new(
+      results: @investments,
+      search_terms: @search_terms,
+      advanced_search_terms: @advanced_search_terms
+    ) %>
+  <% else %>
+    <%= render "/budgets/investments/header" %>
   <% end %>
 
   <div class="row">
@@ -42,42 +31,42 @@
 
       <% if @current_filter == "unfeasible" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.unfeasible") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.unfeasible") %></h2>
           <div class="callout primary margin">
-              <%= t("budgets.investments.index.unfeasible_text") %>
+            <%= t("budgets.investments.index.unfeasible_text") %>
           </div>
         </div>
       <% elsif @current_filter == "unselected" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.unselected") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.unselected") %></h2>
           <div class="callout primary margin">
               <%= t("budgets.investments.index.unselected_text") %>
           </div>
         </div>
       <% elsif @current_filter == "takecharged" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.takecharged") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.takecharged") %></h2>
           <div class="callout primary margin">
               <%= t("budgets.investments.index.takecharged_text") %>
           </div>
         </div>
       <% elsif @current_filter == "included_next_year_budget" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.included_next_year_budget") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.included_next_year_budget") %></h2>
           <div class="callout primary margin">
               <%= t("budgets.investments.index.included_next_year_budget_text") %>
           </div>
         </div>
       <% elsif @current_filter == "selected" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.selected") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.selected") %></h2>
           <div class="callout primary margin">
               <%= t("budgets.investments.index.selected_text") %>
           </div>
         </div>
       <% elsif @current_filter == "not_selected" %>
         <div class="small-12 margin-bottom">
-          <h2><%= t("budgets.investments.index.not_selected") %>: <%= @heading.try(:name) %></h2>
+          <h2><%= t("budgets.investments.index.not_selected") %></h2>
           <div class="callout primary margin">
               <%= t("budgets.investments.index.not_selected_text") %>
           </div>
@@ -91,7 +80,7 @@
         </div>
       <% end %>
 
-      <%= render("shared/advanced_search", search_path: budget_investments_path(@budget)) %>
+      <%= render Shared::AdvancedSearchComponent.new %>
 
       <% if unfeasible_or_unselected_filter %>
         <ul class="no-bullet submenu">
@@ -106,22 +95,21 @@
         <%= render("shared/order_links", i18n_namespace: "budgets.investments.index") %>
       <% end %>
 
+      <%= render Shared::FilterSelectorComponent.new(i18n_namespace: "budgets.investments.index") %>
+
       <% if investments_default_view? %>
 
         <% @investments.each do |investment| %>
-          <%= render partial: '/budgets/investments/investment',
-                     locals: {
-                       investment: investment,
-                       investment_ids: @investment_ids,
-                       investment_votes: @investment_votes,
-                       ballot: @ballot
-                     } %>
+          <%= render "/budgets/investments/investment",
+                     investment: investment,
+                     investment_ids: @investment_ids,
+                     ballot: @ballot %>
         <% end %>
       <% else %>
 
         <% @investments.each do |investment| %>
-          <%= render partial: '/budgets/investments/investment_minimal',
-                     locals: { investment: investment } %>
+          <%= render "/budgets/investments/investment_minimal",
+                     investment: investment %>
         <% end %>
       <% end %>
 
@@ -130,9 +118,8 @@
 
     <div class="small-12 medium-3 column">
       <aside class="margin-bottom">
-        <%= yield :header_addon %>
-        <div id="sidebar">
-          <%= render '/budgets/investments/sidebar' %>
+        <div id="sidebar" class="budget-investments-sidebar">
+          <%= render "/budgets/investments/sidebar" %>
         </div>
       </aside>
     </div>

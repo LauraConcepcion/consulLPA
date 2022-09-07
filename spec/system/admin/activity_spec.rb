@@ -8,22 +8,23 @@ describe "Admin activity" do
   end
 
   context "Proposals" do
-    scenario "Shows moderation activity on proposals", :js do
-      proposal = create(:proposal)
+    scenario "Shows moderation activity on proposals" do
+      proposal = create(:proposal, description: "<p>Description with html tag</p>")
 
       visit proposal_path(proposal)
 
       within("#proposal_#{proposal.id}") do
-        accept_confirm { click_link "Hide" }
+        accept_confirm("Are you sure? Hide \"#{proposal.title}\"") { click_button "Hide" }
       end
       expect(page).to have_css("#proposal_#{proposal.id}.faded")
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(proposal.title)
         expect(page).to have_content("Hidden")
         expect(page).to have_content(admin.user.username)
+        expect(page).to have_css("p", exact_text: "Description with html tag")
       end
     end
 
@@ -42,7 +43,9 @@ describe "Admin activity" do
         check "proposal_#{proposal3.id}_check"
       end
 
-      click_on "Hide proposals"
+      accept_confirm("Are you sure? Hide proposals") { click_button "Hide proposals" }
+
+      expect(page).not_to have_content(proposal1.title)
 
       visit admin_activity_path
 
@@ -57,12 +60,14 @@ describe "Admin activity" do
       visit admin_hidden_proposals_path
 
       within("#proposal_#{proposal.id}") do
-        click_on "Restore"
+        accept_confirm("Are you sure? Restore") { click_button "Restore" }
       end
+
+      expect(page).to have_content "There are no hidden proposals"
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(proposal.title)
         expect(page).to have_content("Restored")
         expect(page).to have_content(admin.user.username)
@@ -71,19 +76,19 @@ describe "Admin activity" do
   end
 
   context "Debates" do
-    scenario "Shows moderation activity on debates", :js do
+    scenario "Shows moderation activity on debates" do
       debate = create(:debate)
 
       visit debate_path(debate)
 
       within("#debate_#{debate.id}") do
-        accept_confirm { click_link "Hide" }
+        accept_confirm("Are you sure? Hide \"#{debate.title}\"") { click_button "Hide" }
       end
       expect(page).to have_css("#debate_#{debate.id}.faded")
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(debate.title)
         expect(page).to have_content("Hidden")
         expect(page).to have_content(admin.user.username)
@@ -105,7 +110,9 @@ describe "Admin activity" do
         check "debate_#{debate3.id}_check"
       end
 
-      click_on "Hide debates"
+      accept_confirm("Are you sure? Hide debates") { click_button "Hide debates" }
+
+      expect(page).not_to have_content(debate1.title)
 
       visit admin_activity_path
 
@@ -120,12 +127,14 @@ describe "Admin activity" do
       visit admin_hidden_debates_path
 
       within("#debate_#{debate.id}") do
-        click_on "Restore"
+        accept_confirm("Are you sure? Restore") { click_button "Restore" }
       end
+
+      expect(page).to have_content "There are no hidden debates"
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(debate.title)
         expect(page).to have_content("Restored")
         expect(page).to have_content(admin.user.username)
@@ -134,20 +143,20 @@ describe "Admin activity" do
   end
 
   context "Comments" do
-    scenario "Shows moderation activity on comments", :js do
+    scenario "Shows moderation activity on comments" do
       debate = create(:debate)
       comment = create(:comment, commentable: debate)
 
       visit debate_path(debate)
 
       within("#comment_#{comment.id}") do
-        accept_confirm { click_link "Hide" }
+        accept_confirm("Are you sure? Hide \"#{comment.body}\"") { click_button "Hide" }
         expect(page).to have_css(".faded")
       end
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(comment.body)
         expect(page).to have_content("Hidden")
         expect(page).to have_content(admin.user.username)
@@ -169,7 +178,9 @@ describe "Admin activity" do
         check "comment_#{comment3.id}_check"
       end
 
-      click_on "Hide comments"
+      accept_confirm("Are you sure? Hide comments") { click_button "Hide comments" }
+
+      expect(page).not_to have_content(comment1.body)
 
       visit admin_activity_path
 
@@ -184,12 +195,14 @@ describe "Admin activity" do
       visit admin_hidden_comments_path
 
       within("#comment_#{comment.id}") do
-        click_on "Restore"
+        accept_confirm("Are you sure? Restore") { click_button "Restore" }
       end
+
+      expect(page).to have_content "There are no hidden comments"
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(comment.body)
         expect(page).to have_content("Restored")
         expect(page).to have_content(admin.user.username)
@@ -204,14 +217,16 @@ describe "Admin activity" do
       visit proposal_path(proposal)
 
       within("#proposal_#{proposal.id}") do
-        click_link "Hide author"
+        accept_confirm("Are you sure? This will hide the user \"#{proposal.author.name}\" and all their contents.") do
+          click_button "Block author"
+        end
 
-        expect(page).to have_current_path(debates_path)
+        expect(page).to have_current_path(proposals_path)
       end
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content("Blocked")
         expect(page).to have_content(proposal.author.username)
         expect(page).to have_content(proposal.author.email)
@@ -223,15 +238,17 @@ describe "Admin activity" do
     scenario "Shows moderation activity from moderation screen" do
       user = create(:user)
 
-      visit moderation_users_path(name_or_email: user.username)
+      visit moderation_users_path(search: user.username)
 
       within("#moderation_users") do
-        click_link "Block"
+        accept_confirm { click_button "Block" }
       end
+
+      expect(page).to have_content "The user has been blocked"
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(user.username)
         expect(page).to have_content(user.email)
         expect(page).to have_content(admin.user.username)
@@ -253,7 +270,9 @@ describe "Admin activity" do
         check "proposal_#{proposal3.id}_check"
       end
 
-      click_on "Block authors"
+      accept_confirm("Are you sure? Block authors") { click_button "Block authors" }
+
+      expect(page).not_to have_content(proposal1.author.username)
 
       visit admin_activity_path
 
@@ -279,7 +298,9 @@ describe "Admin activity" do
         check "debate_#{debate3.id}_check"
       end
 
-      click_on "Block authors"
+      accept_confirm("Are you sure? Block authors") { click_button "Block authors" }
+
+      expect(page).not_to have_content(debate1.author.username)
 
       visit admin_activity_path
 
@@ -305,7 +326,9 @@ describe "Admin activity" do
         check "comment_#{comment3.id}_check"
       end
 
-      click_on "Block authors"
+      accept_confirm("Are you sure? Block authors") { click_button "Block authors" }
+
+      expect(page).not_to have_content comment1.author.username
 
       visit admin_activity_path
 
@@ -322,12 +345,14 @@ describe "Admin activity" do
       visit admin_hidden_users_path
 
       within("#user_#{user.id}") do
-        click_on "Restore"
+        accept_confirm("Are you sure? Restore") { click_button "Restore" }
       end
+
+      expect(page).to have_content "There are no hidden users"
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(user.username)
         expect(page).to have_content(user.email)
         expect(page).to have_content("Restored")
@@ -346,7 +371,7 @@ describe "Admin activity" do
 
       visit admin_activity_path
 
-      within("#activity_#{Activity.last.id}") do
+      within first("tbody tr") do
         expect(page).to have_content(proposal_notification.title)
         expect(page).to have_content("Hidden")
         expect(page).to have_content(admin.user.username)

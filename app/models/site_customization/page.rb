@@ -1,10 +1,6 @@
 class SiteCustomization::Page < ApplicationRecord
   VALID_STATUSES = %w[draft published].freeze
-  has_many :cards,
-    class_name:  "Widget::Card",
-    foreign_key: "site_customization_page_id",
-    inverse_of:  :page
-
+  include Cardable
   translates :title,       touch: true
   translates :subtitle,    touch: true
   translates :content,     touch: true
@@ -14,7 +10,7 @@ class SiteCustomization::Page < ApplicationRecord
   validates :slug, presence: true,
                    uniqueness: { case_sensitive: false },
                    format: { with: /\A[0-9a-zA-Z\-_]*\Z/, message: :slug_format }
-  validates :status, presence: true, inclusion: { in: VALID_STATUSES }
+  validates :status, presence: true, inclusion: { in: ->(*) { VALID_STATUSES }}
 
   scope :published, -> { where(status: "published").sort_desc }
   scope :sort_asc, -> { order("id ASC") }

@@ -16,6 +16,7 @@ describe Abilities::Administrator do
   let(:budget_investment) { create(:budget_investment) }
   let(:finished_investment) { create(:budget_investment, budget: create(:budget, :finished)) }
   let(:legislation_question) { create(:legislation_question) }
+  let(:poll) { create(:poll) }
   let(:poll_question) { create(:poll_question) }
 
   let(:past_process) { create(:legislation_process, :past) }
@@ -71,13 +72,26 @@ describe Abilities::Administrator do
   it { should be_able_to(:comment_as_administrator, legislation_question) }
   it { should_not be_able_to(:comment_as_moderator, legislation_question) }
 
+  it { should be_able_to(:comment_as_administrator, poll) }
+  it { should_not be_able_to(:comment_as_moderator, poll) }
+
   it { should be_able_to(:summary, past_process) }
   it { should_not be_able_to(:summary, past_draft_process) }
   it { should_not be_able_to(:summary, open_process) }
 
   it { should be_able_to(:create, Budget) }
   it { should be_able_to(:update, Budget) }
-  it { should be_able_to(:read_results, Budget) }
+
+  it { should be_able_to(:read_results, create(:budget, :reviewing_ballots, :with_winner)) }
+  it { should be_able_to(:read_results, create(:budget, :finished, :with_winner)) }
+  it { should be_able_to(:read_results, create(:budget, :finished, results_enabled: true)) }
+  it { should_not be_able_to(:read_results, create(:budget, :balloting, :with_winner, results_enabled: true)) }
+  it { should_not be_able_to(:read_results, create(:budget, :reviewing_ballots, results_enabled: true)) }
+  it { should_not be_able_to(:read_results, create(:budget, :finished, results_enabled: false)) }
+
+  it { should be_able_to(:calculate_winners, create(:budget, :reviewing_ballots)) }
+  it { should_not be_able_to(:calculate_winners, create(:budget, :balloting)) }
+  it { should_not be_able_to(:calculate_winners, create(:budget, :finished)) }
 
   it { should be_able_to(:create, Budget::ValuatorAssignment) }
 
@@ -106,4 +120,12 @@ describe Abilities::Administrator do
   it { should be_able_to(:manage, LocalCensusRecord) }
   it { should be_able_to(:create, LocalCensusRecords::Import) }
   it { should be_able_to(:show, LocalCensusRecords::Import) }
+
+  it { should be_able_to(:read, SDG::Target) }
+
+  it { should be_able_to(:read, SDG::Manager) }
+  it { should be_able_to(:create, SDG::Manager) }
+  it { should be_able_to(:destroy, SDG::Manager) }
+
+  it { should be_able_to(:manage, Widget::Card) }
 end

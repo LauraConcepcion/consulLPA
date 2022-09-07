@@ -10,23 +10,11 @@
 
 <main>
   <% if @search_terms || @advanced_search_terms %>
-    <div class="highlight no-margin-top padding margin-bottom">
-      <div class="row">
-        <div class="small-12 column">
-          <% if @search_terms || @advanced_search_terms %>
-            <h2><%= t("shared.search_results") %></h2>
-            <p>
-              <%= page_entries_info @debates %>
-              <% if !@advanced_search_terms %>
-                <%= sanitize(
-                  t("debates.index.search_results", count: @debates.size, search_term: @search_terms)
-                ) %>
-              <% end %>
-            </p>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render Shared::SearchResultsSummaryComponent.new(
+      results: @debates,
+      search_terms: @search_terms,
+      advanced_search_terms: @advanced_search_terms
+    ) %>
   <% else %>
     <%= render "shared/section_header", i18n_namespace: "debates.index.section_header", image: "debates" %>
   <% end %>
@@ -40,7 +28,7 @@
   <div class="row">
     <div id="debates" class="debates-list small-12 medium-9 column">
 
-      <%= render "shared/banner" %>
+      <%= render Shared::BannerComponent.new("debates") %>
 
       <% unless @search_terms || !has_featured? %>
         <%= render "featured_debates" %>
@@ -52,7 +40,7 @@
         </div>
       </div>
 
-      <%= render "shared/advanced_search", search_path: debates_path(page: 1) %>
+      <%= render Shared::AdvancedSearchComponent.new %>
 
       <%= render "shared/order_links", i18n_namespace: "debates.index" %>
 
@@ -91,7 +79,7 @@
 
       <aside class="margin-bottom">
         <%= link_to t("debates.index.start_debate"), new_debate_path, class: "button expanded" %>
-        <%= render "shared/tag_cloud", taggable: "debate" %>
+        <%= render "shared/tag_cloud", taggable: "Debate" %>
       </aside>
     </div>
 

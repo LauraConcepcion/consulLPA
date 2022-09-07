@@ -54,7 +54,6 @@ de:
           winners: Ausgewählt
       debate:
         empty_questions: Es gibt keine Fragen
-        participate: An Diskussion teilnehmen
       index:
         filter: Filter
         filters:
@@ -118,3 +117,32 @@ de:
         tags_label: "Kategorien"
       not_verified: "Für Wahlvorschläge %{verify_account}."
       process_title: Kollaboratives Gesetzgebungsverfahren
+    summary:
+      title: "Zusammenfassung"
+      votes:
+        zero: "%{count} Stimmen"
+        one: "%{count} Stimme"
+        other: "%{count} Stimmen"
+      debate_phase: "Diskussionsphase"
+      proposals_phase: "Vorschlagsphase"
+      allegations_phase: "Kommentierphase"
+      debates:
+        zero: "Keine Debatten"
+        one: "%{count} Debatte"
+        other: "%{count} Debatten"
+      proposals:
+        zero: "Keine Vorschläge"
+        one: "%{count} Vorschlag"
+        other: "%{count} Vorschläge"
+      comments:
+        zero: "Keine Kommentare"
+        one: "%{count} Kommentar"
+        other: "%{count} Kommentare"
+      download: "Download Zusammenfassung"
+      top_comments:
+        zero: "Keine Kommentare"
+        one: "%{count} Kommentar"
+        other: "Top Kommentare"
+      most_voted_comments: "Best bewertete Kommentare"
+      no_allegation: "Keine Kommentare vorhanden"
+      process_empty: "Dieser Prozess hatte keine Partitzipationsphase"

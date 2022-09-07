@@ -30,23 +30,10 @@ describe Poll do
       expect(poll).not_to be_valid
     end
 
-    it "should not be valid with an incorrect start date hour" do
-      poll.starts_at_hour = '08:0'
-      expect(poll).to_not be_valid
-    end
-
-    it "should not be valid with an incorrect end date hour" do
-      poll.ends_at_hour = '20:0'
-      expect(poll).to_not be_valid
-    end
-
-    it "should not be valid without a proper start/end date range" do
+    it "is not valid without a proper start/end date range" do
       poll.starts_at = 1.week.ago
       poll.ends_at = 2.months.ago
       expect(poll).not_to be_valid
-    end
-
-    it "no overlapping polls for proposal polls are allowed" do
     end
   end
 
@@ -205,8 +192,7 @@ describe Poll do
       end
 
       it "returns restricted & unrestricted polls for level 2 users of the correct geozone" do
-        list = Poll.answerable_by(level2_from_geozone)
-                              .order(:geozone_restricted)
+        list = Poll.answerable_by(level2_from_geozone).order(:geozone_restricted)
         expect(list.to_a).to eq([current_poll, current_restricted_poll])
       end
     end
@@ -382,6 +368,19 @@ describe Poll do
       expect(Poll.sort_for_list).to eq [poll1, poll2]
     end
 
+    it "returns polls for the user's geozone first" do
+      geozone = create(:geozone)
+      poll1 = create(:poll, geozone_restricted: true)
+      poll2 = create(:poll, geozone_restricted: true)
+      poll3 = create(:poll)
+      poll_geozone_1 = create(:poll, geozone_restricted: true, geozones: [geozone])
+      poll_geozone_2 = create(:poll, geozone_restricted: true, geozones: [geozone])
+      geozone_user = create(:user, :level_two, geozone: geozone)
+
+      expect(Poll.sort_for_list).to eq [poll3, poll1, poll2, poll_geozone_1, poll_geozone_2]
+      expect(Poll.sort_for_list(geozone_user)).to eq [poll3, poll_geozone_1, poll_geozone_2, poll1, poll2]
+    end
+
     it "returns polls earlier to start first" do
       starts_at = Time.current + 1.day
       poll1 = create(:poll, geozone_restricted: false, starts_at: starts_at - 1.hour, name: "Zzz...")
@@ -441,6 +440,31 @@ describe Poll do
       poll = create(:poll, starts_at: 3.months.ago, ends_at: 1.month.ago - 1.day)
 
       expect(poll.recounts_confirmed?).to be true
+    end
+  end
+
+  describe ".search" do
+    let!(:square) do
+      create(:poll, name: "Square reform", summary: "Next to the park", description: "Give it more space")
+    end
+
+    let!(:park) do
+      create(:poll, name: "New park", summary: "Green spaces", description: "Next to the square")
+    end
+
+    it "returns only matching polls" do
+      expect(Poll.search("reform")).to eq [square]
+      expect(Poll.search("green")).to eq [park]
+      expect(Poll.search("nothing here")).to be_empty
+    end
+
+    it "gives more weight to name" do
+      expect(Poll.search("square")).to eq [square, park]
+      expect(Poll.search("park")).to eq [park, square]
+    end
+
+    it "gives more weight to summary than description" do
+      expect(Poll.search("space")).to eq [park, square]
     end
   end
 end

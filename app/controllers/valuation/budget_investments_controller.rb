@@ -98,14 +98,20 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
     end
 
     def valuation_params
-      params.require(:budget_investment).permit(:price, :price_first_year, :price_explanation,
-                                                :feasibility, :unfeasibility_explanation,
-                                                :duration, :valuation_finished)
+      params.require(:budget_investment).permit(allowed_params)
+    end
+
+    def allowed_params
+      [
+        :price, :price_first_year, :price_explanation,
+        :feasibility, :unfeasibility_explanation,
+        :duration, :valuation_finished
+      ]
     end
 
     def restrict_access
       unless current_user.administrator? || current_budget.valuating?
-        raise CanCan::AccessDenied.new(I18n.t("valuation.budget_investments.not_in_valuating_phase"))
+        raise CanCan::AccessDenied, I18n.t("valuation.budget_investments.not_in_valuating_phase")
       end
     end
 
@@ -114,7 +120,7 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
                 Budget::ValuatorAssignment.exists?(investment_id: params[:id],
                                                    valuator_id: current_user.valuator.id)
 
-      raise ActionController::RoutingError.new("Not Found")
+      raise ActionController::RoutingError, "Not Found"
     end
 
     def valid_price_params?

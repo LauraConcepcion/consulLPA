@@ -39,16 +39,25 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
 
   def update
     authorize! :admin_update, @investment
-    if @investment.update(budget_investment_params)
-      redirect_to admin_budget_budget_investment_path(@budget,
-                                                      @investment,
-                                                      Budget::Investment.filter_params(params).to_h),
-                  notice: t("flash.actions.update.budget_investment")
-    else
-      load_staff
-      load_valuator_groups
-      load_tags
-      render :edit
+
+    respond_to do |format|
+      format.html do
+        if @investment.update(budget_investment_params)
+          redirect_to admin_budget_budget_investment_path(@budget,
+                                                          @investment,
+                                                          Budget::Investment.filter_params(params).to_h),
+                      notice: t("flash.actions.update.budget_investment")
+        else
+          load_staff
+          load_valuator_groups
+          load_tags
+          render :edit
+        end
+      end
+
+      format.json do
+        @investment.update!(budget_investment_params)
+      end
     end
   end
 
@@ -82,10 +91,14 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
     end
 
     def budget_investment_params
+      params.require(:budget_investment).permit(allowed_params)
+    end
+
+    def allowed_params
       attributes = [:external_url, :heading_id, :administrator_id, :tag_list,
                     :valuation_tag_list, :incompatible, :visible_to_valuators, :selected,
                     :milestone_tag_list, valuator_ids: [], valuator_group_ids: []]
-      params.require(:budget_investment).permit(attributes, translation_params(Budget::Investment))
+      [*attributes, translation_params(Budget::Investment)]
     end
 
     def load_budget

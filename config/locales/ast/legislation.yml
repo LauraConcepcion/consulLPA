@@ -51,7 +51,6 @@ ast:
           winners: Escoyía
       debate:
         empty_questions: No hay preguntas
-        participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
       index:
         filter: Filtru
         filters:
@@ -104,3 +103,12 @@ ast:
     proposals:
       form:
         tags_label: "Categoríes"
+      process_title: Proceso de legislación colaborativa
+    summary:
+      title: "Resume"
+      votes:
+        zero: "%{count} votos"
+      debate_phase: "Fase previa"
+      comments:
+        one: "%{count} comentario"
+        other: "%{count} comentarios"

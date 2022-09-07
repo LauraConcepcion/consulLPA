@@ -1,9 +1,8 @@
 require "rails_helper"
 
-describe "Admin tags" do
+describe "Admin tags", :admin do
   before do
     create(:tag, :category, name: "Existence")
-    login_as(create(:administrator).user)
   end
 
   scenario "Index" do
@@ -40,12 +39,13 @@ describe "Admin tags" do
     expect(page).to have_content "bad tag"
 
     within("#tag_#{tag2.id}") do
-      click_link "Delete topic"
+      accept_confirm("Are you sure? This action will delete \"Bad tag\" and can't be undone.") do
+        click_link_or_button "Delete"
+      end
     end
 
-    visit admin_tags_path
-    expect(page).to have_content "Existence"
     expect(page).not_to have_content "bad tag"
+    expect(page).to have_content "Existence"
   end
 
   scenario "Delete tag with hidden taggables" do
@@ -59,12 +59,13 @@ describe "Admin tags" do
     expect(page).to have_content "bad tag"
 
     within("#tag_#{tag2.id}") do
-      click_link "Delete topic"
+      accept_confirm("Are you sure? This action will delete \"Bad tag\" and can't be undone.") do
+        click_link_or_button "Delete"
+      end
     end
 
-    visit admin_tags_path
-    expect(page).to have_content "Existence"
     expect(page).not_to have_content "bad tag"
+    expect(page).to have_content "Existence"
   end
 
   context "Manage only tags of kind category" do
@@ -85,7 +86,10 @@ describe "Admin tags" do
         click_button "Create topic"
       end
 
-      expect(Tag.category.where(name: "wow_category")).to exist
+      within "tbody" do
+        expect(page).to have_content "Existence"
+        expect(page).to have_content "wow_category"
+      end
     end
   end
 
@@ -100,5 +104,16 @@ describe "Admin tags" do
     end
 
     expect(page).to have_content "Soon a category"
+  end
+
+  scenario "Create shows validation error when tag name is empty" do
+    visit admin_tags_path
+
+    within("form.new_tag") do
+      fill_in "tag_name", with: ""
+      click_button "Create topic"
+    end
+
+    expect(page).to have_content "can't be blank"
   end
 end

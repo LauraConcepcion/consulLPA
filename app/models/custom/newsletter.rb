@@ -1,5 +1,4 @@
-require_dependency Rails.root.join('app', 'models', 'newsletter').to_s
-
+require_dependency Rails.root.join("app", "models", "newsletter").to_s
 class Newsletter
   def batch_size
     2000

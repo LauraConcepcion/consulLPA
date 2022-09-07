@@ -7,8 +7,6 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
 
   def index
     @polls = Poll.not_budget
-    @search = search_params[:search]
-
     @questions = @questions.search(search_params).page(params[:page]).order("created_at DESC")
 
     @proposals = Proposal.successful.sort_by_confidence_score
@@ -56,8 +54,13 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
   private
 
     def question_params
+      params.require(:poll_question).permit(allowed_params)
+    end
+
+    def allowed_params
       attributes = [:poll_id, :question, :proposal_id]
-      params.require(:poll_question).permit(*attributes, translation_params(Poll::Question))
+
+      [*attributes, translation_params(Poll::Question)]
     end
 
     def search_params

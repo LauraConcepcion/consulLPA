@@ -4,9 +4,6 @@ describe "Votes" do
   let!(:verified)   { create(:user, verified_at: Time.current) }
   let!(:unverified) { create(:user) }
 
-  before do
-  end
-
   describe "Debates" do
     before { login_as(verified) }
 
@@ -22,37 +19,37 @@ describe "Votes" do
       within("#debates") do
         within("#debate_#{debate1.id}_votes") do
           within(".in-favor") do
-            expect(page).to have_css("a.voted")
-            expect(page).not_to have_css("a.no-voted")
+            expect(page).to have_css("button.voted")
+            expect(page).not_to have_css("button.no-voted")
           end
 
           within(".against") do
-            expect(page).to have_css("a.no-voted")
-            expect(page).not_to have_css("a.voted")
+            expect(page).to have_css("button.no-voted")
+            expect(page).not_to have_css("button.voted")
           end
         end
 
         within("#debate_#{debate2.id}_votes") do
           within(".in-favor") do
-            expect(page).not_to have_css("a.voted")
-            expect(page).not_to have_css("a.no-voted")
+            expect(page).not_to have_css("button.voted")
+            expect(page).not_to have_css("button.no-voted")
           end
 
           within(".against") do
-            expect(page).not_to have_css("a.no-voted")
-            expect(page).not_to have_css("a.voted")
+            expect(page).not_to have_css("button.no-voted")
+            expect(page).not_to have_css("button.voted")
           end
         end
 
         within("#debate_#{debate3.id}_votes") do
           within(".in-favor") do
-            expect(page).to have_css("a.no-voted")
-            expect(page).not_to have_css("a.voted")
+            expect(page).to have_css("button.no-voted")
+            expect(page).not_to have_css("button.voted")
           end
 
           within(".against") do
-            expect(page).to have_css("a.voted")
-            expect(page).not_to have_css("a.no-voted")
+            expect(page).to have_css("button.voted")
+            expect(page).not_to have_css("button.no-voted")
           end
         end
       end
@@ -66,48 +63,48 @@ describe "Votes" do
 
         within(".in-favor") do
           expect(page).to have_content "0%"
-          expect(page).not_to have_css("a.voted")
-          expect(page).not_to have_css("a.no-voted")
+          expect(page).not_to have_css("button.voted")
+          expect(page).not_to have_css("button.no-voted")
         end
 
         within(".against") do
           expect(page).to have_content "0%"
-          expect(page).not_to have_css("a.voted")
-          expect(page).not_to have_css("a.no-voted")
+          expect(page).not_to have_css("button.voted")
+          expect(page).not_to have_css("button.no-voted")
         end
       end
 
-      scenario "Update", :js do
+      scenario "Update" do
         visit debate_path(create(:debate))
 
-        find(".in-favor a").click
+        click_button "I agree"
 
         within(".in-favor") do
           expect(page).to have_content "100%"
-          expect(page).to have_css("a.voted")
+          expect(page).to have_css("button.voted")
         end
 
-        find(".against a").click
+        click_button "I disagree"
 
         within(".in-favor") do
           expect(page).to have_content "0%"
-          expect(page).to have_css("a.no-voted")
+          expect(page).to have_css("button.no-voted")
         end
 
         within(".against") do
           expect(page).to have_content "100%"
-          expect(page).to have_css("a.voted")
+          expect(page).to have_css("button.voted")
         end
 
         expect(page).to have_content "1 vote"
       end
 
-      scenario "Trying to vote multiple times", :js do
+      scenario "Trying to vote multiple times" do
         visit debate_path(create(:debate))
 
-        find(".in-favor a").click
+        click_button "I agree"
         expect(page).to have_content "1 vote"
-        find(".in-favor a").click
+        click_button "I agree"
         expect(page).not_to have_content "2 votes"
 
         within(".in-favor") do
@@ -130,48 +127,48 @@ describe "Votes" do
 
         within(".in-favor") do
           expect(page).to have_content "50%"
-          expect(page).to have_css("a.voted")
+          expect(page).to have_css("button.voted")
         end
 
         within(".against") do
           expect(page).to have_content "50%"
-          expect(page).to have_css("a.no-voted")
+          expect(page).to have_css("button.no-voted")
         end
       end
 
-      scenario "Create from debate show", :js do
+      scenario "Create from debate show" do
         visit debate_path(create(:debate))
 
-        find(".in-favor a").click
+        click_button "I agree"
 
         within(".in-favor") do
           expect(page).to have_content "100%"
-          expect(page).to have_css("a.voted")
+          expect(page).to have_css("button.voted")
         end
 
         within(".against") do
           expect(page).to have_content "0%"
-          expect(page).to have_css("a.no-voted")
+          expect(page).to have_css("button.no-voted")
         end
 
         expect(page).to have_content "1 vote"
       end
 
-      scenario "Create in index", :js do
+      scenario "Create in index" do
         create(:debate)
         visit debates_path
 
         within("#debates") do
-          find(".in-favor a").click
+          click_button "I agree"
 
           within(".in-favor") do
             expect(page).to have_content "100%"
-            expect(page).to have_css("a.voted")
+            expect(page).to have_css("button.voted")
           end
 
           within(".against") do
             expect(page).to have_content "0%"
-            expect(page).to have_css("a.no-voted")
+            expect(page).to have_css("button.no-voted")
           end
 
           expect(page).to have_content "1 vote"
@@ -184,28 +181,6 @@ describe "Votes" do
   describe "Proposals" do
     before { login_as(verified) }
 
-    scenario "Index shows user votes on proposals" do
-      proposal1 = create(:proposal, voters: [verified])
-      proposal2 = create(:proposal)
-      proposal3 = create(:proposal)
-
-      visit proposals_path
-
-      within("#proposals") do
-        within("#proposal_#{proposal1.id}_votes") do
-          expect(page).to have_content "You have already supported this proposal. Share it!"
-        end
-
-        within("#proposal_#{proposal2.id}_votes") do
-          expect(page).not_to have_content "You have already supported this proposal. Share it!"
-        end
-
-        within("#proposal_#{proposal3.id}_votes") do
-          expect(page).not_to have_content "You have already supported this proposal. Share it!"
-        end
-      end
-    end
-
     describe "Single proposal" do
       let!(:proposal) { create(:proposal) }
 
@@ -214,14 +189,14 @@ describe "Votes" do
         expect(page).to have_content "No supports"
       end
 
-      scenario "Trying to vote multiple times", :js do
+      scenario "Trying to vote multiple times" do
         visit proposal_path(proposal)
 
         within(".supports") do
-          find(".in-favor a").click
-          expect(page).to have_content "1 support"
+          click_button "Support"
 
-          expect(page).not_to have_selector ".in-favor a"
+          expect(page).to have_content "1 support"
+          expect(page).not_to have_button "Support"
         end
       end
 
@@ -236,22 +211,22 @@ describe "Votes" do
         end
       end
 
-      scenario "Create from proposal show", :js do
+      scenario "Create from proposal show" do
         visit proposal_path(proposal)
 
         within(".supports") do
-          find(".in-favor a").click
+          click_button "Support"
 
           expect(page).to have_content "1 support"
           expect(page).to have_content "You have already supported this proposal. Share it!"
         end
       end
 
-      scenario "Create in listed proposal in index", :js do
+      scenario "Create in listed proposal in index" do
         visit proposals_path
 
         within("#proposal_#{proposal.id}") do
-          find(".in-favor a").click
+          click_button "Support"
 
           expect(page).to have_content "1 support"
           expect(page).to have_content "You have already supported this proposal. Share it!"
@@ -259,11 +234,11 @@ describe "Votes" do
         expect(page).to have_current_path(proposals_path)
       end
 
-      scenario "Create in featured proposal in index", :js do
+      scenario "Create in featured proposal in index" do
         visit proposals_path
 
         within("#proposal_#{proposal.id}") do
-          find(".in-favor a").click
+          click_button "Support"
 
           expect(page).to have_content "You have already supported this proposal. Share it!"
         end
@@ -272,55 +247,66 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote debates", :js do
+  scenario "Not logged user trying to vote debates" do
     debate = create(:debate)
 
     visit debates_path
     within("#debate_#{debate.id}") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in
+      click_button "I agree"
+
+      expect(page).to have_content "You must sign in or sign up to continue"
+      expect(page).to have_button "I agree", disabled: true
+      expect(page).to have_button "I disagree", disabled: true
     end
   end
 
-  scenario "Not logged user trying to vote proposals", :js do
+  scenario "Not logged user trying to vote proposals" do
     proposal = create(:proposal)
 
     visit proposals_path
     within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_you_need_to_sign_in
+      click_button "Support"
+
+      expect(page).to have_content "You must sign in or sign up to continue"
+      expect(page).not_to have_button "Support", disabled: :all
     end
 
     visit proposal_path(proposal)
     within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_you_need_to_sign_in
+      click_button "Support"
+
+      expect(page).to have_content "You must sign in or sign up to continue"
+      expect(page).not_to have_button "Support", disabled: :all
     end
   end
 
-  scenario "Not logged user trying to vote comments in debates", :js do
+  scenario "Not logged user trying to vote comments in debates" do
     debate = create(:debate)
     comment = create(:comment, commentable: debate)
 
     visit comment_path(comment)
+
     within("#comment_#{comment.id}") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in_to_vote_comments
+      click_button "I agree"
     end
+
+    expect(page).to have_current_path new_user_session_path
   end
 
-  scenario "Not logged user trying to vote comments in proposals", :js do
+  scenario "Not logged user trying to vote comments in proposals" do
     proposal = create(:proposal)
     comment = create(:comment, commentable: proposal)
 
     visit comment_path(comment)
+
     within("#comment_#{comment.id}_reply") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in_to_vote_comments
+      click_button "I agree"
     end
+
+    expect(page).to have_current_path new_user_session_path
   end
 
-  scenario "Anonymous user trying to vote debates", :js do
+  scenario "Anonymous user trying to vote debates" do
     user = create(:user)
     debate = create(:debate)
 
@@ -331,18 +317,22 @@ describe "Votes" do
 
     visit debates_path
     within("#debate_#{debate.id}") do
-      find("div.votes").hover
-      expect_message_to_many_anonymous_votes
+      click_button "I agree"
+
+      expect(page).to have_content "Too many anonymous votes to admit vote"
+      expect(page).to have_button "I agree", disabled: true
     end
 
     visit debate_path(debate)
     within("#debate_#{debate.id}") do
-      find("div.votes").hover
-      expect_message_to_many_anonymous_votes
+      click_button "I agree"
+
+      expect(page).to have_content "Too many anonymous votes to admit vote"
+      expect(page).to have_button "I agree", disabled: true
     end
   end
 
-  scenario "Anonymous user trying to vote proposals", :js do
+  scenario "Anonymous user trying to vote proposals" do
     user = create(:user)
     proposal = create(:proposal)
 
@@ -350,14 +340,18 @@ describe "Votes" do
     visit proposals_path
 
     within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_only_verified_can_vote_proposals
+      click_button "Support"
+
+      expect(page).to have_content "Only verified users can vote on proposals"
+      expect(page).not_to have_button "Support", disabled: :all
     end
 
     visit proposal_path(proposal)
     within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_only_verified_can_vote_proposals
+      click_button "Support"
+
+      expect(page).to have_content "Only verified users can vote on proposals"
+      expect(page).not_to have_button "Support", disabled: :all
     end
   end
 end

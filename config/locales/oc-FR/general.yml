@@ -5,24 +5,15 @@ oc:
       erase_account_link: Esborrar lo mieu compte
       finish_verification: Finalizar verificacion
       notifications: Notificacions
-      organization_name_label: Nom de l'associacion
-      organization_responsible_name_placeholder: en Representant de l'associacion
       personal: Donadas personalas
-      phone_number_label: telefòn
       public_interests_my_title_list: Etiquetas d’elements que seguissètz
       public_interests_user_title_list: Etiquetas d’elements que seguís aquel usatgièr
       save_changes_submit: Gardar de cambiaments
       recommendations: Recomandacions
       title: Lo mieu compte
-      user_permission_debates: Participar a debats
       user_permission_info: Amb lo tieu compte pòdes ja...
-      user_permission_proposal: Crear de nòvas proposicions
-      user_permission_support_proposal: Sosténer de proposicions
       user_permission_title: Participacion
       user_permission_verify: Per poder realizar totas las accions, verifica lo tieu compte.
-      user_permission_verify_info: "* Solament d'usatgièrs empadronats."
-      user_permission_votes: Participar a las votacions finalas*
-      username_label: Nom d'usatgièr
       verified_account: Compte verificat
       verify_my_account: Verificar lo mieu compte
   application:
@@ -62,7 +53,6 @@ oc:
       newest: Mai nòus primièr
       oldest: Mai ancians primièr
       most_commented: La majoritat de comentaris
-    select_order: Ordenar per
     show:
       return_to_commentable: "Tornar a "
   comments_helper:
@@ -90,7 +80,6 @@ oc:
         submit_button: Gardar de cambiaments
       show_link: Veire debat
     form:
-      debate_title: Títol del debat
       tags_instructions: Etiqueta aquel debat.
       tags_placeholder: "Escriu las etiquetas que desiras separadas per coma (',')"
     index:
@@ -113,10 +102,6 @@ oc:
         button: Cercar
         placeholder: Cercar de debats...
         title: Cercar
-      search_results:
-        one: " que conten lo tèrme <strong>'%{search_term}'</strong>"
-        other: " que conten lo tèrme <strong>'%{search_term}'</strong>"
-      select_order: Ordenar per
       start_debate: Comença un nòu debat
       title: Debats
       section_header:
@@ -131,8 +116,6 @@ oc:
     new:
       form:
         submit_button: Comença un nòu debat
-      info: Se çò que vòles es far una proposicion, aquela es la seccion incorrècta, dintra en %{info_link}.
-      info_link: crear nòva proposicion
       more_info: Mai informacion
       recommendation_four: Gaudís d'aquel espaci, de las voses qu'o emplisson, es tanben tieu.
       recommendation_one: Escrigas pas lo títol del debat o frasas entièras en majusculas. Dins internet aquò se considèra cridar. E a degun li agrada que li cridan.
@@ -218,7 +201,6 @@ oc:
       conditions: De condicions d'usatge
       consul: Sollicitud CONSUL
       consul_url: https://github.com/consul/consul
-      contact_us: Per assisténcia tecnica, visitatz
       copyright: CONSUL, %{year}
       description: Aquel portal es una adaptacion de la plataforma de %{open_source} %{consul} desvolopada per la Comuna de Madrid e adaptada per la Deputacion de Valéncia.
       open_source: logicial liure
@@ -229,11 +211,9 @@ oc:
     header:
       administration_menu: Menu
       administration: Administrar
-      available_locales: d'Idiòmas disponibles
       collaborative_legislation: de procèsses legislatius
       debates: De debats
       locale: "Idiòma:"
-      logo: Logotip de CONSUL
       management: gestion
       moderation: moderacion
       valuation: avaloracion
@@ -247,10 +227,10 @@ oc:
       budgets: dDe budgèts ciutadans
       notification_item:
         new_notifications:
+          zero: "As pas de notificacions nòvas"
           one: As una nòva notificacion
           other: As %{count} notificacions nòvas
         notifications: De notificacions
-        no_notifications: "As pas de notificacions nòvas"
   notifications:
     index:
       empty_notifications: As pas de notificacions nòvas.
@@ -296,6 +276,9 @@ oc:
       sign_in: Dintra amb Twitter
       sign_up: Enregistra-te amb Twitter
       name: Twitter
+    info:
+      sign_in: "Dintra amb:"
+      sign_up: "Enregistra-te amb:"
     or_fill: "O ramplís lo seguent formulari:"
   proposals:
     create:
@@ -340,7 +323,6 @@ oc:
       map_location: "Ubicacion de la mapa"
       map_location_instructions: "Desplaçatz-vos a la mapa fins a l'ubicacion e metètz-i lo mercador."
       map_remove_marker: "Elimina lo mercador de mapa"
-      map_skip_checkbox: "Aquela proposicion a pas una ubicacion concrèta ni n'ai coneissença."
     index:
       featured_proposals: Destacadas
       orders:
@@ -378,11 +360,9 @@ oc:
       search_results:
         one: " que conten lo tèrme <strong>'%{search_term}'</strong>"
         other: " que conten lo tèrme <strong>'%{search_term}'</strong>"
-      select_order: Ordenar per
       select_order_long: "veses las proposicions"
       start_proposal: Crèa una proposicion
       title: De proposicions ciutadanas
-      top: Top setmanièr
       top_link_proposals: Proposicions mai avaladas per categoria
       section_header:
         icon_alt: Icòna de proposicions
@@ -670,14 +650,13 @@ oc:
       back: "Tornar a la miá activitat"
   shared:
     edit: "Editar proposicion"
+    filter: "Filtrar"
     save: "Plegar"
     delete: "Suprimís"
     "yes": "Òc"
     "no": "Pas"
     search_results: "De resultats de cèrca"
     advanced_search:
-      author_type: "Per categoria d'autor"
-      author_type_blank: "Escuelh una categoria"
       date: "Per data"
       date_placeholder: "DD/MM/AAAA"
       date_range_blank: "Escuelh una data"
@@ -688,7 +667,6 @@ oc:
       date_5: "Personalizada"
       from: "Dempuèi"
       general: "Amb lo tèxt"
-      general_placeholder: "Escriu lo tèxt"
       search: "filtre"
       title: "Cèrca avançada"
       to: "Fins a"
@@ -775,7 +753,6 @@ oc:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
     youtube: "%{org} YouTube"
-    whatsapp: Whatsapp
     telegram: "%{org} Telegram"
     instagram: "%{org} Instagram"
   stats:
@@ -850,15 +827,12 @@ oc:
   votes:
     agree: Soi d'acòrdi
     anonymous: Tròp de vòts anonimes, per poder votar %{verify_account}.
-    comment_unauthenticated: As de besonh %{signin} o %{signup} per poder votar.
     disagree: Soi pas d'acòrdi
     organizations: Las associacions pòdon pas avalar
     supports: d'Avals
     verified_only: Las proposicions pòdon solament èsser votadas per usatgièrs verificats, %{verify_account}.
     budget_investments:
-      not_logged_in: As de besonh %{signin} o %{signup}.
       not_verified: Solament los usatgièrs verificats pòdon votar los projèctes d’inversion; %{verify_account}.
-      organization: Las associacions pòdon pas avalar
       unfeasible: Se pòdon pas avalar de proposicions inviables
       not_voting_allowed: Lo periòde de recuelhuda d'avals aquel barrat.
       different_heading_assigned:
@@ -870,9 +844,10 @@ oc:
         debates: "Debates mai actius"
         proposals: "Proposicions mai activas"
         processes: "de procèsses actius"
-      see_all_debates: Veire totes los debats
-      see_all_proposals: Veire totas las proposicions
-      see_all_processes: Veire totes los procèsses
+      see_all:
+        debates: Veire totes los debats
+        proposals: Veire totas las proposicions
+        processes: Veire totes los procèsses
       process_label: procès
       see_process: Veire procès
     cards:
@@ -889,23 +864,13 @@ oc:
       budget_investments:
         title: d'Inversions recomandadas
       slide: "Veire %{title}"
-    verification:
-      i_dont_have_an_account: Avètz pas compte, vòli crear un e o verificar
-      i_have_an_account: Ai ja un compte que vòli verificar
-      question: As ja un compte en %{org_name}?
-      title: Verificacion de compte
     welcome:
       go_to_index: Ara pas, veire de proposicions
       start_using_consul: Vai a la pagina d’indèx
       title: Collabòra en l'elaboracion de la nòrma dessús
-      user_permission_debates: Participar a debats
       user_permission_info: Amb lo tieu compte pòdes ja...
-      user_permission_proposal: Crear de nòvas proposicions
-      user_permission_support_proposal: Avalar de proposicions
       user_permission_verify: "Per poder realizar totas las accions, verifica lo tieu compte."
-      user_permission_verify_info: "* Solament d'usatgièrs empadronats."
       user_permission_verify_my_account: Verificar lo mieu compte
-      user_permission_votes: Participar a las votacions finalas*
   invisible_captcha:
     sentence_for_humans: "S'èras uman, per favor ignòra aquel camp"
     timestamp_error_message: "Aquò es tròp estat rapid. Per favor, reénvia lo formulari."
@@ -942,9 +907,6 @@ oc:
       title: De ligams
       note: Apondètz los ligams que sián d’interès
       add_new_link: Apond un nòu ligam
-    link_fields:
-      label_placeholder: Títol del ligam
-      url_placeholder: Adreça de ligam
   communities:
     show:
       surveys: d'Enquèstas

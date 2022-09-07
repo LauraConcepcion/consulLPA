@@ -1,10 +1,7 @@
 require "rails_helper"
 
-describe "Admin Notifications" do
-  before do
-    create(:budget)
-    login_as(create(:administrator).user)
-  end
+describe "Admin Notifications", :admin do
+  before { create(:budget) }
 
   context "Show" do
     scenario "Valid Admin Notification" do
@@ -120,8 +117,10 @@ describe "Admin Notifications" do
       notification = create(:admin_notification)
 
       visit admin_admin_notifications_path
+
+      confirmation = "Are you sure? This action will delete \"#{notification.title}\" and can't be undone."
       within("#admin_notification_#{notification.id}") do
-        click_link "Delete"
+        accept_confirm(confirmation) { click_button "Delete" }
       end
 
       expect(page).to have_content "Notification deleted successfully"
@@ -132,8 +131,9 @@ describe "Admin Notifications" do
       notification = create(:admin_notification, :sent)
 
       visit admin_admin_notifications_path
+
       within("#admin_notification_#{notification.id}") do
-        expect(page).not_to have_link("Delete")
+        expect(page).not_to have_button "Delete"
       end
     end
   end
@@ -183,8 +183,8 @@ describe "Admin Notifications" do
     expect(page).to have_content error_message
   end
 
-  context "Send notification", :js do
-    scenario "A draft Admin notification can be sent", :js do
+  context "Send notification" do
+    scenario "A draft Admin notification can be sent" do
       2.times { create(:user) }
       notification = create(:admin_notification, segment_recipient: :all_users)
 
@@ -199,7 +199,7 @@ describe "Admin Notifications" do
       end
     end
 
-    scenario "A sent Admin notification can not be sent", :js do
+    scenario "A sent Admin notification can not be sent" do
       notification = create(:admin_notification, :sent)
 
       visit admin_admin_notification_path(notification)
@@ -207,7 +207,7 @@ describe "Admin Notifications" do
       expect(page).not_to have_link("Send")
     end
 
-    scenario "Admin notification with invalid segment recipient cannot be sent", :js do
+    scenario "Admin notification with invalid segment recipient cannot be sent" do
       invalid_notification = create(:admin_notification)
       invalid_notification.update_column(:segment_recipient, "invalid_segment")
       visit admin_admin_notification_path(invalid_notification)
@@ -217,15 +217,14 @@ describe "Admin Notifications" do
   end
 
   scenario "Select list of users to send notification" do
-    UserSegments::SEGMENTS.each do |user_segment|
-      segment_recipient = I18n.t("admin.segment_recipient.#{user_segment}")
+    segment = UserSegments.segments.sample
+    segment_recipient = UserSegments.segment_name(segment)
 
-      visit new_admin_admin_notification_path
+    visit new_admin_admin_notification_path
 
-      fill_in_admin_notification_form(segment_recipient: segment_recipient)
-      click_button "Create notification"
+    fill_in_admin_notification_form(segment_recipient: segment_recipient)
+    click_button "Create notification"
 
-      expect(page).to have_content(I18n.t("admin.segment_recipient.#{user_segment}"))
-    end
+    expect(page).to have_content segment_recipient
   end
 end

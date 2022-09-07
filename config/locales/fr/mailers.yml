@@ -7,13 +7,13 @@ fr:
       new_comment_by: Il y a un nouveau commentaire de <strong>%{commenter}</strong>
       subject: Quelqu'un a commenté votre %{commentable}
       title: Nouveau commentaire
-    config:
-      manage_email_subscriptions: Pour ne plus recevoir ces courriels, changer vos options dans
     email_verification:
       click_here_to_verify: sur ce lien
+      instructions_2: Ce courriel va vérifier votre compte avec <b>%{document_type}%{document_number}</b>. Si ce compte ne vous appartient pas, veuillez ne pas cliquer sur le lien et ignorer ce courriel.
+      instructions: Procéder à la vérification de votre compte utilisateur, vous devez cliquer sur %{verification_link}.
       subject: Confirmer votre courriel
       thanks: Merci beaucoup.
-      title: Confirmer votre compte en utilisant le lien suivant
+      title: "Confirmer votre compte en utilisant le lien suivant"
     reply:
       hi: Bonjour
       new_reply_by: Il y a une nouvelle réponse de <strong>%{commenter}</strong> à votre commentaire sur
@@ -24,15 +24,14 @@ fr:
       title: "Notifications des propositions sur %{org_name}"
       share: Partager une proposition
       comment: Commenter une proposition
-      unsubscribe: "Si vous ne souhaitez pas recevoir les notifications des propositions, rendez-vous sur %{account} et décochez 'Recevoir un résumé des notifications de proposition'."
-      unsubscribe_account: Mon compte
+      unfollow: "Accédez à cette proposition et désabonnez-vous pour ne plus recevoir de notifications."
     direct_message_for_receiver:
       subject: "Vous avez un nouveau message privé"
       reply: Répondre à %{sender}
-      unsubscribe: "Si vous ne souhaitez pas recevoir de messages directs, rendez-vous sur %{account} et décochez 'Recevoir des courriels à propos de messages directs'."
-      unsubscribe_account: Mon compte
     direct_message_for_sender:
       subject: "Vous avez envoyé un nouveau message privé"
+      title: "Vous avez envoyé un nouveau message privé"
+      text: "Vous avez envoyé un nouveau message privé à <strong>%{receiver}</strong> avec le contenu suivant :"
     user_invite:
       ignore: "Si vous n'avez pas requis cette invitation, pas d'inquiétude, vous pouvez ignorer ce courriel."
       text: "Merci d'avoir demandé à rejoindre %{org}! Dans quelques secondes vous pourrez commencer à participer, remplissez simplement le formulaire ci-dessous :"
@@ -44,11 +43,14 @@ fr:
       subject: "Merci d'avoir créer une proposition !"
       title: "Merci d'avoir créer une proposition !"
       intro: "Bonjour <strong>%{author}</strong>"
+      text: "Merci d'avoir créer votre proposition <strong>%{investment}</strong> avec le budget participatif <strong>%{budget}</strong>."
+      follow: "Nous vous informerons de la progression du processus, que vous pouvez également suivre sur <strong>%{link}</strong>."
       follow_link: "Budgets participatifs"
       sincerely: "Cordialement,"
       share: "Partager votre projet"
     budget_investment_unfeasible:
       hi: "Cher(e) utilisateur(trice),"
+      new: "Pour tout cela, nous vous invitons à élaborer un <strong>nouveau projet de dépenses</strong> qui soit conforme aux conditions de ce processus. Vous pouvez faire cela en allant sur le lien suivant: %{url}."
       new_href: "nouvelle proposition d'investissement"
       sincerely: "Cordialement"
       sorry: "Désolé du dérangement et nous vous remercions à nouveau pour votre inestimable participation."
@@ -66,7 +68,19 @@ fr:
       thanks: "Merci de nouveau pour votre participation."
       sincerely: "Cordialement,"
     evaluation_comment:
+      subject: "Nouveau commentaire d'évaluation"
+      title: Nouveau commentaire d'évaluation pour %{investment}
       hi: Bonjour
+      new_comment_by: Il y a un nouveau commentaire d'évaluation de <strong>%{commenter}</strong> au budget d'investissement %{investment}
+      commenter_info: "%{commenter}, %{time}:"
+    machine_learning_error:
+      link: "Visiter le panneau Machine Learning"
+      subject: "Machine Learning - Une erreur s'est produite lors de l'exécution du script"
+      text: "Une erreur s'est produite lors de l'exécution du script Machine Learning."
+      title: "Script d'apprentissage automatique"
+    machine_learning_success:
+      link: "Visiter le panneau Machine Learning"
+      title: "Script d'apprentissage automatique"
     new_actions_notification_rake_created:
       subject: "Plus de nouveautés à propos de votre propositions citoyenne"
       hi: "Bonjour %{name},\n"
@@ -119,3 +133,4 @@ fr:
       text_8: "Nous vous offrons une super ressource!"
       text_9: "Vous trouverez également cette nouvelle action recommandée de diffusion..."
       text_10: "Bien sûr, vous avez accès à plus de ressources!"
+      dashboard_button: "Allez-y, découvrez les!"
