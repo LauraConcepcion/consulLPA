@@ -96,6 +96,8 @@ body:not(.admin) header {
 .top-links {
   background: $brand-green;
   .social {
+    width: initial;
+
     a span:before {
       vertical-align: sub;
     }
