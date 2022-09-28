@@ -3,7 +3,6 @@ class Officing::Residence
   include ActiveModel::Dates
 
   attr_accessor :user, :officer, :document_number, :document_type, :date_of_birth
-  skip_callback :validate, :residence_in_madrid
 
   validate :allowed_age
   validate :local_residence
