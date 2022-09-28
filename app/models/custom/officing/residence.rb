@@ -4,6 +4,10 @@ class Officing::Residence
 
   attr_accessor :user, :officer, :document_number, :document_type, :date_of_birth
 
+  validate :allowed_age
+  validate :local_residence
+  validates :date_of_birth, presence: true
+
   def initialize(attrs = {})
     self.date_of_birth = parse_date("date_of_birth", attrs)
     self.year_of_birth = date_of_birth.year if date_of_birth.present?
