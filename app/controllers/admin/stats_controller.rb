@@ -75,13 +75,14 @@ class Admin::StatsController < Admin::BaseController
     @budget = Budget.find(params[:budget_id])
 
     authorize! :read_admin_stats, @budget, message: t("admin.stats.budgets.no_data_before_balloting_phase")
+
+    @user_count = @budget.ballots.select { |ballot| ballot.lines.any? }.count
+
     @vote_count = @budget.lines.count
+
     @vote_count_by_heading = @budget.lines.group(:heading_id).count.map { |k, v| [Budget::Heading.find(k).name, v] }.sort
-    headings = @budget.lines.group(:heading_id).select(:heading_id).pluck(:heading_id)
-    balloted_heading = User.where(balloted_heading_id: headings).group(:balloted_heading_id).count
-    @user_count_by_district = balloted_heading.map { |k, v| [Budget::Heading.find(k).name, v] }.sort
-    # Review the difference between the number of participants by listing the ballots and the balloted_headind
-    @user_count = balloted_heading.values.sum
+
+    @user_count_by_district = User.where.not(balloted_heading_id: nil).group(:balloted_heading_id).count.map { |k, v| [Budget::Heading.find(k).name, v] }.sort
   end
 
   def polls
