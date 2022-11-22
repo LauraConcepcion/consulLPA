@@ -10,20 +10,20 @@
                    [[humanize_document_type("1"), 1],
                     [humanize_document_type("2"), 2],
                     [humanize_document_type("3"), 3]],
-                   label: t("management.document_type_label")) %>
+                    label: t("management.account_info.document_type_label"))
+                     %>
     </div>
     <div class="small-12 medium-5">
       <%= f.text_field :document_number,
-                       placeholder: t('management.document_number'),
-                       label: t("management.document_number")
-      %>
+          label: t("management.account_info.document_number_label"),
+          placeholder: t("management.account_info.document_number_label") %>
     </div>
 
     <div class="date-of-birth small-12 medium-6">
       <%= f.date_select :date_of_birth,
         prompt: true,
         start_year: 1900, end_year: 16.years.ago.year,
-        label: false %>
+        label: t("management.date_of_birth") %>
         <%# TODO: end_year: minimum_required_age.years.ago.year  %>
     </div>
 
