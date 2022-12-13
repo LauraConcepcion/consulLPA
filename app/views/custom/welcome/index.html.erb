@@ -4,9 +4,30 @@
   <%= render "shared/canonical", href: root_url %>
 <% end %>
 
-<%= render "slider" %>
-<%= render "subbanner" %>
-<%= render Shared::BannerComponent.new("homepage") %>
+<div class="orbit no-margin-top" role="region" aria-label="banner" data-use-m-u-i="false" data-orbit >
+  <div class="orbit-wrapper">
+    <ul class="orbit-container no-bullet" >
+      <li class="orbit-slide" aria-live="polite" tabindex="0">
+        <a href="https://decide.laspalmasgc.es/budgets" />
+          <figure class="orbit-figure">
+            <%= image_tag('Banner-Presupuestos-2022-decide-Votacion.jpg', class: 'orbit-image', alt: 'Votaciones Presupuestos Participativos 2022') %>
+          </figure>
+        </a>
+      </li>
+      <li class="orbit-slide" aria-live="polite">
+        <a href="/legislation/processes/5/allegations" />
+          <figure class="orbit-figure">
+            <%= image_tag('Banner-Apertura-de-plazo-borrador-2022.jpg', class: 'orbit-image', alt: 'Apertura de plazo borrador') %>
+          </figure>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <nav class="orbit-bullets">
+    <button class="is-active" data-slide="0"><span class="show-for-sr">1 slide details.</span></button>
+    <button data-slide="1"><span class="show-for-sr">2 slide details.</span></button>
+  </nav>
+</div>
 
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
