@@ -130,9 +130,9 @@ section "Creating Investments" do
       attributes["title_#{locale.to_s.underscore}"] = "Title for locale #{locale}"
       attributes["description_#{locale.to_s.underscore}"] = "<p>Description for locale #{locale}</p>"
     end
-
     investment = Budget::Investment.create!({
       author: User.all.sample,
+      author_phone: "928202020",
       heading: heading,
       group: heading.group,
       budget: heading.group.budget,
@@ -178,6 +178,7 @@ section "Winner Investments" do
     heading = budget.headings.all.sample
     investment = Budget::Investment.create!(
       author: User.all.sample,
+      author_phone: "928202020",
       heading: heading,
       group: heading.group,
       budget: heading.group.budget,
