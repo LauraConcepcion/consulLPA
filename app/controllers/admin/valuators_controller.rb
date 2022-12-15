@@ -36,7 +36,13 @@ class Admin::ValuatorsController < Admin::BaseController
   end
 
   def destroy
-    @valuator.destroy!
+    if @valuator.budget_investments_count.zero?
+      @valuator.destroy!
+      redirect_to admin_valuators_path
+      return
+    end
+
+    flash[:error] = t("admin.valuators.form.error")
     redirect_to admin_valuators_path
   end
 

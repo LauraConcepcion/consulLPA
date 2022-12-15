@@ -981,6 +981,7 @@ es:
       form:
         edit_title: "Evaluadores: Editar evaluador"
         updated: "Evaluador actualizado correctamente"
+        error: "El evaluador tiene presupuestos asignados"
       show:
         description: "Descripción"
         email: "Email"
