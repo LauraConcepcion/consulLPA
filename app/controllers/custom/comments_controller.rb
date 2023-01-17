@@ -1,5 +1,4 @@
-require_dependency Rails.root.join('app', 'controllers', 'comments_controller').to_s
-
+require_dependency Rails.root.join("app", "controllers", "comments_controller").to_s
 class CommentsController
   before_action :authenticate_user!, only: [:create, :update]
   before_action :load_commentable, only: [:create, :update]

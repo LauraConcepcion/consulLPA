@@ -4,7 +4,7 @@
 
   <div class="row column">
     <div class="small-12 medium-8 column">
-      <%= f.select :heading_id, budget_heading_select_options(@budget), { include_blank: true, } %>
+      <%= f.select :heading_id, budget_heading_select_options(@budget), { include_blank: true } %>
     </div>
     <div class="row">
       <div class="small-12 column">
@@ -15,8 +15,10 @@
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_field :title,
-              maxlength: Budget::Investment.title_max_length %>
+              maxlength: Budget::Investment.title_max_length,
+              data: suggest_data(@investment) %>
       </div>
+      <div class="js-suggest" data-locale="<%= translations_form.locale %>"></div>
 
       <div class="small-12 column">
         <%= translations_form.text_area :description,
@@ -83,8 +85,11 @@
                         label: false,
                         placeholder: t("budgets.investments.form.tags_placeholder"),
                         aria: { describedby: "tags-list-help-text" },
-                        class: "js-tag-list tag-autocomplete" %>
+                        class: "js-tag-list tag-autocomplete",
+                        data: { js_url: suggest_tags_path } %>
     </div>
+
+    <%= render SDG::RelatedListSelectorComponent.new(f) %>
 
     <% unless current_user.manager? %>
 

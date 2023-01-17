@@ -1,7 +1,7 @@
 <div class="expanded no-margin-top polls-show-header">
   <div class="row">
     <div class="small-12 medium-9 column padding">
-     <% if @poll.related.nil? %>
+      <% if @poll.related.nil? %>
         <%= back_link_to polls_path, t("polls.show.back") %>
       <% else %>
         <%= link_to t("polls.poll_header.back_to_proposal"), [@poll.related] %>
@@ -9,27 +9,25 @@
 
       <h1><%= @poll.name %></h1>
 
-      <%#= sanitize_and_auto_link simple_format(@poll.summary, {}, sanitize: false) %>
-      <%= simple_format_no_tags_no_sanitize @poll.summary%>
-       <%# TODO: sin sanitize? %>
+      <%= simple_format_no_tags_no_sanitize(@poll.summary) %>
 
       <% if @poll.geozones.any? %>
-        <ul class="no-bullet margin-top tags">
+        <ul class="margin-top tags">
           <% @poll.geozones.each do |g| %>
-            <li class="inline-block"><span><%= g.name %></span></li>
+            <li><span><%= g.name %></span></li>
           <% end %>
         </ul>
       <% end %>
+      <%= render SDG::TagListComponent.new(@poll, linkable: false) %>
     </div>
 
     <aside class="small-12 medium-3 column margin-top">
-      <%= render partial: 'shared/social_share', locals: {
+      <%= render "shared/social_share",
         share_title: t("shared.share"),
         title: @poll.name,
         url: poll_url(@poll),
         description: @poll.name,
-        mobile: @poll.name
-      } %>
+        mobile: @poll.name %>
     </aside>
   </div>
 </div>

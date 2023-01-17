@@ -1,9 +1,11 @@
----
 es:
   pages:
-    census_terms: Para verificar la cuenta hay que tener %{minimum_age} años o más y estar empadronado aportando los datos indicados anteriormente, los cuales serán contrastados. Aceptando el proceso de verificación autoriza a que el AYUNTAMIENTO DE LAS PALMAS verifique que se encuentra empadronado en la ciudad, así como medios de contacto que figuren en dichos ficheros. Los datos aportados serán incorporados y tratados en un fichero indicado anteriormente en las condiciones de uso del portal.
+    conditions:
+      title: Condiciones de uso
+      subtitle: AVISO LEGAL SOBRE LAS CONDICIONES DE USO, PRIVACIDAD Y PROTECCIÓN DE DATOS PERSONALES DEL PORTAL DE GOBIERNO ABIERTO
+      description: Página de información sobre las condiciones de uso, privacidad y protección de datos personales.
+    census_terms: Para verificar la cuenta hay que tener %{minimum_age} años o más y estar empadronado aportando los datos indicados anteriormente, los cuales serán contrastados. Aceptando el proceso de verificación autoriza a que el AYUNTAMIENTO DE LAS PALMAS verifique que se encuentra empadronado en la ciudad, así como medios de contacto que figuren en dichos ficheros. Los datos aportados serán incorporados y tratados en un fichero indicado anteriormente en las condiciones de uso del portal.
     conditions: Condiciones de uso
-    general_terms: Términos y Condiciones
     intellectual_property: Propiedad intelectual
     help:
       title: "Descubre %{org}"
@@ -15,12 +17,13 @@ es:
         budgets: "Presupuestos participativos"
         polls: "Consultas"
         other: "Otra información de interés"
+        processes: "Legislación colaborativa"
       debates:
         title: "Debates"
-        description: "Crea un hilo en el que debatir sobre cualquier tema que quieras compartir con el resto de personas de tu ciudad."
-        feature_1: "Para crear un debate tienes que %{link}"
-        feature_1_link: "registrarte en %{org}"
-        feature_2_html: "Los debates pueden ser valorados utilizando los botones de <strong>Estoy de acuerdo</strong> o <strong>No estoy de acuerdo</strong> que encontrarás en cada uno de ellos."
+        description: "En la sección de %{link} puedes exponer y compartir tu opinión con otras personas sobre temas que te preocupan relacionados con la ciudad. También es un espacio donde generar ideas que a través de las otras secciones de %{org} lleven a actuaciones concretas por parte del Ayuntamiento."
+        link: "debates ciudadanos"
+        feature: "Puedes abrir debates, comentarlos y valorarlos con los botones de <strong>Estoy de acuerdo</strong> o <strong>No estoy de acuerdo</strong>. Para ello tienes que %{link}."
+        feature_link: "registrarte en %{org}"
         image_alt: "Botones para valorar los debates"
         figcaption: 'Botones "Estoy de acuerdo" y "No estoy de acuerdo" para valorar los debates.'
       proposals:
@@ -89,7 +92,6 @@ es:
 <li>Se podr&aacute;n adjuntar fotos, planos, etc.</li>
 </ul>
 <p>No es necesario que en la propuesta se incluya el cap&iacute;tulo del Presupuesto Municipal.</p>"
-
         phase_2_html: "
 <p><strong>SELECCI&Oacute;N</strong></p>
 <p>Se crear&aacute;n seis Grupos de Trabajo sobre los Presupuestos Participativos de 2021, uno por cada distrito y otro para la ciudad, formada por representantes de asociaciones y colectivos, personas especialmente interesadas y cualificadas y t&eacute;cnicos municipales, cuya finalidad ser&aacute; analizar cada una de las propuestas presentadas en cada distrito y a nivel ciudad, y elevar propuesta al Ayuntamiento con un m&aacute;ximo de cien propuestas por cada distrito y de cincuenta a nivel ciudad, en base a los siguientes criterios:</p>
@@ -112,8 +114,6 @@ es:
 <p>Con el fin de facilitar el trabajo de los grupos de trabajo, el Servicio de Participaci&oacute;n Ciudadana llevar&aacute; a cabo previamente un trabajo de recopilaci&oacute;n de las propuestas que incumplen los requisitos exigidos, as&iacute; como de las que sean susceptibles de cambios y agrupamientos. Asimismo, pondr&aacute; a su disposici&oacute;n los medios necesarios para lograr que la selecci&oacute;n de propuestas se desarrolle con la mayor eficacia.</p>
 <p>La selecci&oacute;n se llevar&aacute; a cabo, en cualquier caso, incluso aunque el n&uacute;mero de propuestas a analizar no supere las cien.</p>
 <p>La resoluci&oacute;n que apruebe la creaci&oacute;n de estos grupos de trabajo regular&aacute; su funcionamiento interno.</p>"
-
-
         phase_3_html: "
 <p><strong>AN&Aacute;LISIS DE VIABILIDAD</strong></p>
 <p>El Servicio de Participaci&oacute;n Ciudadana remitir&aacute; a los servicios t&eacute;cnicos del Ayuntamiento que procedan, las propuestas seleccionadas por los distintos grupos de trabajo para que realicen los an&aacute;lisis de viabilidad t&eacute;cnica de las mismas. Asimismo, valorar&aacute;n el coste de las propuestas. Los informes podr&aacute;n emitirse en cuatro sentidos: viables, asumidas, inviables y prevista su inclusi&oacute;n en los presupuestos de 2021. El an&aacute;lisis de viabilidad t&eacute;cnica incluye la valoraci&oacute;n jur&iacute;dica y presupuestaria.</p>
@@ -137,7 +137,7 @@ es:
 <p>El Ayuntamiento establecer&aacute; un procedimiento que permita realizar un seguimiento eficaz de la ejecuci&oacute;n de las propuestas aprobadas de los Presupuestos participativos de 2021, as&iacute; como su comunicaci&oacute;n a las partes interesadas y a la ciudadan&iacute;a en general. A tal fin, y formando parte de ese procedimiento, se crear&aacute; una Comisi&oacute;n de Seguimiento de la Ejecuci&oacute;n del Presupuesto Participativo de 2021que podr&aacute; estar formada por miembros de los grupos de trabajo creados para la selecci&oacute;n de las propuestas; as&iacute; como por representantes de asociaciones y de la sociedad civil en general, ciudadanos interesados y/o especialmente cualificados, t&eacute;cnicos del Servicio de Participaci&oacute;n Ciudadana y el concejal delegado de Participaci&oacute;n Ciudadana. La resoluci&oacute;n de creaci&oacute;n de la Comisi&oacute;n de Seguimiento regular&aacute; su funcionamiento interno.</p>
 <p>Del estado de ejecuci&oacute;n de los Presupuestos Participativos 2021 se informar&aacute; a las Juntas Municipales de Distrito, a los Consejos de Participaci&oacute;n Ciudadana y al Consejo Social de la Ciudad, en las sesiones que se celebren en ese a&ntilde;o y en los posteriores, si fuera necesario. Asimismo, se mantendr&aacute; informada a la ciudadan&iacute;a en general a trav&eacute;s de la p&aacute;gina web municipal y de la plataforma <a href=\"https://decide.laspalmasgc.es\">decide.laspalmasgc.es</a>.</p>"
         image_alt: "Diferentes fases de un presupuesto participativo"
-        figcaption_html: 'Fase de "Votación" de los presupuestos participativos.'
+        figcaption: 'Fase de "Apoyos" y fase de "Votación" de los presupuestos participativos.'
       polls:
         title: "Consultas"
         description: "En las consultas se incluyen cuestiones que el Ayuntamiento somete a decisión directa de la ciudadanía."
@@ -145,18 +145,23 @@ es:
         feature_1_link: "registrarte en %{org_name}"
         feature_2: "Pueden participar todas las personas empadronadas en la ciudad mayores de %{minimum_age} años."
         feature_3: "Los resultados serán vinculantes para el consistorio."
+      processes:
+        title: "Legislación colaborativa"
+        description: "En la sección de %{link} la ciudadanía participa en la elaboración y modificación de normativa que afecta a la ciudad y puede dar su opinión sobre las políticas municipales en debates previos."
+        link: "legislación colaborativa"
+        feature: "Para participar en la legislación colaborativa tienes que %{link} y verificar tu cuenta."
+        feature_link: "registrarte en %{org_name}"
       faq:
         title: "¿Problemas técnicos?"
         description: "Lee las preguntas frecuentes y resuelve tus dudas."
         button: "Ver preguntas frecuentes"
         page:
           title: "Preguntas Frecuentes"
-          description: "Utiliza esta página para resolver las Preguntas frencuentes a los usuarios del sitio."
-          faq_1_title: "Pregunta 1"
-          faq_1_description: "Este es un ejemplo para la descripción de la pregunta uno."
+          description: "Utiliza esta página para resolver las Preguntas frecuentes a los usuarios del sitio."
       other:
         title: "Otra información de interés"
         how_to_use: "Utiliza %{org_name} en tu municipio"
+        sdg: "Ayuda Objetivos de Desarrollo Sostenible"
       how_to_use:
         text: |-
           Utilízalo en tu municipio libremente o ayúdanos a mejorarlo, es software libre.
@@ -166,18 +171,109 @@ es:
           Si eres programador, puedes ver el código y ayudarnos a mejorarlo en [aplicación CONSUL](https://github.com/consul/consul 'github consul').
       titles:
         how_to_use: Utilízalo en tu municipio
-    privacy: Política de Privacidad
+    privacy:
+      title: Política de privacidad
+      subtitle: "Página de información de protección de datos"
+    accessibility:
+      title: Accesibilidad
+      description: |-
+        La accesibilidad web se refiere a la posibilidad de acceso a la web y a sus contenidos por todas las personas, independientemente de las discapacidades (físicas, intelectuales o técnicas) que puedan presentar o de las que se deriven del contexto de uso (tecnológicas o ambientales).
+
+        Cuando los sitios web están diseñados pensando en la accesibilidad, todos los usuarios pueden acceder en condiciones de igualdad a los contenidos, por ejemplo:
+      examples:
+        - Proporcionando un texto alternativo a las imágenes, los usuarios invidentes o con problemas de visión pueden utilizar lectores especiales para acceder a la información.
+        - Cuando los vídeos disponen de subtítulos, los usuarios con dificultades auditivas pueden entenderlos plenamente.
+        - Si los contenidos están escritos en un lenguaje sencillo e ilustrados, los usuarios con problemas de aprendizaje están en mejores condiciones de entenderlos.
+        - Si el usuario tiene problemas de movilidad y le cuesta usar el ratón, las alternativas con el teclado le ayudan en la navegación.
+      keyboard_shortcuts:
+        title: '"Atajos" de teclado'
+        navigation_table:
+          description: Para poder navegar por este sitio web de forma accesible, se han programado un grupo de teclas de acceso rápido que recogen las principales secciones de interés general en los que está organizado el sitio.
+          caption: Atajos de teclado para el menú de navegación
+          key_header: Tecla
+          page_header: Página
+          rows:
+            -
+              key_column: 0
+              page_column: Inicio
+            -
+              key_column: 1
+              page_column: Debates
+            -
+              key_column: 2
+              page_column: Propuestas
+            -
+              key_column: 3
+              page_column: Votaciones
+            -
+              key_column: 4
+              page_column: Presupuestos participativos
+            -
+              key_column: 5
+              page_column: Legislación colaborativa
+        browser_table:
+          description: "Dependiendo del sistema operativo y del navegador que se utilice, la combinación de teclas será la siguiente:"
+          caption: Combinación de teclas dependiendo del sistema operativo y navegador
+          browser_header: Navegador
+          key_header: Combinación de teclas
+          rows:
+            - 
+              browser_column: Explorer
+              key_column: ALT + atajo y luego ENTER
+            - 
+              browser_column: Firefox
+              key_column: ALT + MAYÚSCULAS + atajo
+            - 
+              browser_column: Chrome
+              key_column: ALT + atajo (si es un MAC, CTRL + ALT + atajo)
+            - 
+              browser_column: Safari
+              key_column: ALT + atajo (si es un MAC, CMD + atajo)
+            - 
+              browser_column: Opera
+              key_column: MAYÚSCULAS + ESC + atajo
+      textsize:
+        title: Tamaño del texto
+        browser_settings_table:
+          description: El diseño accesible de este sitio web permite que el usuario pueda elegir el tamaño del texto que le convenga. Esta acción puede llevarse a cabo de diferentes maneras según el navegador que se utilice.
+          browser_header: Navegador
+          action_header: Acción a realizar
+          rows:
+            - 
+              browser_column: Explorer
+              action_column: Ver > Tamaño del texto
+            - 
+              browser_column: Firefox
+              action_column: Ver > Tamaño
+            - 
+              browser_column: Chrome
+              action_column: Ajustes (icono) > Opciones > Avanzada > Contenido web > Tamaño fuente
+            - 
+              browser_column: Safari
+              action_column: Visualización > ampliar/reducir
+            - 
+              browser_column: Opera
+              action_column: Ver > escala
+        browser_shortcuts_table:
+          description: "Otra forma de modificar el tamaño de texto es utilizar los atajos de teclado definidos en los navegadores, en particular la combinación de teclas:"
+          rows:
+            - 
+              shortcut_column: CTRL y + (CMD y + en MAC)
+              description_column: para aumentar el tamaño del texto
+            - 
+              shortcut_column: CTRL y - (CMD y - en MAC)
+              description_column: para reducir el tamaño del texto
+      compatibility:
+        title: Compatibilidad con estándares y diseño visual
+        description: 'Todas las páginas de este sitio web cumplen con las <strong>Pautas de Accesibilidad</strong> o Principios Generales de Diseño Accesible establecidas por el Grupo de Trabajo <abbr title="Web Accessibility Initiative" lang="en">WAI</abbr> perteneciente al W3C.'
     titles:
+      help: "¿Qué es %{org}? - Participación ciudadana"
       accessibility: Accesibilidad
       conditions: Condiciones de uso
-      more_info: "Más información sobre %{org}"
       privacy: Política de Privacidad
       intellectual_property: Propiedad intelectual
     verify:
-      code: Código que has recibido en tu carta
-      email: Email
-      info: 'Para verificar tu cuenta introduce los datos con los que te registraste:'
-      info_code: 'Ahora introduce el código que has recibido en tu carta:'
-      password: Contraseña
+      info: "Para verificar tu cuenta introduce los datos con los que te registraste:"
+      info_code: "Ahora introduce el código que has recibido en tu carta:"
       submit: Verificar mi cuenta
       title: Verifica tu cuenta

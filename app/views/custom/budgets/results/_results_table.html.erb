@@ -1,8 +1,8 @@
 <span class="asterisk">*</span>
 <span>Al sobrepasar el importe máximo por distrito, estos proyectos serán consensuados con el proponente</span>
 
-<div class="<%= results_type == :compatible ? 'success' : 'js-discarded' %>"
-     style="<%= results_type != :compatible ? 'display: none' : '' %>"
+<div class="<%= results_type == :compatible ? "success" : "js-discarded" %>"
+     style="<%= results_type != :compatible ? "display: none" : "" %>"
      id="<%= results_type %>-container">
 
   <h4><%= title %></h4>
@@ -32,16 +32,16 @@
       <% amount_available = heading_price %>
       <% investments.each do |investment| %>
           <tr id="<%= dom_id(investment) %>"
-              class="budget-investments <%= investment.winner? ? 'success' : 'js-discarded' %>"
-              style="<%= investment.winner? ? '' : 'display: none' %>">
+              class="budget-investments <%= investment.winner? ? "success" : "js-discarded" %>"
+              style="<%= investment.winner? ? "" : "display: none" %>">
             <td>
-              <% next_amount_available = amount_available - investment.price if investment.winner? && results_type == :compatible %>
               <% if investment.winner? %>
                 <span class="icon-check">
                   <span class="show-for-sr">
                     <%= t("budgets.results.accepted") %>
                   </span>
                 </span>
+                <% next_amount_available = amount_available - investment.price if results_type == :compatible %>
                 <% if next_amount_available < 0 %>
                   <span class="asterisk">*</span>
                 <% end %>
@@ -61,7 +61,7 @@
               <%= @budget.formatted_amount(investment.price) %>
             </td>
             <% if results_type == :compatible %>
-                  <td class="small text-right"
+              <td class="small text-right"
                   title="<%= @budget.formatted_amount(amount_available) %> - <%= @budget.formatted_amount(investment.price) %>">
                   <%= @budget.formatted_amount(amount_available - investment.price) %>
                   <% amount_available -= investment.price if investment.winner? %>

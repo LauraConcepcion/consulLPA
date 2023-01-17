@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "~> 3.11.2"
+lock "~> 3.14.1"
 
 def deploysecret(key)
   @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml")[fetch(:stage).to_s]
@@ -7,13 +7,13 @@ def deploysecret(key)
 end
 
 set :rails_env, fetch(:stage)
-set :rvm1_ruby_version, "2.5.8"
+set :rvm1_ruby_version, "2.6.7"
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
 
 set :application, "consul"
-set :full_app_name, deploysecret(:full_app_name)
 set :deploy_to, deploysecret(:deploy_to)
 set :server_name, deploysecret(:server_name)
+set :ssh_options, port: deploysecret(:ssh_port)
 set :repo_url, 'https://github.com/LauraConcepcion/consulLPA.git'
 
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
@@ -22,8 +22,10 @@ set :log_level, :info
 set :pty, true
 set :use_sudo, false
 
-set :linked_files, %w{config/database.yml config/secrets.yml lib/custom/census_api.rb}
-set :linked_dirs, %w{log tmp public/system public/assets public/ckeditor_assets}
+# NOTE: lib/custom/census_api.rb is linked to prevent including API methods in public repo
+# When changing this file, it needs to be copied to the server manually
+set :linked_files, %w[config/database.yml config/secrets.yml lib/custom/census_api.rb]
+set :linked_dirs, %w[.bundle log tmp public/system public/assets public/ckeditor_assets]
 
 set :keep_releases, 5
 
@@ -34,42 +36,21 @@ set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
 
-set(:config_files, %w[
-  log_rotation
-  database.yml
-  secrets.yml
-])
-
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
   #before :starting, 'rvm1:install:rvm'  # install/update RVM
   #before :starting, 'rvm1:install:ruby' # install Ruby and create gemset
-  #before :starting, 'install_bundler_gem' # install bundler gem
   before :starting, 'install_bundler_gem' # install bundler gem
 
   # after :publishing, 'deploy:restart'
   after :published, 'delayed_job:restart'
   # after :published, 'refresh_sitemap'
   after :publishing, 'restart_tmp'
-  # after "deploy:migrate", "add_new_settings"
-  # after :publishing, "deploy:restart"
-  # after :published, "delayed_job:restart"
-  # after :published, "refresh_sitemap"
-  # after :updating, "rvm1:install:rvm"
-  # after :updating, "rvm1:install:ruby"
-  # after :updating, "install_bundler_gem"
-  # before "deploy:migrate", "remove_local_census_records_duplicates"
+  after "deploy:migrate", "add_new_settings"
 
-  # after "deploy:migrate", "add_new_settings"
   # Rake::Task["delayed_job:default"].clear_actions
   # Rake::Task["puma:smart_restart"].clear_actions
-
-  # after :updating, "rvm1:install:rvm"
-  # after :updating, "rvm1:install:ruby"
-  # after :updating, "install_bundler_gem"
-
-  # after "deploy:migrate", "add_new_settings"
 
   # after  :publishing, "setup_puma"
   after :published, "deploy:restart"

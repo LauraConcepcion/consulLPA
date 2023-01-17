@@ -29,117 +29,19 @@
   </nav>
 </div>
 
-<div class="small-12 row sub-banner">
-  <p class="lead">
-  <%= t("layouts.header.open_city_slogan_html") %>
-  </p>
-  <div class="small-8 medium-4 large-3 small-centered">
-    <%= link_to t("layouts.header.more_info"), help_path, class: "button expanded large" %>
-  </div>
-</div>
-
-<div class="row videos">
-  <div class="small-12 medium-12 text-right column">
-    <div class="small-12 medium-6 large-6 column">
-      <div class="videoWrapper">
-        <iframe title= "Tutorial de Registro - LAS PALMAS DE GRAN CANARIA" src="https://www.youtube.com/embed/aAgSYQqVGns?rel=0&showinfo=0&controls=0&enablejsapi=1" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
-      </div>
-    </div>
-    <div class="small-12 medium-6 large-6 column">
-      <div class="videoWrapper">
-        <iframe title= "Tutorial de votación de propuestas - LAS PALMAS DE GRAN CANARIA" src="https://www.youtube.com/embed/KOU6I2HH86k?rel=0&showinfo=0&controls=0&enablejsapi=1" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
-  <%= render "recommended",
-    recommended_debates: @recommended_debates,
-    recommended_proposals: @recommended_proposals %>
+<% provide :social_media_meta_tags do %>
+  <%= render "shared/social_media_meta_tags",
+              social_url: root_url %>
 <% end %>
+<%= render "shared/header", header: @header %>
+<%= render "videos" %>
 
-<% cache [locale_and_user_status, @featured_debates, @featured_proposals, 'featured'] do %>
-  <main>
-
-  <div class="small-12 column text-center margin">
-    <div class="row small-12 medium-8">
-      <div class="small-12 medium-6 column padding">
-        <h2>
-          <%= image_tag('debatimos.png') %>
-          <%= t("welcome.debates.title") %>
-        </h2>
-        <p class="small-6 small-offset-3 medium-12 medium-offset-0"><%= t("welcome.debates.description") %></p>
-      </div>
-      <div class="small-12 medium-6 column padding">
-        <h2>
-          <%= image_tag('proponemos.png') %>
-          <%= t("welcome.proposal.title") %>
-        </h2>
-        <p class="small-6 small-offset-3 medium-12 medium-offset-0"><%= t("welcome.proposal.description") %></p>
-      </div>
-    </div>
-    <div class="row small-12 medium-8">
-      <div class="small-12 medium-6 column padding">
-        <h2>
-          <%= image_tag('decidimos.png') %>
-          <%= t("welcome.decide.title") %>
-        </h2>
-        <p class="small-6 small-offset-3 medium-12 medium-offset-0"><%= t("welcome.decide.description") %></p>
-      </div>
-      <div class="small-12 medium-6 column padding">
-        <h2>
-          <%= image_tag('hacemos.png') %>
-          <%= t("welcome.do.title") %>
-        </h2>
-        <p class="small-6 small-offset-3 medium-12 medium-offset-0"><%= t("welcome.do.description") %></p>
-      </div>
-    </div>
-    </div>
-
-    <div id="participate" class="small-12 medium-12 column padding">
-      <div class="row padding">
-        <h3 class="column">Participa en LPGC Decide</h3>
-      </div>
-      <div class="row">
-        <div class="small-12 medium-3 column">
-          <%= link_to debates_path do %>
-            <div>
-              <%= image_tag('debate.jpg') %>
-              <span>Debatimos</span>
-            </div>
-            <p>Opina sobre las cuestiones de la ciudad</p>
-          <% end %>
-        </div>
-        <div class="small-12 medium-3 column">
-          <%= link_to proposals_path do %>
-            <div>
-              <%= image_tag('propon.jpg') %>
-              <span>Proponemos</span>
-            </div>
-            <p>Crea propuestas ciudadanas y consigue apoyos</p>
-          <% end %>
-        </div>
-        <div class="small-12 medium-3 column">
-          <%= link_to budgets_path do %>
-            <div>
-              <%= image_tag('decides.jpg') %>
-              <span>Decidimos</span>
-            </div>
-            <p>Decide a qué proyectos se destina el presupuesto participativo</p>
-         <% end %>
-        </div>
-        <div class="small-12 medium-3 column">
-          <%= link_to polls_path do %>
-            <div>
-              <%= image_tag('consulta.jpg') %>
-              <span>Nos consultan</span>
-            </div>
-            <p>El Ayuntamiento nos consulta de manera directa</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-  </main>
-<% end %>
+<main>
+  <%= render "actions" %>
+  <%= render "participate" %>
+  <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
+    <%= render "recommended",
+                recommended_debates: @recommended_debates,
+                recommended_proposals: @recommended_proposals %>
+  <% end %>
+</main>

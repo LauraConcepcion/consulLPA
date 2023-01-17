@@ -1,25 +1,22 @@
-require_dependency Rails.root.join('app', 'models', 'officing', 'residence').to_s
-
+require_dependency Rails.root.join("app", "models", "officing", "residence").to_s
 class Officing::Residence
   include ActiveModel::Dates
 
   attr_accessor :user, :officer, :document_number, :document_type, :date_of_birth
-  skip_callback :validate, :residence_in_madrid
 
   validate :allowed_age
-  validate :residence_in_las_palmas_gc
+  validate :local_residence
   validates :date_of_birth, presence: true
 
   def initialize(attrs = {})
-    self.date_of_birth = parse_date('date_of_birth', attrs)
-    self.year_of_birth = self.date_of_birth.year if self.date_of_birth
-    attrs = remove_date('date_of_birth', attrs)
+    self.date_of_birth = parse_date("date_of_birth", attrs)
+    self.year_of_birth = self.date_of_birth.year if self.date_of_birth.present?
+    attrs = remove_date("date_of_birth", attrs)
     super
     clean_document_number
   end
 
-
-  def residence_in_las_palmas_gc
+  def local_residence
     return if errors.any?
 
     unless residency_valid?
@@ -32,10 +29,9 @@ class Officing::Residence
     return if errors[:date_of_birth].any?
 
     unless allowed_age?
-      errors.add(:date_of_birth, I18n.t('verification.residence.new.error_not_allowed_age'))
+      errors.add(:date_of_birth, I18n.t("verification.residence.new.error_not_allowed_age"))
     end
   end
-
 
   private
 
@@ -48,8 +44,7 @@ class Officing::Residence
     end
 
     def gender
-      # @census_api_response.gender
-      '-'
+      "-"
     end
 
     def district_code
@@ -59,5 +54,4 @@ class Officing::Residence
     def residency_errors
       @census_api_response.errors
     end
-
 end

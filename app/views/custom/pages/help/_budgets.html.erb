@@ -1,11 +1,11 @@
-<% page = SiteCustomization::Page.find_by(slug: 'help-budgets') %>
-<div class="row section-content">
-  <% if page %>
+<% page = SiteCustomization::Page.find_by(slug: "help-budgets") %>
+<% if page %>
+  <div class="row section-content">
     <div class="small-12 column">
       <h3 id="budgets" data-magellan-target="budgets">
         <%= page.title %>
       </h3>
       <%= raw page.content %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
