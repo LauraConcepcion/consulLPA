@@ -1,16 +1,16 @@
 <div class="clear"></div>
 
-<%#<% if can?(:create, Budget::Investment.new(budget: @budget)) %>
-<%#  <% if current_user && current_user.level_two_or_three_verified? %>
-<%#    <%= link_to t("budgets.investments.index.sidebar.create"),
-<%#               new_budget_investment_path(budget_id: @budget.id), class: "button budget expanded" %>
-<%#  <% else %>
-<%#    <div class="callout warning">
-<%#      <%= sanitize(t("budgets.investments.index.sidebar.verified_only",
-<%#          verify: link_to_verify_account)) %>
-<%#    </div>
-<%#  <% end %>
-<%#<% end %>
+<% if can?(:create, Budget::Investment.new(budget: @budget)) %>
+  <% if current_user && current_user.level_two_or_three_verified? %>
+    <%= link_to t("budgets.investments.index.sidebar.create"),
+               new_budget_investment_path(budget_id: @budget.id), class: "button budget expanded" %>
+  <% else %>
+    <div class="callout warning">
+      <%= sanitize(t("budgets.investments.index.sidebar.verified_only",
+          verify: link_to_verify_account)) %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if @heading && can?(:show, @ballot) %>
   <div class="my-ballot">
@@ -62,8 +62,10 @@
 <% if @heading && !@heading.content_blocks.where(locale: I18n.locale).empty? %>
   <%= render "budgets/investments/content_blocks" %>
 <% end %>
+
 <% if @map_location&.available? %>
   <%= render "budgets/investments/map" %>
 <% end %>
 <%= render "shared/tag_cloud", taggable: "Budget::Investment" %>
 <%= render "budgets/investments/categories" %>
+<%= render Budgets::Investments::FiltersComponent.new %>

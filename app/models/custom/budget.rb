@@ -9,12 +9,10 @@ class Budget
 
   def investments_orders
     case phase
-    when "accepting", "reviewing"
+    when "accepting", "reviewing", "finished"
       %w[random]
     when "publishing_prices", "balloting", "reviewing_ballots"
       %w[price]
-    when "finished"
-      %w[random]
     else
       %w[random confidence_score]
     end

@@ -24,29 +24,15 @@
   </div>
 </div>
 
-<div class="row margin-top">
-  <div class="small-12 column">
-    <ul class="tabs">
-      <li class="tabs-title is-active">
-        <span class="show-for-sr"><%= t("shared.you_are_in") %></span>
-        <%= link_to t("budgets.results.link"), budget_results_path(@budget), class: "is-active" %>
-      </li>
-      <li class="tabs-title">
-        <%= link_to t("budgets.executions.link"), budget_executions_path(@budget) %>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render "budgets/subnav", budget: @budget %>
 
 <div class="row">
   <div class="small-12 medium-3 large-2 column">
     <h3 class="margin-bottom">
       <%= t("budgets.results.heading_selection_title") %>
     </h3>
-    <ul class="menu vertical no-margin-top no-padding-top">
-
-
-      <% @budget.headings.order('id ASC').each do |heading| %>
+    <ul id="headings" class="menu vertical no-margin-top no-padding-top">
+      <% @headings.each do |heading| %>
         <li>
           <%= link_to heading.name,
                       budget_results_path(@budget, heading_id: heading.to_param),
@@ -87,9 +73,9 @@
       <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "nextyearbudget") do %>
         <small><%= t("budgets.results.included_next_year_budget_investment_proyects") %></small>
       <% end %><br>
-      <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "not_selected") do %>
-        <small><%= t("budgets.results.notselected_investment_proyects") %></small>
-      <% end %><br>
+      <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "unselected") do %>
+        <small><%= t("budgets.results.not_selected_investment_proyects") %></small>
+      <% end %>
     </p>
   </div>
 </div>

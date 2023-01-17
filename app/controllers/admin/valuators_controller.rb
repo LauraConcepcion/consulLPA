@@ -10,9 +10,7 @@ class Admin::ValuatorsController < Admin::BaseController
   end
 
   def search
-    @users = User.search(params[:search])
-                 .includes(:valuator)
-                 .page(params[:page])
+    @users = User.search(params[:search]).includes(:valuator).page(params[:page])
   end
 
   def create
@@ -38,7 +36,13 @@ class Admin::ValuatorsController < Admin::BaseController
   end
 
   def destroy
-    @valuator.destroy!
+    if @valuator.budget_investments_count.zero?
+      @valuator.destroy!
+      redirect_to admin_valuators_path
+      return
+    end
+
+    flash[:error] = t("admin.valuators.form.error")
     redirect_to admin_valuators_path
   end
 
