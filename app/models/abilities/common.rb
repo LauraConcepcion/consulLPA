@@ -50,7 +50,10 @@ module Abilities
       can [:create, :created], Proposal
       can :create, Legislation::Proposal
       can :create, Budget::Investment,               budget: { phase: "accepting" }
+      can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
       can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
+      can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
+
 
       can :hide, Comment, user_id: user.id
 
@@ -60,6 +63,8 @@ module Abilities
       can :suggest, Proposal
       can :suggest, Legislation::Proposal
       can :suggest, Tag
+      can :suggest, Budget::Investment, budget: { phase: "accepting" }
+
 
       can [:flag, :unflag], Comment
       cannot [:flag, :unflag], Comment, user_id: user.id
@@ -100,10 +105,10 @@ module Abilities
         can :create, Legislation::Answer
 
         # can :create, Budget::Investment,               budget: { phase: "accepting" }
-        can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
-        can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
-        can :suggest, Budget::Investment,              budget: { phase: "accepting" }
-        can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
+        # can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
+        # can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
+        # can :suggest, Budget::Investment,              budget: { phase: "accepting" }
+        # can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
         can [:create, :destroy], ActsAsVotable::Vote,
           voter_id: user.id,
           votable_type: "Budget::Investment",
