@@ -22,7 +22,9 @@ set :log_level, :info
 set :pty, true
 set :use_sudo, false
 
-set :linked_files, %w[config/database.yml config/secrets.yml]
+# NOTE: lib/custom/census_api.rb is linked to prevent including API methods in public repo
+# When changing this file, it needs to be copied to the server manually
+set :linked_files, %w[config/database.yml config/secrets.yml lib/custom/census_api.rb]
 set :linked_dirs, %w[.bundle log tmp public/system public/assets public/ckeditor_assets public/machine_learning/data storage]
 
 set :keep_releases, 5
@@ -37,20 +39,21 @@ set :delayed_job_roles, :background
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  Rake::Task["delayed_job:default"].clear_actions
-  Rake::Task["puma:smart_restart"].clear_actions
+  # Rake::Task["delayed_job:default"].clear_actions
+  # Rake::Task["puma:smart_restart"].clear_actions
 
-  after :updating, "install_ruby"
+  # after :updating, "install_ruby"
 
   after "deploy:migrate", "add_new_settings"
 
-  after :publishing, "setup_puma"
+  # after :publishing, "setup_puma"
 
   after :published, "deploy:restart"
-  before "deploy:restart", "puma:restart"
+  # before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
-  before "deploy:restart", "puma:start"
+  # before "deploy:restart", "puma:start"
 
+  after :finishing, "restart_tmp"
   after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
@@ -117,5 +120,12 @@ task :setup_puma do
       execute "mkdir -p #{shared_path}/tmp/sockets; true"
       execute "mkdir -p #{shared_path}/tmp/pids; true"
     end
+  end
+end
+
+desc "Restart application"
+task :restart_tmp do
+  on roles(:app) do
+    execute "touch #{File.join(current_path, 'tmp', 'restart.txt')}"
   end
 end
