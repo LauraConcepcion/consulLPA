@@ -13,7 +13,7 @@ class SMSApi
   def uri
     return unless end_point_available?
 
-    URI.parse(Rails.application.secrets.sms_end_point).to_s
+    URI.parse(Rails.application.secrets.sms_end_point)
   end
 
   def sms_deliver(phone, code)
