@@ -39,7 +39,7 @@
   <%= t("valuation.budget_investments.show.#{@investment.feasibility}") %>
 </p>
 
-<%= render "feasibility_explanation", investment: @investment %>
+<%= render "/valuation/budget_investments/feasibility_explanation", investment: @investment %>
 
 <% if @investment.valuation_finished %>
   <p id="valuation">
