@@ -47,7 +47,7 @@ es:
         feasibility: Viabilidad
         feasible: Viable
         unfeasible: Inviable
-        undefined: Sin definir
+        undecided: Sin definir
         takecharge: "Asumido"
         nextyearbudget: "Prevista inclusión en presupuestos del próximo año"
         notselected: "No seleccionado"
@@ -66,10 +66,14 @@ es:
         nextyearbudget: "Prevista inclusión en presupuestos del próximo año"
         not_selected: "No seleccionado"
         feasible_explanation_html_not_selected: Informe de no selección <small>(en caso de que el proyecto sea NO SELECCIONADO se mostrará esta información, dato público)</small>
+        feasible_explanation_html_takecharge: Informe de asumido <small>(en caso de que el proyecto sea ASUMIDO se mostrará esta información, dato público)</small>
+        feasible_explanation_html_next_year_budget: Informe de selección para el próximo año <small>(en caso de que el proyecto sea SELECCIONADO PARA EL PRÓXIMO AÑO se mostrará esta información, dato público)</small>
         valuation_finished: Informe finalizado
         valuation_finished_alert: "¿Estás seguro/a de querer marcar este informe como completado? Una vez hecho, no se puede deshacer la acción."
         not_feasible_alert: "Un email será enviado inmediatamente al autor del proyecto con el informe de inviabilidad."
         not_selected_alert: "Un email será enviado inmediatamente al autor del proyecto con el informe de no selección."
+        next_year_budget_alert: "Un email será enviado inmediatamente al autor del proyecto con el informe de seleccionado para el próximo año."
+        takecharge_alert: "Un email será enviado inmediatamente al autor del proyecto con el informe de asumido."
         save: Guardar cambios
       notice:
         valuate: "Dossier actualizado"
