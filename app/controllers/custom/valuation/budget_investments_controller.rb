@@ -32,6 +32,8 @@ class Valuation::BudgetInvestmentsController
       params.require(:budget_investment).permit(:price, :price_first_year, :price_explanation,
                                                 :feasibility, :unfeasibility_explanation,
                                                 :not_selected_explanation,
+                                                :takecharge_explanation,
+                                                :next_year_budget_explanation,
                                                 :duration, :valuation_finished)
     end
 
