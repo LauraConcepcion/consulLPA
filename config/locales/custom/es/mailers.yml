@@ -54,6 +54,12 @@ es:
       sincerely: "Atentamente,"
       signatory: "CONCEJALÍA DE PARTICIPACIÓN CIUDADANA"
       share: "Comparte tu proyecto"
+    budget_investment_feasible:
+      hi: "Estimado/a usuario/a"
+      sincerely: "Atentamente"
+      thank_you: "Gracias por tu inestimable participación."
+      subject: "Tu proyecto de gasto '%{code}' ha sido marcado como viable"
+      explanation: "Su proyecto ha sido marcado como viable:"
     budget_investment_unfeasible:
       hi: "Estimado/a usuario/a"
       new: "Por todo ello, te invitamos a que elabores un <strong>nuevo proyecto de gasto</strong> que se ajuste a las condiciones de este proceso. Esto lo puedes hacer en este enlace: %{url}."

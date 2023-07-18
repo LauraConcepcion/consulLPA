@@ -2,6 +2,10 @@ require_dependency Rails.root.join("app", "controllers", "valuation", "budget_in
 class Valuation::BudgetInvestmentsController
   def valuate
     if valid_price_params? && @investment.update(valuation_params)
+      if @investment.feasible_email_pending?
+        @investment.send_feasible_email
+      end
+
       if @investment.unfeasible_email_pending?
         @investment.send_unfeasible_email
       end
