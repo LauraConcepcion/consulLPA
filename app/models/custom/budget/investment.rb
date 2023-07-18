@@ -39,12 +39,21 @@ class Budget::Investment
     results
   end
 
+  def feasible_email_pending?
+    feasible_email_sent_at.blank? && feasible? && valuation_finished?
+  end
+
   def not_selected_email_pending?
     not_selected_email_sent_at.blank? && not_selected? && valuation_finished?
   end
 
   def not_selected?
     feasibility == "notselected"
+  end
+
+  def send_feasible_email
+    Mailer.budget_investment_feasible(self).deliver_later
+    update(feasible_email_sent_at: Time.current)
   end
 
   def send_not_selected_email
