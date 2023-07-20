@@ -907,6 +907,9 @@ es:
       budget_investment_created:
         title: "Proyecto de gasto creado"
         description: "Enviado cuando un usuario crea un proyecto de presupuestos participativos."
+      budget_investment_feasible:
+        title: "Proyecto de gasto marcado como viable"
+        description: "Enviado al autor de un proyecto de presupuestos participativos que ha sido marcado como viable."
       budget_investment_selected:
         title: "Proyecto de gasto seleccionado"
         description: "Enviado al autor de un proyecto de presupuestos participativos que ha sido seleccionado."
