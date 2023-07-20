@@ -14,6 +14,7 @@ class Admin::SystemEmailsController
       email_verification:                 %w[view edit_info],
       user_invite:                        %w[view edit_info],
       evaluation_comment:                 %w[view edit_info],
+      budget_investment_feasible:         %w[view edit_info],
       budget_investment_not_selected:     %w[view edit_info],
       budget_investment_takecharge:       %w[view edit_info],
       budget_investment_next_year_budget: %w[view edit_info]
