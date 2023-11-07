@@ -1,4 +1,8 @@
 include DocumentParser
+#####################
+# NOT USE THIS FILE
+# COPY CUSTOM FILE FROM PRODUCTION SERVER
+#
 class CensusApi
   def call(document_type, document_number)
     response = nil
