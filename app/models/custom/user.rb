@@ -18,8 +18,8 @@ class User
       if r.valid?
         self.update_attribute(:residence_verified_at, Time.current)
       else
-        logger.error "Error de #{current_user.id} al verificarse"
-        logger.error r.errors
+        logger.info "Error de #{self.id} al verificarse"
+        logger.info r.errors.present? ? r.errors : ""
         self.update_attribute(:residence_verified_at, nil)
         self.update_attribute(:verified_at, nil)
       end
@@ -33,6 +33,6 @@ class User
   private
 
     def logger
-      @logger ||= ApplicationLogger.new
+      ApplicationLogger.new
     end
 end
