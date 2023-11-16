@@ -5,3 +5,14 @@
 #
 
 gem "delayed_job_web"
+gem "slack-notifier"
+
+group :development do
+  # Time travel ("mock")
+  # All environments so we can create fees in the past
+  gem 'timecop'
+
+  # VSCode extensions requirements
+  gem 'solargraph'
+  gem 'rufo'
+end
