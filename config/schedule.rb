@@ -52,6 +52,6 @@
 #   command "cd /home/usabi/consul/current && RAILS_ENV=production bin/delayed_job restart -n 2"
 # end
 
-every 1.minute, roles: [:cron] do
+every 1.day, at: '00:00', roles: [:cron] do
   runner "Budget.change_phase"
 end
