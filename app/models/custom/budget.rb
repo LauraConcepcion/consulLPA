@@ -38,11 +38,9 @@ class Budget
         if next_phase.present?
           budget.phase = next_phase.kind
           if budget.save
-            notifier.post text: I18n.t("general.slack.budgets.phase_change.success", budget_name: budget.name,
-            previous_phase: I18n.t("budgets.phase.#{previous_phase}"),
-            next_phase: I18n.t("budgets.phase.#{next_phase.kind}"))
+            notifier.post text: I18n.t("slack.budgets.phase_change.success", budget_name: budget.name,previous_phase: I18n.t("budgets.phase.#{previous_phase}"),next_phase: I18n.t("budgets.phase.#{next_phase.kind}"))
           else
-            notifier.post text: I18n.t("general.slack.budgets.phase_change.error")
+            notifier.post text: I18n.t("slack.budgets.phase_change.error")
           end
         end
       end
