@@ -8,16 +8,14 @@
 
   <ul>
     <% [:debates, :create_proposals, :support_proposals].each do |permission| %>
-      <% if permission == :support_proposals %>
-        <span class="<%= current_user.level_two_or_three_verified? ? "icon-check" : "icon-x" %>"></span>
-        <%= t("management.permissions.#{permission}") %>
-      <% else %>
-        <li>
+      <li>
+        <% if permission == :support_proposals %>
+          <span class="<%= current_user.level_two_or_three_verified? ? "icon-check" : "icon-x" %>"></span>
+        <% else %>
           <span class="<%= permissions.include?(permission) ? "icon-check" : "icon-x" %>"></span>
+        <% end %>
           <%= t("management.permissions.#{permission}") %>
-        </li>
-      <% end %>
+      </li>
     <% end %>
   </ul>
-
 </div>
