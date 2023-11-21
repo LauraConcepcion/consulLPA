@@ -6,7 +6,7 @@ class Verification::Management::Document
     response.valid?
   end
 
-  def residence_verified_at?
+  def residence_verified_at
     user.residence_verified_at
   end
 
