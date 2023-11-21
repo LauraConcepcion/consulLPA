@@ -1,10 +1,6 @@
 require_dependency Rails.root.join("app", "models", "user").to_s
 class User
 
-  def strf_date_of_birth
-    date_of_birth.strftime("%d/%m/%Y")
-  end
-
   def minimum_votation_required_age?
     return false if date_of_birth.blank?
 
@@ -12,16 +8,16 @@ class User
   end
 
   def verify_residence_verified_at
-    if self.residence_verified_at && self.residence_verified_at < Time.current - 12.months
-      date_of_birth_fmt = strf_date_of_birth
+    if residence_verified_at && residence_verified_at < Time.current - 12.months
+      date_of_birth_fmt = I18n.l(date_of_birth.to_date)
       r = CensusApi.new.call(document_type, document_number, date_of_birth_fmt)
       if r.valid?
-        self.update_attribute(:residence_verified_at, Time.current)
+        update_attribute(:residence_verified_at, Time.current)
       else
-        logger.info "Error de #{self.id} al verificarse"
-        logger.info r.errors.present? ? r.errors : ""
-        self.update_attribute(:residence_verified_at, nil)
-        self.update_attribute(:verified_at, nil)
+        logger.info "Error de #{id} al verificarse"
+        logger.info r.errors.presence || ""
+        update_attribute(:residence_verified_at, nil)
+        update_attribute(:verified_at, nil)
       end
     end
   end
