@@ -1,0 +1,21 @@
+<%# # Parameters:
+    #   message: A string explaining the permissions
+    #   permissions: An array of symbols containing the permissions
+    #   (can be :debates, :proposal, :support_proposal, :votes) %>
+<div class="user-permissions">
+
+  <p><%= message %></p>
+
+  <ul>
+    <% [:debates, :create_proposals, :support_proposals].each do |permission| %>
+      <li>
+        <% if permission == :support_proposals %>
+          <span class="<%= current_user.level_two_or_three_verified? ? "icon-check" : "icon-x" %>"></span>
+        <% else %>
+          <span class="<%= permissions.include?(permission) ? "icon-check" : "icon-x" %>"></span>
+        <% end %>
+          <%= t("management.permissions.#{permission}") %>
+      </li>
+    <% end %>
+  </ul>
+</div>
