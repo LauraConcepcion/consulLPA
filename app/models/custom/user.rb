@@ -1,6 +1,5 @@
 require_dependency Rails.root.join("app", "models", "user").to_s
 class User
-
   def minimum_votation_required_age?
     return false if date_of_birth.blank?
 
