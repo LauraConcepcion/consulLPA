@@ -7,7 +7,9 @@ class User
   end
 
   def verify_residence_verified_at
-    if residence_verified_at && residence_verified_at < Time.current - 12.months
+    # Rollback this when the process has completed
+    # && residence_verified_at < Time.current - 12.months
+    if residence_verified_at
       date_of_birth_fmt = I18n.l(date_of_birth.to_date)
       r = CensusApi.new.call(document_type, document_number, date_of_birth_fmt)
       if r.valid?
