@@ -9,10 +9,10 @@ class User
   def verify_residence_verified_at
     # Rollback this when the process has completed
     # && residence_verified_at < Time.current - 12.months
-    if residence_verified_at
+    if level_two_or_three_verified?
       date_of_birth_fmt = I18n.l(date_of_birth.to_date)
       r = CensusApi.new.call(document_type, document_number, date_of_birth_fmt)
-      if r.valid?
+      if r&.valid?
         update_attribute(:residence_verified_at, Time.current)
       else
         logger.info "Error de #{id} al verificarse"
