@@ -1,0 +1,18 @@
+
+// Línea 710
+.top-links {
+  background: $brand-green;
+  color: $black;
+
+  .social {
+    a span:before {
+      vertical-align: sub;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    li:after {
+      vertical-align: super;
+    }
+  }
+}
