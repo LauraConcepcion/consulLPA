@@ -15,4 +15,12 @@
       vertical-align: super;
     }
   }
+
+  li {
+    @include breakpoint(medium) {
+      &::after {
+        content: none;
+      }
+    }
+  }
 }
