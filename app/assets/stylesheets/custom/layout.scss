@@ -24,3 +24,30 @@
     }
   }
 }
+
+// Línea 895
+// 03. Footer
+// ----------
+
+// Línea 941
+.footer {
+  background-color: $brand;
+  border-top: none;
+  padding-top: 0px;
+  min-height: auto;
+
+  footer {
+    color: white;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+
+    a {
+      color: white;
+    }
+
+    .subfooter {
+      border-top: 1px solid white;
+    }
+  }
+}
+
