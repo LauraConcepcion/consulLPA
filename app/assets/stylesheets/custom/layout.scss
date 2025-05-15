@@ -1,7 +1,7 @@
 
 // Línea 710
 .top-links {
-  background: $brand-green;
+  background: $brand-grey;
   color: $black;
 
   .social {
@@ -51,3 +51,58 @@
   }
 }
 
+
+// 24. Homepage
+// ------------
+
+.home-page,
+.custom-page,
+.sdg-goal-show,
+.sdg-goals-index {
+
+  .cards-container {
+    .card a {
+      background: $brand-grey;
+      border-radius: 20px;
+      height: 100%;
+    }
+  }
+
+  .card {
+    a:hover {
+
+      .figure-card img {
+        transform: none;
+      }
+    }
+
+    p,
+    .sdg-tag-list {
+      padding: none;
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+  }
+
+  h2 {
+    &.title {
+      @include header-font-size(h3);
+    }
+  }
+
+}
+
+
+.figure-card {
+  border-radius: 20px 20px 0 0;
+
+  .gradient {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 4.67%, rgba(0, 0, 0, 0.7) 93.45%);
+  }
+
+  figcaption {
+    h3 {
+      padding-right: rem-calc(100px);
+    }
+  }
+}
