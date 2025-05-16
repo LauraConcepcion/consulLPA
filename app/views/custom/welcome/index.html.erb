@@ -11,11 +11,10 @@
               social_url: root_url %>
 <% end %>
 <%= render "shared/header", header: @header %>
-<%= render "videos" %>
+
+<%= render "budget_investments_section" %>
 
 <main>
-  <%= render "actions" %>
-  <%= render "participate" %>
   <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
     <%= render "recommended",
                 recommended_debates: @recommended_debates,

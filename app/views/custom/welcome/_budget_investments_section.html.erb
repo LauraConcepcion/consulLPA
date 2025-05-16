@@ -1,0 +1,28 @@
+<div class="budget-investments-section">
+  <div class="header-card jumbo highlight investments">
+    <div class="row">
+      <div class="small-12 medium-8 column ">
+        <span></span>
+        <h2 class="title">Los proyectos que decidiste</h2>
+
+        <p class="description">Sigue el avance de los proyectos seleccionados en los presupuestos participativos 2023</p>
+      </div>
+        <div class="small-12 medium-4 column">
+          <%= image_tag("banner_investments.png") %>
+        </div>
+    </div>
+  </div>
+  <section id="investments_list" class="investments-list">
+    <% @investments.each do |investment| %>
+      <%= render Budgets::InvestmentComponent.new(investment) %>
+    <% end %>
+
+  </section>
+  <div class="row margin-top">
+    <div class="small-12 medium-6 large-4 small-centered column margin-top">
+      <%= link_to t("budgets.investments_list.see_all"),
+                  budget_executions_path(@last_finished_budget),
+                  class: "button expanded" %>
+    </div>
+  </div>
+</div>
