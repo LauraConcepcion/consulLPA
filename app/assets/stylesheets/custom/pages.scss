@@ -1,7 +1,8 @@
 // 01. Header
 // ----------------------
 
-.budget-investments-section {
+.budget-investments-section,
+.participate {
   .jumbo {
     background: #FFE1D2;
 
@@ -38,8 +39,11 @@
   }
 
   .button{
-    // width: rem-calc(140);
     border-radius: 50px;
   }
+}
+
+.participate{
+  margin-top: rem-calc(40);
 }
 
