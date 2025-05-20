@@ -11,14 +11,25 @@
               social_url: root_url %>
 <% end %>
 <%= render "shared/header", header: @header %>
-<%= render "videos" %>
+
+<%= render "budget_investments_section" %>
 
 <main>
-  <%= render "actions" %>
-  <%= render "participate" %>
   <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
     <%= render "recommended",
                 recommended_debates: @recommended_debates,
                 recommended_proposals: @recommended_proposals %>
   <% end %>
+
+  <%= render "participate"%>
+
+  <div class="row">
+    <% if @cards.any? %>
+      <div class="small-12 column">
+        <h2 class="title"><%= t("welcome.cards.title") %></h2>
+
+        <%= render "shared/cards", cards: @cards %>
+      </div>
+    <% end %>
+  </div>
 </main>

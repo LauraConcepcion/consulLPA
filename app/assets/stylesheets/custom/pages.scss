@@ -1,0 +1,49 @@
+// 01. Header
+// ----------------------
+
+.budget-investments-section,
+.participate {
+  .jumbo {
+    background: #FFE1D2;
+
+    &.header-card {
+      .description {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 54px;
+        color: $brand
+      }
+    }
+
+    @include breakpoint(medium) {
+      padding: rem-calc(20) 0 0 0;
+
+      img {
+        margin: rem-calc(40) 0 0 0;
+      }
+    }
+
+    &.light {
+      @include full-width-background;
+      background: #ecf0f1;
+    }
+
+    &.header-card {
+      @include full-width-background;
+    }
+
+    img {
+      display: block;
+      margin: rem-calc(40) auto 0; // arriba 40, auto (izq y der), abajo 0
+    }
+  }
+
+  .button{
+    border-radius: 50px;
+  }
+}
+
+.participate{
+  margin-top: rem-calc(40);
+}
+

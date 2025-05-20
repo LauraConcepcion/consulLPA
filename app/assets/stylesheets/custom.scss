@@ -4,11 +4,6 @@
 // folder and they will be loaded automatically.
 
 
-$brand-green: #5aab1d;
-$brand-pink: #d5278a;
-$brand-blue: $brand;
-$grey: #f5f4f4;
-
 header{
   background-color: none !important;
   .top-bar{
@@ -20,6 +15,8 @@ header{
       .button{
         background: $brand-blue;
         color: white;
+        width: rem-calc(140);
+        border-radius: 50px;
       }
       .button:hover {
         background-color: lighten($brand-blue, 35%);
@@ -68,13 +65,8 @@ header{
 body:not(.admin) header {
   .top-bar-title{
     display: inline-flex;
-    border: 1px solid rgba(0, 36, 126, 0.4);
     border-radius: 50%;
     padding: 20px;
-    box-shadow: 2px 2px 7px rgba(0, 36, 126, 0.7);
-    margin-top: 10px;
-    margin-right: 0;
-    background: white;
     position: absolute;
     max-width: 14rem;
     z-index: 1;
@@ -93,20 +85,6 @@ body:not(.admin) header {
   }
 }
 
-.top-links {
-  background: $brand-green;
-  .social {
-    a span:before {
-      vertical-align: sub;
-    }
-    a:hover {
-      text-decoration: none;
-    }
-    li:after {
-      vertical-align: super;
-    }
-  }
-}
 
 
 .auth-image h1 > a{
@@ -224,12 +202,6 @@ body:not(.admin) header {
   }
 }
 
-
-.button{
- padding: 0.75em 1em;
-}
-
-
 .poll.with-image img{
   width: 100%;
   height: auto;
@@ -256,27 +228,6 @@ body:not(.admin) header {
   }
   .progress-bar-nav{
     background-color: #f8f9fb;
-  }
-}
-
-.footer {
-  background-color: $brand-green;
-  border-top: none;
-  padding-top: 0px;
-  min-height: auto;
-
-  footer {
-    color: white;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-
-    a {
-      color: white;
-    }
-
-    .subfooter {
-      border-top: 1px solid white;
-    }
   }
 }
 

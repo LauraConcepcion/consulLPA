@@ -11,6 +11,8 @@ class WelcomeController < ApplicationController
     @header = Widget::Card.header.first
     @feeds = Widget::Feed.active
     @cards = Widget::Card.body
+    @last_finished_budget = Budget.finished.last
+    @investments = @last_finished_budget.investments.winners.sort_by_random(rand(10_000_000).to_i).limit(3)
     @remote_translations = detect_remote_translations(@feeds,
                                                       @recommended_debates,
                                                       @recommended_proposals)
