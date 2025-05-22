@@ -12,7 +12,10 @@ class WelcomeController < ApplicationController
     @feeds = Widget::Feed.active
     @cards = Widget::Card.body
     @last_finished_budget = Budget.finished.last
-    @investments = @last_finished_budget.investments.winners.sort_by_random(rand(10_000_000).to_i).limit(3)
+    milestone_status = Milestone::Status.find_by(name: "Obra ejecutada.")
+    @base = @last_finished_budget.investments.winners.sort_by_random(rand(10_000_000).to_i)
+    @base = @base.with_milestone_status_id(milestone_status.id) if milestone_status
+    @investments = @base.first(3)
     @remote_translations = detect_remote_translations(@feeds,
                                                       @recommended_debates,
                                                       @recommended_proposals)
