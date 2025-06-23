@@ -1398,6 +1398,9 @@
 }
 
 .budget-execution {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   border: 1px solid $border;
   overflow: hidden;
   position: relative;
@@ -1430,6 +1433,13 @@
 
   .budget-execution-info {
     padding: $line-height / 2;
+    flex: 1;
+    // margin-bottom: $line-height / 2;
+  }
+
+  .milestone  {
+    padding: 1rem;
+    align-self: flex-end;
   }
 
   .author {
