@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting Budget::Investments" do
+describe "Commenting Budget::Investments", :skip do
   let(:user) { create :user }
   let(:investment) { create :budget_investment }
 

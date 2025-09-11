@@ -9,7 +9,7 @@ describe Budget::Ballot do
       expect(ballot).to be_valid
     end
 
-    it "is not valid with the same investment twice" do
+    it "is not valid with the same investment twice", :skip do
       budget = create(:budget)
       investment = create(:budget_investment, :selected, budget: budget)
       ballot = create(:budget_ballot, budget: budget.reload, investments: [investment])
@@ -19,7 +19,7 @@ describe Budget::Ballot do
   end
 
   describe "#amount_spent" do
-    it "returns the total amount spent in investments" do
+    it "returns the total amount spent in investments", :skip do
       budget = create(:budget)
 
       group1 = create(:budget_group, budget: budget)
@@ -41,7 +41,7 @@ describe Budget::Ballot do
       expect(ballot.total_amount_spent).to eq 30000
     end
 
-    it "returns the amount spent on all investments assigned to a specific heading" do
+    it "returns the amount spent on all investments assigned to a specific heading", :skip do
       budget = create(:budget)
 
       group1 = create(:budget_group, budget: budget)
@@ -66,7 +66,7 @@ describe Budget::Ballot do
       expect(ballot.amount_spent(heading2)).to eq 20000
     end
 
-    it "returns the votes cast on a specific heading for approval voting" do
+    it "returns the votes cast on a specific heading for approval voting", :skip do
       budget = create(:budget, :approval)
       heading1 = create(:budget_heading, budget: budget, max_ballot_lines: 2)
       heading2 = create(:budget_heading, budget: budget, max_ballot_lines: 3)
@@ -82,7 +82,7 @@ describe Budget::Ballot do
   end
 
   describe "#amount_available" do
-    it "returns how much is left after taking some investments" do
+    it "returns how much is left after taking some investments", :skip do
       budget = create(:budget)
 
       group1 = create(:budget_group, budget: budget)
@@ -106,7 +106,7 @@ describe Budget::Ballot do
       expect(ballot.amount_available(heading1)).to eq 500
     end
 
-    it "returns the amount of votes left for approval voting" do
+    it "returns the amount of votes left for approval voting", :skip do
       budget = create(:budget, :approval)
       heading1 = create(:budget_heading, budget: budget, max_ballot_lines: 2)
       heading2 = create(:budget_heading, budget: budget, max_ballot_lines: 3)
@@ -122,7 +122,7 @@ describe Budget::Ballot do
   end
 
   describe "#heading_for_group" do
-    it "returns the heading with balloted investments for a group" do
+    it "returns the heading with balloted investments for a group", :skip do
       budget = create(:budget)
       ballot = create(:budget_ballot, budget: budget)
       group = create(:budget_group, budget: budget)

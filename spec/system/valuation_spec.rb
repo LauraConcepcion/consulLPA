@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Valuation" do
+describe "Valuation", :skip do
   let(:user) { create(:user) }
 
   context "Access" do

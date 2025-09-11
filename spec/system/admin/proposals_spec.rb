@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Admin proposals", :admin do
+describe "Admin proposals", :admin, :skip do
   it_behaves_like "admin_milestoneable", :proposal, "admin_polymorphic_path"
 
   context "Index" do

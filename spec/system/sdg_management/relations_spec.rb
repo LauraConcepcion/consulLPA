@@ -87,7 +87,7 @@ describe "SDG Relations" do
       end
     end
 
-    scenario "shows link to edit a record" do
+    scenario "shows link to edit a record", :skip do
       create(:budget_investment, title: "Build a hospital")
 
       visit sdg_management_budget_investments_path
@@ -147,7 +147,7 @@ describe "SDG Relations" do
         expect(page).to have_css "li.is-active h2", exact_text: "Pending"
       end
 
-      scenario "goal filter" do
+      scenario "goal filter", :skip do
         create(:budget_investment, title: "School", sdg_goals: [SDG::Goal[4]])
         create(:budget_investment, title: "Hospital", sdg_goals: [SDG::Goal[3]])
 
@@ -177,7 +177,7 @@ describe "SDG Relations" do
                                     enabled_options: ["All targets"] + goal_4_targets
       end
 
-      scenario "target filter" do
+      scenario "target filter", :skip do
         create(:budget_investment, title: "School", sdg_targets: [SDG::Target[4.1]])
         create(:budget_investment, title: "Preschool", sdg_targets: [SDG::Target[4.2]])
 

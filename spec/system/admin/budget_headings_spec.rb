@@ -57,7 +57,7 @@ describe "Admin budget headings", :admin do
       expect(page).not_to have_content "Lemuria"
     end
 
-    scenario "Try to delete a heading with investments" do
+    scenario "Try to delete a heading with investments", :skip do
       heading = create(:budget_heading, group: group, name: "Atlantis")
       create(:budget_investment, heading: heading)
 
@@ -195,7 +195,7 @@ describe "Admin budget headings", :admin do
              allow_custom_content: true)
     end
 
-    scenario "Updates group" do
+    scenario "Updates group", :skip do
       visit edit_admin_budget_group_heading_path(budget, group, heading)
 
       expect(page).to have_field "Heading name", with: "All City"

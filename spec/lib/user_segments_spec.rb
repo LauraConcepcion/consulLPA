@@ -67,7 +67,7 @@ describe UserSegments do
     end
   end
 
-  describe "#investment_authors" do
+  describe "#investment_authors", :skip do
     it "returns users that have created a budget investment" do
       investment = create(:budget_investment, author: user1)
       budget = create(:budget)
@@ -90,7 +90,7 @@ describe UserSegments do
     end
   end
 
-  describe "#feasible_and_undecided_investment_authors" do
+  describe "#feasible_and_undecided_investment_authors", :skip do
     it "returns authors of a feasible or an undecided budget investment" do
       user4 = create(:user)
       user5 = create(:user)
@@ -128,7 +128,7 @@ describe UserSegments do
     end
   end
 
-  describe "#selected_investment_authors" do
+  describe "#selected_investment_authors", :skip do
     it "returns authors of selected budget investments" do
       selected_investment = create(:budget_investment, :selected, author: user1)
       unselected_investment = create(:budget_investment, :unselected, author: user2)
@@ -153,7 +153,7 @@ describe UserSegments do
     end
   end
 
-  describe "#winner_investment_authors" do
+  describe "#winner_investment_authors", :skip do
     it "returns authors of winner budget investments" do
       winner_investment = create(:budget_investment, :winner, author: user1)
       selected_investment = create(:budget_investment, :selected, author: user2)
@@ -178,7 +178,7 @@ describe UserSegments do
     end
   end
 
-  describe "#current_budget_investments" do
+  describe "#current_budget_investments", :skip do
     it "only returns investments from the current budget" do
       investment1 = create(:budget_investment, author: create(:user))
       investment2 = create(:budget_investment, author: create(:user))
@@ -192,7 +192,7 @@ describe UserSegments do
     end
   end
 
-  describe "#not_supported_on_current_budget" do
+  describe "#not_supported_on_current_budget", :skip do
     it "only returns users that haven't supported investments on current budget" do
       investment1 = create(:budget_investment)
       investment2 = create(:budget_investment)

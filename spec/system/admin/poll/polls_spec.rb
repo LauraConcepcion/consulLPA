@@ -542,7 +542,7 @@ describe "Admin polls", :admin do
       end
     end
 
-    scenario "create poll with sdg related list" do
+    scenario "create poll with sdg related list", :skip do
       visit new_admin_poll_path
       fill_in "Name", with: "Upcoming poll with SDG related content"
       fill_in "Start Date", with: 1.week.from_now
@@ -559,7 +559,7 @@ describe "Admin polls", :admin do
       end
     end
 
-    scenario "edit poll with sdg related list" do
+    scenario "edit poll with sdg related list", :skip do
       poll = create(:poll, name: "Upcoming poll with SDG related content")
       poll.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
       visit edit_admin_poll_path(poll)

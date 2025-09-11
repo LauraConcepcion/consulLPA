@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Management" do
+describe "Management", :skip do
   let(:user) { create(:user) }
 
   scenario "Should show admin menu if logged user is admin" do

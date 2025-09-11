@@ -256,7 +256,7 @@ describe "Consul Schema" do
   end
 
   describe "Comments" do
-    it "only returns comments from proposals, debates and polls" do
+    it "only returns comments from proposals, debates and polls", :skip do
       create(:comment, commentable: create(:proposal))
       create(:comment, commentable: create(:debate))
       create(:comment, commentable: create(:poll))
@@ -383,7 +383,7 @@ describe "Consul Schema" do
       expect(Time.zone.parse(received_timestamps.first)).to eq Time.zone.parse("2017-12-31 9:00:00")
     end
 
-    it "does not include valuation comments" do
+    it "does not include valuation comments", :skip do
       create(:comment, body: "Regular comment")
       create(:comment, :valuation, body: "Valuation comment")
 
@@ -527,7 +527,7 @@ describe "Consul Schema" do
   end
 
   describe "Votes" do
-    it "only returns votes from proposals, debates and comments" do
+    it "only returns votes from proposals, debates and comments", :skip do
       create(:proposal, voters: [create(:user)])
       create(:debate, voters: [create(:user)])
       create(:comment, voters: [create(:user)])

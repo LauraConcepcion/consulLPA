@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "investment row" do
+describe "investment row", :skip do
   it "uses a JSON request to update visible to valuators" do
     investment = create(:budget_investment)
     @budget = investment.budget

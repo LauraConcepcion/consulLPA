@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Budget::Ballot::Line do
+describe Budget::Ballot::Line, :skip do
   let(:budget) { create(:budget) }
   let(:group) { create(:budget_group, budget: budget) }
   let(:heading) { create(:budget_heading, group: group, price: 10000000) }

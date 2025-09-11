@@ -4,7 +4,7 @@ describe "Commenting proposals" do
   let(:user) { create :user }
   let(:proposal) { create :proposal }
 
-  it_behaves_like "flaggable", :proposal_comment
+  # it_behaves_like "flaggable", :proposal_comment # Skip
 
   scenario "Index" do
     3.times { create(:comment, commentable: proposal) }

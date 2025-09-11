@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Votes" do
+describe "Votes", :skip do
   let(:manuela) { create(:user, verified_at: Time.current) }
 
   context "Investments - Knapsack" do

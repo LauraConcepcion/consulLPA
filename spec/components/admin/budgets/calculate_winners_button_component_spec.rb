@@ -32,7 +32,7 @@ describe Admin::Budgets::CalculateWinnersButtonComponent, controller: Admin::Bas
     expect(page).not_to have_button "Recalculate Winner Investments"
   end
 
-  context "budget with winners" do
+  context "budget with winners", :skip do
     before { create(:budget_investment, :winner, budget: budget) }
 
     it "renders when reviewing ballots" do

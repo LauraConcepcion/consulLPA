@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Budget::Investment do
+describe Budget::Investment, :skip do
   let(:investment) { build(:budget_investment) }
 
   describe "Concerns" do

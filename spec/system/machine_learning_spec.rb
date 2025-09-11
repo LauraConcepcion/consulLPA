@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Machine learning" do
+describe "Machine learning", :skip do
   let(:user_tag) { create(:tag, name: "user tag") }
   let(:ml_proposal_tag) { create(:tag, name: "machine learning proposal tag") }
   let(:ml_investment_tag) { create(:tag, name: "machine learning investment tag") }

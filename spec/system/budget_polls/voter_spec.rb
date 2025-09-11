@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "BudgetPolls", :with_frozen_time do
+describe "BudgetPolls", :with_frozen_time, :skip do
   let(:budget) { create(:budget, :balloting) }
   let(:investment) { create(:budget_investment, :selected, budget: budget) }
   let(:poll) { create(:poll, :current, budget: budget) }

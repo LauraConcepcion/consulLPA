@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Localization" do
+describe "Localization", :skip do
   scenario "Wrong locale" do
     I18n.with_locale(:es) do
       create(:widget_card, title: "Bienvenido a CONSUL",

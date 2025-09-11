@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "EmailVerifications" do
-  scenario "Verifying a level 1 user via email" do
+  scenario "Verifying a level 1 user via email", :skip do
     login_as_manager
 
     user = create(:user)

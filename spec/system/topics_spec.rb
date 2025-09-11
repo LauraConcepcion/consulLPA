@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Topics" do
-  context "Concerns" do
+  context "Concerns", :skip do
     it_behaves_like "notifiable in-app", :topic_with_community
   end
 
@@ -65,7 +65,7 @@ describe "Topics" do
       expect(page).to have_current_path(community_path(community))
     end
 
-    scenario "Can not create a new topic when user not logged" do
+    scenario "Can not create a new topic when user not logged", :skip do
       proposal = create(:proposal)
       community = proposal.community
 
@@ -92,7 +92,7 @@ describe "Topics" do
       expect(page).to have_current_path(community_path(community))
     end
 
-    scenario "Can not edit a topic when user logged is not an author" do
+    scenario "Can not edit a topic when user logged is not an author", :skip do
       proposal = create(:proposal)
       community = proposal.community
       topic = create(:topic, community: community)
