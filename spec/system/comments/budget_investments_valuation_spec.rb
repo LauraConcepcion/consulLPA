@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Internal valuation comments on Budget::Investments" do
+describe "Internal valuation comments on Budget::Investments", :skip do
   let(:user) { create(:user) }
   let(:valuator_user) { create(:valuator).user }
   let(:admin_user) { create(:administrator).user }

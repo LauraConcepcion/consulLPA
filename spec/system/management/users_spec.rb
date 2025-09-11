@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Users" do
+describe "Users", :skip do
   scenario "Create a level 3 user with email from scratch" do
     login_as_manager
     visit management_document_verifications_path

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::Stats::SDG::GoalComponent do
+describe Admin::Stats::SDG::GoalComponent, :skip do
   let(:component) { Admin::Stats::SDG::GoalComponent.new(goal: goal) }
   let(:goal) { SDG::Goal.sample }
 

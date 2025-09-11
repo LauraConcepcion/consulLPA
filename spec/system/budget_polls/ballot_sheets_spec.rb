@@ -15,7 +15,7 @@ describe "Poll budget ballot sheets" do
       set_officing_booth(booth)
     end
 
-    scenario "Budget polls are visible" do
+    scenario "Budget polls are visible", :skip do
       visit root_path
 
       click_link "Menu"

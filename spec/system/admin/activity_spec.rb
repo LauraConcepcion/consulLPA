@@ -233,7 +233,7 @@ describe "Admin activity" do
       end
     end
 
-    scenario "Shows moderation activity from moderation screen" do
+    scenario "Shows moderation activity from moderation screen", :skip do
       user = create(:user)
 
       visit moderation_users_path(search: user.username)

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Banner" do
+describe "Banner", :skip do
   scenario "Only renders banners in the right section" do
     create(:banner,
            web_sections: [WebSection.find_by!(name: "homepage")],

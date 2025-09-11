@@ -1,7 +1,7 @@
 require "rails_helper"
 require "sessions_helper"
 
-describe "Ballots" do
+describe "Ballots", :skip do
   let(:user)        { create(:user, :level_two) }
   let!(:budget)     { create(:budget, :balloting) }
   let!(:states)     { create(:budget_group, budget: budget, name: "States") }

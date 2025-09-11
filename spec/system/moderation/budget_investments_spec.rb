@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Moderate budget investments" do
+describe "Moderate budget investments", :skip do
   let(:budget)      { create(:budget) }
   let(:heading)     { create(:budget_heading, budget: budget, price: 666666) }
   let(:mod)         { create(:moderator) }

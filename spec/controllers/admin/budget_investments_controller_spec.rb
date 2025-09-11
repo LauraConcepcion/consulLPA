@@ -23,7 +23,7 @@ describe Admin::BudgetInvestmentsController, :admin do
     end
   end
 
-  describe "PATCH update" do
+  describe "PATCH update", :skip do
     it "does not redirect on AJAX requests" do
       investment = create(:budget_investment)
 

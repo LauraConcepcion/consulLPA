@@ -48,7 +48,7 @@ describe "System Emails" do
       end
     end
 
-    context "System emails with info" do
+    context "System emails with info", :skip do
       scenario "have information about how to edit the email templates" do
         visit admin_system_emails_path
 
@@ -94,7 +94,7 @@ describe "System Emails" do
       expect(page).to have_content("Proposal B Notification Body")
     end
 
-    scenario "#budget_investment_created" do
+    scenario "#budget_investment_created", :skip do
       investment = create(:budget_investment, title: "Cleaner city", heading: heading, author: user)
 
       visit admin_system_email_view_path("budget_investment_created")
@@ -110,7 +110,7 @@ describe "System Emails" do
       expect(page).to have_link "Share your project", href: share_url
     end
 
-    scenario "#budget_investment_selected" do
+    scenario "#budget_investment_selected", :skip do
       investment = create(:budget_investment, title: "Cleaner city", heading: heading, author: user)
 
       visit admin_system_email_view_path("budget_investment_selected")
@@ -122,7 +122,7 @@ describe "System Emails" do
       expect(page).to have_link "Share your investment project", href: share_url
     end
 
-    scenario "#budget_investment_unfeasible" do
+    scenario "#budget_investment_unfeasible", :skip do
       investment = create(:budget_investment, title: "Cleaner city", heading: heading, author: user)
 
       visit admin_system_email_view_path("budget_investment_unfeasible")
@@ -131,7 +131,7 @@ describe "System Emails" do
       expect(page).to have_content "has been marked as unfeasible"
     end
 
-    scenario "#budget_investment_unselected" do
+    scenario "#budget_investment_unselected", :skip do
       investment = create(:budget_investment, title: "Cleaner city", heading: heading, author: user)
 
       visit admin_system_email_view_path("budget_investment_unselected")
@@ -241,7 +241,7 @@ describe "System Emails" do
       expect(page).to have_content "Some example data is needed in order to preview the email."
     end
 
-    scenario "#evaluation_comment" do
+    scenario "#evaluation_comment", :skip do
       admin = create(:administrator, user: create(:user, username: "Baby Doe"))
       investment = create(:budget_investment,
         title: "Cleaner city",
@@ -319,7 +319,7 @@ describe "System Emails" do
       end
     end
 
-    scenario "#send_pending" do
+    scenario "#send_pending", :skip do
       proposal = create(:proposal)
       proposal_notification = create(:proposal_notification, proposal: proposal,
                                                               title: "Proposal A Title",

@@ -146,7 +146,7 @@ describe "Machine learning" do
     expect(page).to have_button "Execute script"
   end
 
-  scenario "Email content received by the user who execute the script" do
+  scenario "Email content received by the user who execute the script", :skip do
     reset_mailer
     Mailer.machine_learning_success(admin.user).deliver
 

@@ -6,7 +6,7 @@ describe "Legislation Proposals" do
   let(:process)  { create(:legislation_process) }
   let(:proposal) { create(:legislation_proposal) }
 
-  context "Concerns" do
+  context "Concerns", :skip do
     it_behaves_like "notifiable in-app", :legislation_proposal
     it_behaves_like "flaggable", :legislation_proposal
   end

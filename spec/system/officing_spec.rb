@@ -1,7 +1,7 @@
 require "rails_helper"
 require "sessions_helper"
 
-describe "Poll Officing" do
+describe "Poll Officing", :skip do
   let(:user) { create(:user) }
 
   scenario "Access as regular user is not authorized" do

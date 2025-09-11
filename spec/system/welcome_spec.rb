@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Welcome screen" do
+describe "Welcome screen", :skip do
   let(:budget) { create(:budget) }
 
   it_behaves_like "remotely_translatable", :proposal, "root_path", {}

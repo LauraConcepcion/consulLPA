@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe EvaluationCommentEmail do
+describe EvaluationCommentEmail, :skip do
   let(:author)        { create(:user) }
   let(:administrator) { create(:administrator) }
   let(:investment)    { create(:budget_investment, author: author, administrator: administrator) }

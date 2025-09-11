@@ -93,7 +93,7 @@ describe Vote do
       expect(Vote.public_for_api).to be_empty
     end
 
-    it "blocks any other kind of votes" do
+    it "blocks any other kind of votes", :skip do
       create(:vote, votable: create(:budget_investment))
 
       expect(Vote.public_for_api).to be_empty

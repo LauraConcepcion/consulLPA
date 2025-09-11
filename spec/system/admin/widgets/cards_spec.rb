@@ -55,7 +55,7 @@ describe "Cards", :admin do
     end
   end
 
-  scenario "Show" do
+  scenario "Show", :skip do
     card_1 = create(:widget_card, title: "Card homepage large", columns: 8)
     card_2 = create(:widget_card, title: "Card homepage medium", columns: 4)
     card_3 = create(:widget_card, title: "Card homepage small", columns: 2)

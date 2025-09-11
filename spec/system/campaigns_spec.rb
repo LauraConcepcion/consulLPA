@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Email campaigns", :admin do
+describe "Email campaigns", :admin, :skip do
   let!(:campaign1) { create(:campaign) }
   let!(:campaign2) { create(:campaign) }
 

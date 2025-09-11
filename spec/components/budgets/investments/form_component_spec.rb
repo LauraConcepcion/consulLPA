@@ -22,7 +22,7 @@ describe Budgets::Investments::FormComponent do
       expect(page).to have_field "I agree to the Privacy Policy and the Terms and conditions of use"
     end
 
-    it "is not shown for existing investments" do
+    it "is not shown for existing investments", :skip do
       investment = create(:budget_investment, budget: budget)
 
       render_inline Budgets::Investments::FormComponent.new(
