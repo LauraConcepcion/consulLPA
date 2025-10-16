@@ -20,22 +20,37 @@ class Budget::Investment
   end
 
   def self.advanced_filters(params, results)
-    results = results.without_admin      if params[:advanced_filters].include?("without_admin")
-    results = results.without_valuator   if params[:advanced_filters].include?("without_valuator")
-    results = results.under_valuation    if params[:advanced_filters].include?("under_valuation")
-    results = results.valuation_finished if params[:advanced_filters].include?("valuation_finished")
-    results = results.winners            if params[:advanced_filters].include?("winners")
+    filters = Array(params[:advanced_filters])
 
-    ids = []
-    ids += results.valuation_finished_feasible.ids if params[:advanced_filters].include?("feasible")
-    ids += results.where(selected: true).ids       if params[:advanced_filters].include?("selected")
-    ids += results.undecided.ids                   if params[:advanced_filters].include?("undecided")
-    ids += results.unfeasible.ids                  if params[:advanced_filters].include?("unfeasible")
-    ids += results.takecharged.ids                 if params[:advanced_filters].include?("takecharged")
-    ids += results.included_next_year_budget.ids   if params[:advanced_filters].include?("included_next_year_budget")
-    ids += results.not_selected.ids                if params[:advanced_filters].include?("not_selected")
 
-    results = results.where(id: ids) if ids.any?
+    results = results.without_admin      if filters.include?("without_admin")
+    results = results.without_valuator   if filters.include?("without_valuator")
+    results = results.under_valuation    if filters.include?("under_valuation")
+    results = results.valuation_finished if filters.include?("valuation_finished")
+    results = results.winners            if filters.include?("winners")
+
+
+    id_based_keys = %w[
+      feasible selected undecided unfeasible takecharged
+      included_next_year_budget not_selected
+    ]
+
+    picked_id_filters = id_based_keys & filters
+
+    if picked_id_filters.any?
+      ids = []
+      ids += results.valuation_finished_feasible.ids if filters.include?("feasible")
+      ids += results.where(selected: true).ids       if filters.include?("selected")
+      ids += results.undecided.ids                   if filters.include?("undecided")
+      ids += results.unfeasible.ids                  if filters.include?("unfeasible")
+      ids += results.takecharged.ids                 if filters.include?("takecharged")
+      ids += results.included_next_year_budget.ids   if filters.include?("included_next_year_budget")
+      ids += results.not_selected.ids                if filters.include?("not_selected")
+
+      # Si no hay coincidencias, devolvemos vacío
+      results = results.where(id: ids.uniq)
+    end
+
     results
   end
 
