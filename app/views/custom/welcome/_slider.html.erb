@@ -2,6 +2,13 @@
   <div class="orbit-wrapper">
     <ul class="orbit-container no-bullet">
       <li class="orbit-slide" aria-live="polite" tabindex="0">
+        <a href="/legislation/processes/6/debate" >
+          <figure class="orbit-figure">
+            <%= image_tag("banner-pmus-movilidad-ok.jpg", class: "orbit-image", alt: "Plan de Movilidad Urbana Sostenible (PMUS)") %>
+          </figure>
+        </a>
+      </li>
+      <li class="orbit-slide" aria-live="polite" tabindex="1">
         <a href="/budgets" >
           <figure class="orbit-figure">
             <%= image_tag("banner-presupuestos-2025-LPGC-decide.jpg", class: "orbit-image", alt: "Presupuestos participativos 2025") %>
@@ -10,7 +17,8 @@
       </li>
     </ul>
   </div>
-  <%# <nav class="orbit-bullets"> %>
-    <%# <button class="is-active" data-slide="0"><span class="show-for-sr">Votación concurso de proyectos Paseo Guiniguada</span></button> %>
-  <%# </nav> %>
+  <nav class="orbit-bullets">
+    <button class="is-active" data-slide="0"><span class="show-for-sr">Plan de Movilidad Urbana Sostenible (PMUS)</span></button>
+    <button  data-slide="1"><span class="show-for-sr">Votación Presupuestos Participativos Municipales 2025</span></button>
+  </nav>
 </div>
