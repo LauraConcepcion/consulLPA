@@ -10,7 +10,7 @@ require "capistrano/rails/migrations"
 #require "capistrano/passenger"
 require "capistrano/delayed_job"
 require "whenever/capistrano"
-# require "rvm1/capistrano3"
+require "rvm1/capistrano3" if ARGV.include?("production")
 
 # require "capistrano/puma"
 # install_plugin Capistrano::Puma, load_hooks: false
