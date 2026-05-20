@@ -7,8 +7,8 @@ def deploysecret(key)
 end
 
 set :rails_env, fetch(:stage)
-set :rvm1_ruby_version, "2.7.4"
-set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
+# set :rvm1_ruby_version, "2.7.4"
+# set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
 
 set :application, "consul"
 set :deploy_to, deploysecret(:deploy_to)
@@ -31,7 +31,7 @@ set :keep_releases, 5
 
 set :local_user, ENV["USER"]
 
-set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
+# set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
@@ -39,7 +39,7 @@ set :delayed_job_roles, :background
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  # Rake::Task["delayed_job:default"].clear_actions
+  Rake::Task["delayed_job:default"].clear_actions
   # Rake::Task["puma:smart_restart"].clear_actions
 
   # after :updating, "install_ruby"
