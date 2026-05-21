@@ -7,8 +7,10 @@ def deploysecret(key)
 end
 
 set :rails_env, fetch(:stage)
-# set :rvm1_ruby_version, "2.7.4"
-# set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
+if ARGV.include?("production")
+  set :rvm1_ruby_version, "2.7.4"
+  set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
+end
 
 set :application, "consul"
 set :deploy_to, deploysecret(:deploy_to)
