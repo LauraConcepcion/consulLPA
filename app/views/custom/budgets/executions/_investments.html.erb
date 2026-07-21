@@ -21,7 +21,7 @@
             <% if investment.milestone_status_id %>
                 <div class="milestone">
                     <span class="milestone-status">
-                      <%= Milestone.find(investment.milestone_status_id).status.name %>
+                      <%= Milestone::Status.find(investment.milestone_status_id).name %>
                     </span>
                   </div>
               <% end %>
