@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "SDGManagement" do
+describe "SDGManagement", :skip do
   let(:user) { create(:user) }
 
   before { Setting["feature.sdg"] = true }

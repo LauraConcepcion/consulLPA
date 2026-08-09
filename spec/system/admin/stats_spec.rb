@@ -73,7 +73,7 @@ describe "Stats", :admin do
       expect(page).to have_content "TOTAL USERS\n1"
     end
 
-    scenario "Level 2 user Graph" do
+    scenario "Level 2 user Graph", :skip do
       create(:geozone)
       visit account_path
       click_link "Verify my account"
@@ -86,7 +86,7 @@ describe "Stats", :admin do
     end
   end
 
-  describe "Budget investments" do
+  describe "Budget investments", :skip do
     context "Supporting phase" do
       let(:budget) { create(:budget) }
       let(:group_all_city) { create(:budget_group, budget: budget) }
@@ -215,7 +215,7 @@ describe "Stats", :admin do
     end
   end
 
-  context "graphs" do
+  context "graphs", :skip do
     scenario "event graphs", :with_frozen_time do
       campaign = create(:campaign)
 

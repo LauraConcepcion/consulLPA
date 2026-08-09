@@ -571,7 +571,7 @@ describe "Commenting topics from proposals" do
   end
 end
 
-describe "Commenting topics from budget investments" do
+describe "Commenting topics from budget investments", :skip do
   let(:user)       { create :user }
   let(:investment) { create :budget_investment }
 

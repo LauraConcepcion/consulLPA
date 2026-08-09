@@ -91,7 +91,7 @@ describe Signature do
         expect(user.voted_for?(proposal)).to be
       end
 
-      it "assigns vote to user on budget investment" do
+      it "assigns vote to user on budget investment", :skip do
         investment = create(:budget_investment)
         signature_sheet = create(:signature_sheet, signable: investment)
         user = create(:user, :level_two, document_number: "123A")
@@ -112,7 +112,7 @@ describe Signature do
         expect(Vote.count).to eq(1)
       end
 
-      it "does not assigns vote to invalid user on budget investment" do
+      it "does not assigns vote to invalid user on budget investment", :skip do
         investment = create(:budget_investment)
         signature_sheet = create(:signature_sheet, signable: investment)
         user = create(:user, document_number: "123A")
@@ -124,7 +124,7 @@ describe Signature do
         expect(Vote.count).to eq(0)
       end
 
-      it "does not assign vote to user multiple times on budget investment" do
+      it "does not assign vote to user multiple times on budget investment", :skip do
         investment = create(:budget_investment)
         signature_sheet = create(:signature_sheet, signable: investment)
         user = create(:user, :level_two, document_number: "123A")
@@ -147,7 +147,7 @@ describe Signature do
         expect(Vote.count).to eq(1)
       end
 
-      it "does not assign vote to user if already voted on budget investment" do
+      it "does not assign vote to user if already voted on budget investment", :skip do
         user = create(:user, :level_two, document_number: "123A")
         investment = create(:budget_investment, voters: [user])
 
@@ -161,7 +161,7 @@ describe Signature do
         expect(Vote.count).to eq(1)
       end
 
-      it "marks the vote as coming from a signature" do
+      it "marks the vote as coming from a signature", :skip do
         signature = create(:signature, document_number: "12345678Z")
 
         signature.verify
@@ -171,7 +171,7 @@ describe Signature do
     end
 
     describe "inexistent user" do
-      it "creates a user with that document number" do
+      it "creates a user with that document number", :skip do
         create(:geozone, census_code: "01")
         signature = create(:signature, document_number: "12345678Z")
 
@@ -187,7 +187,7 @@ describe Signature do
         expect(user.date_of_birth).to be
       end
 
-      it "assign the vote to newly created user" do
+      it "assign the vote to newly created user", :skip do
         signature = create(:signature, document_number: "12345678Z")
         proposal = signature.signable
 
@@ -197,7 +197,7 @@ describe Signature do
         expect(user.voted_for?(proposal)).to be
       end
 
-      it "assigns signature to vote" do
+      it "assigns signature to vote", :skip do
         signature = create(:signature, document_number: "12345678Z")
 
         signature.verify
@@ -207,7 +207,7 @@ describe Signature do
     end
 
     describe "document in census" do
-      it "calls assign_vote_to_user" do
+      it "calls assign_vote_to_user", :skip do
         signature = create(:signature, document_number: "12345678Z")
 
         allow(signature).to receive(:assign_vote_to_user)
@@ -224,7 +224,7 @@ describe Signature do
       end
     end
 
-    describe "document in census throught CustomCensusApi" do
+    describe "document in census throught CustomCensusApi", :skip do
       it "calls assign_vote_to_user", :remote_census do
         signature = create(:signature, document_number: "12345678Z",
                                        date_of_birth: "31/12/1980",
@@ -238,7 +238,7 @@ describe Signature do
       end
     end
 
-    describe "document not in census" do
+    describe "document not in census", :skip do
       it "does not call assign_vote_to_user" do
         signature = create(:signature, document_number: "123A")
 

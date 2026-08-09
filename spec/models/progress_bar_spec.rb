@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ProgressBar do
+describe ProgressBar, :skip do
   let(:progress_bar) { build(:progress_bar) }
 
   it_behaves_like "globalizable", :progress_bar

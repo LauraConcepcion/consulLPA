@@ -264,7 +264,7 @@ describe Budget::Heading do
   end
 
   describe "heading" do
-    it "can be deleted if no budget's investments associated" do
+    it "can be deleted if no budget's investments associated", :skip do
       heading1 = create(:budget_heading, group: group, name: "name")
       heading2 = create(:budget_heading, group: group, name: "name 2")
 

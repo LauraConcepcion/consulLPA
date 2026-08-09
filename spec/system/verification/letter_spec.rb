@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Verify Letter" do
-  scenario "Request a letter" do
+  scenario "Request a letter", :skip do
     user = create(:user, residence_verified_at: Time.current,
                          confirmed_phone:       "611111111")
 

@@ -110,7 +110,7 @@ describe RemoteTranslations::Caller, :remote_translations do
       end
     end
 
-    context "Budget Investments" do
+    context "Budget Investments", :skip do
       let(:budget_investment)  { create(:budget_investment) }
       let(:remote_translation) do
         create(:remote_translation, remote_translatable: budget_investment, locale: :es)

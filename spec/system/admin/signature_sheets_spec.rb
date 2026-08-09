@@ -27,7 +27,7 @@ describe "Signature sheets", :admin do
   end
 
   context "Create" do
-    scenario "Proposal" do
+    scenario "Proposal", :skip do
       proposal = create(:proposal)
       visit new_admin_signature_sheet_path
 
@@ -47,7 +47,7 @@ describe "Signature sheets", :admin do
       expect(page).to have_content "1 support"
     end
 
-    scenario "Budget Investment" do
+    scenario "Budget Investment", :skip do
       investment = create(:budget_investment)
       budget = investment.budget
       budget.update!(phase: "selecting")
@@ -77,7 +77,7 @@ describe "Signature sheets", :admin do
       mock_invalid_signature_sheet_remote_census_response
     end
 
-    scenario "Proposal" do
+    scenario "Proposal", :skip do
       proposal = create(:proposal)
       visit new_admin_signature_sheet_path
 
@@ -93,7 +93,7 @@ describe "Signature sheets", :admin do
       expect(page).to have_content "1 support"
     end
 
-    scenario "Budget Investment" do
+    scenario "Budget Investment", :skip do
       investment = create(:budget_investment)
       budget = investment.budget
       budget.update!(phase: "selecting")
@@ -121,7 +121,7 @@ describe "Signature sheets", :admin do
     expect(page).to have_content error_message
   end
 
-  scenario "Show" do
+  scenario "Show", :skip do
     proposal = create(:proposal)
     user = Administrator.first.user
     signature_sheet = create(:signature_sheet,

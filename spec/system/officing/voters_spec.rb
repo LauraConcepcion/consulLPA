@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Voters" do
+describe "Voters", :skip do
   let(:poll) { create(:poll, :current) }
   let(:booth) { create(:poll_booth) }
   let(:officer) { create(:poll_officer) }

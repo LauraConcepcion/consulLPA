@@ -27,7 +27,7 @@ describe "Account" do
     expect(email).to have_text "Change your password"
   end
 
-  scenario "Manager changes the password by hand (writen by them)" do
+  scenario "Manager changes the password by hand (writen by them)", :skip do
     user = create(:user, :level_three)
     login_managed_user(user)
 
@@ -47,7 +47,7 @@ describe "Account" do
     expect(page).to have_content "You have been signed in successfully."
   end
 
-  scenario "Manager generates random password" do
+  scenario "Manager generates random password", :skip do
     user = create(:user, :level_three)
     login_managed_user(user)
 

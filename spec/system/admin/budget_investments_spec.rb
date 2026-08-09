@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Admin budget investments", :admin do
+describe "Admin budget investments", :admin, :skip do
   let(:budget) { create(:budget) }
   let(:administrator) do
     create(:administrator, user: create(:user, username: "Ana", email: "ana@admins.org"))

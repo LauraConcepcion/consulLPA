@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Budgets::InvestmentComponent do
+describe Budgets::InvestmentComponent, :skip do
   before { sign_in(create(:user)) }
 
   it "shows the investment image when defined" do

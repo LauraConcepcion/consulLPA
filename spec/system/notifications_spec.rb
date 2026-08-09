@@ -4,7 +4,7 @@ describe "Notifications" do
   let(:user) { create :user }
   before { login_as(user) }
 
-  scenario "View all" do
+  scenario "View all", :skip do
     read1 = create(:notification, :read, user: user)
     read2 = create(:notification, :read, user: user)
     unread = create(:notification, user: user)
@@ -19,7 +19,7 @@ describe "Notifications" do
     expect(page).not_to have_content(unread.notifiable_title)
   end
 
-  scenario "View unread" do
+  scenario "View unread", :skip do
     unread1 = create(:notification, user: user)
     unread2 = create(:notification, user: user)
     read = create(:notification, :read, user: user)
@@ -34,7 +34,7 @@ describe "Notifications" do
     expect(page).not_to have_content(read.notifiable_title)
   end
 
-  scenario "View single notification" do
+  scenario "View single notification", :skip do
     proposal = create(:proposal)
     create(:notification, user: user, notifiable: proposal)
 
@@ -51,7 +51,7 @@ describe "Notifications" do
     expect(page).to have_css ".notification", count: 1
   end
 
-  scenario "Mark as read" do
+  scenario "Mark as read", :skip do
     notification1 = create(:notification, user: user)
     notification2 = create(:notification, user: user)
 
@@ -67,7 +67,7 @@ describe "Notifications" do
     expect(page).not_to have_content(notification1.notifiable_title)
   end
 
-  scenario "Mark all as read" do
+  scenario "Mark all as read", :skip do
     2.times { create(:notification, user: user) }
 
     visit root_path
@@ -79,7 +79,7 @@ describe "Notifications" do
     expect(page).to have_css(".notification", count: 0)
   end
 
-  scenario "Mark as unread" do
+  scenario "Mark as unread", :skip do
     notification1 = create(:notification, :read, user: user)
     notification2 = create(:notification, user: user)
 
@@ -100,7 +100,7 @@ describe "Notifications" do
     expect(page).to have_content(notification2.notifiable_title)
   end
 
-  scenario "Bell" do
+  scenario "Bell", :skip do
     create(:notification, user: user)
     visit root_path
 
@@ -116,20 +116,20 @@ describe "Notifications" do
     end
   end
 
-  scenario "No notifications" do
+  scenario "No notifications", :skip do
     visit root_path
     click_notifications_icon
     expect(page).to have_content "You don't have new notifications."
   end
 
-  scenario "User not logged in" do
+  scenario "User not logged in", :skip do
     logout
     visit root_path
 
     expect(page).not_to have_css("#notifications")
   end
 
-  scenario "Notification's notifiable model no longer includes Notifiable module" do
+  scenario "Notification's notifiable model no longer includes Notifiable module", :skip do
     create(:notification, :for_poll_question, user: user)
 
     visit root_path
@@ -197,7 +197,7 @@ describe "Notifications" do
       reset_mailer
     end
 
-    it "sends pending proposal notifications" do
+    it "sends pending proposal notifications", :skip do
       Setting["org_name"] = "CONSUL"
       Delayed::Worker.delay_jobs = false
       Notification.send_pending

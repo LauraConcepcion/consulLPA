@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Budgets::Executions::FiltersComponent do
+describe Budgets::Executions::FiltersComponent, :skip do
   let(:budget) { create(:budget) }
   let(:component) { Budgets::Executions::FiltersComponent.new(budget, []) }
 

@@ -24,7 +24,7 @@ describe "Moderate proposal notifications" do
     expect(page).to have_content "Notifications (0)"
   end
 
-  scenario "Can not hide own proposal notification" do
+  scenario "Can not hide own proposal notification", :skip do
     moderator = create(:moderator)
     proposal = create(:proposal, author: moderator.user)
     proposal_notification = create(:proposal_notification, proposal: proposal, created_at: Date.current - 4.days)

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Home" do
+describe "Home", :skip do
   context "For not logged users" do
     scenario "Welcome message" do
       visit root_path

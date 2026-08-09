@@ -8,6 +8,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require "rspec/rails"
 require "spec_helper"
+require "spec_custom_helper"
 require "capybara/rails"
 require "capybara/rspec"
 require "selenium/webdriver"
@@ -44,6 +45,8 @@ RSpec.configure do |config|
 end
 
 FactoryBot.use_parent_strategy = false
+
+Selenium::WebDriver::Chrome::Service.driver_path = "/home/slimbook/Development/usabi/chromedrivers/chromedriver-linux64.139/chromedriver"
 
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(

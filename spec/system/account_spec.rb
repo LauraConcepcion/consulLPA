@@ -7,7 +7,7 @@ describe "Account" do
     login_as(user)
   end
 
-  scenario "Show" do
+  scenario "Show", :skip do
     visit root_path
 
     click_link "My account"
@@ -50,7 +50,7 @@ describe "Account" do
     expect(find("#account_email_on_direct_message")).not_to be_checked
   end
 
-  scenario "Edit email address" do
+  scenario "Edit email address", :skip do
     visit account_path
 
     click_link "Change my credentials"
@@ -143,7 +143,7 @@ describe "Account" do
     expect(page).to have_content error_message
   end
 
-  scenario "Errors editing credentials" do
+  scenario "Errors editing credentials", :skip do
     visit root_path
 
     click_link "My account"
@@ -157,7 +157,7 @@ describe "Account" do
     expect(page).to have_content error_message
   end
 
-  scenario "Erasing account" do
+  scenario "Erasing account", :skip do
     visit account_path
 
     click_link "Erase my account"

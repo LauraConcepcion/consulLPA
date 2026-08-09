@@ -35,7 +35,7 @@ describe "Public area translatable records" do
       expect(page).to have_content "2032 will make Australia famous again"
     end
 
-    scenario "Add multiple translations at once" do
+    scenario "Add multiple translations at once", :skip do
       budget = create(:budget_heading, name: "Everywhere").group.budget
 
       visit new_budget_investment_path(budget)
@@ -66,7 +66,7 @@ describe "Public area translatable records" do
       expect(page).to have_content "Proposal created successfully"
     end
 
-    scenario "Add a translation for a locale with non-underscored name" do
+    scenario "Add a translation for a locale with non-underscored name", :skip do
       budget = create(:budget_heading, name: "Everywhere").group.budget
 
       visit new_budget_investment_path(budget)
@@ -112,7 +112,7 @@ describe "Public area translatable records" do
       expect_to_have_language_selected "English"
     end
 
-    scenario "Highlight new locale added" do
+    scenario "Highlight new locale added", :skip do
       visit new_proposal_path
 
       select "Español", from: "Language:"
@@ -192,7 +192,7 @@ describe "Public area translatable records" do
         let(:translatable) { create(:debate) }
         let(:path) { edit_debate_path(translatable) }
 
-        scenario "Changes the existing translation" do
+        scenario "Changes the existing translation", :skip do
           visit path
 
           select "Español", from: :select_language

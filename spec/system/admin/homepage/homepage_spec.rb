@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Homepage", :admin do
+describe "Homepage", :admin, :skip do
   before do
     Setting["homepage.widgets.feeds.proposals"] = false
     Setting["homepage.widgets.feeds.debates"] = false

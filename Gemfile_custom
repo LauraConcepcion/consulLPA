@@ -16,3 +16,7 @@ group :development do
   gem 'solargraph'
   gem 'rufo'
 end
+
+group :test do
+  gem "simplecov", require: false
+end

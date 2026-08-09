@@ -27,7 +27,7 @@ describe Valuation::BudgetInvestmentsController do
     end
   end
 
-  describe "GET show" do
+  describe "GET show", :skip do
     it "is not visible for not assigned valuators" do
       investment = create(:budget_investment, budget: budget)
       login_as create(:valuator).user

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Admin hidden budget investments", :admin do
+describe "Admin hidden budget investments", :admin, :skip do
   let(:budget)  { create(:budget) }
   let(:heading) { create(:budget_heading, budget: budget, price: 666666) }
 

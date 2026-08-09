@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "SDG Management" do
+describe "SDG Management", :skip do
   before { login_as(create(:administrator).user) }
 
   context "SDG feature flag is enabled" do

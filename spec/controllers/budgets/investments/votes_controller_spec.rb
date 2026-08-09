@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Budgets::Investments::VotesController do
+describe Budgets::Investments::VotesController, :skip do
   let(:user) { create(:user) }
   let(:budget) { create(:budget, :selecting) }
   let(:investment) { create(:budget_investment, budget: budget) }

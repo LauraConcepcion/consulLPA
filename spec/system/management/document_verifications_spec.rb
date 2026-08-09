@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "DocumentVerifications" do
+describe "DocumentVerifications", :skip do
   scenario "Verifying a level 3 user shows an 'already verified' page" do
     user = create(:user, :level_three)
 

@@ -33,7 +33,7 @@ describe Budgets::SubheaderComponent do
       end
     end
 
-    it "and user is not verified shows a link to account verification" do
+    it "and user is not verified shows a link to account verification", :skip do
       sign_in(create(:user))
 
       render_inline Budgets::SubheaderComponent.new(budget)

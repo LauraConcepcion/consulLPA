@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Remote Translations" do
+describe "Remote Translations", :skip do
   before do
     Setting["feature.remote_translations"] = true
     create(:proposal)

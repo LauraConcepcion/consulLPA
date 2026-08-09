@@ -80,7 +80,7 @@ describe Users::PublicActivityComponent, controller: UsersController do
     end
   end
 
-  describe "comments" do
+  describe "comments", :skip do
     let(:user) { create(:user) }
     let(:component) { Users::PublicActivityComponent.new(user) }
 

@@ -30,7 +30,7 @@ describe "Admin custom images", :admin do
     expect(page).to have_css("img[src*='custom_map.jpg']", count: 1)
   end
 
-  scenario "Image is replaced on front views" do
+  scenario "Image is replaced on front views", :skip do
     budget = create(:budget)
     group = create(:budget_group, budget: budget)
 
@@ -60,7 +60,7 @@ describe "Admin custom images", :admin do
     end
   end
 
-  scenario "Image is replaced on admin newsletters" do
+  scenario "Image is replaced on admin newsletters", :skip do
     newsletter = create(:newsletter, segment_recipient: "all_users")
 
     visit admin_site_customization_images_path

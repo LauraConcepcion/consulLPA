@@ -817,6 +817,7 @@ DEPENDENCIES
   savon (~> 2.12.1)
   scss_lint (~> 0.59.0)
   selenium-webdriver (~> 3.142)
+  simplecov
   sitemap_generator (~> 6.1.2)
   slack-notifier
   social-share-button (~> 1.2.4)

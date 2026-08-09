@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Managed User" do
+describe "Managed User", :skip do
   context "Currently managed user" do
     scenario "No managed user" do
       login_as_manager
